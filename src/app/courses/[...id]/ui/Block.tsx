@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject, useEffect, useState } from "react";
+import { ChangeEvent, useState, memo } from "react";
 import { BlockType } from "../utils/types";
 import BlockTypeSelector from "./BlockTypeSelector";
 import TextArea from "@/app/_ui/TextArea";
@@ -11,7 +11,7 @@ type BlockProps = {
   block: BlockType;
 };
 
-export default function Block(props: BlockProps) {
+function Block(props: BlockProps) {
   let [type, setType] = useState(props.block.type);
   console.log(props.block.content);
 
@@ -33,6 +33,10 @@ export default function Block(props: BlockProps) {
     if (e.key === "Enter") {
       props.insertBlock();
       e.currentTarget.blur();
+    }
+
+    if (e.key === "Backspace") {
+      if (e.currentTarget.value === "") props.onDelete();
     }
   };
 
@@ -64,3 +68,5 @@ export default function Block(props: BlockProps) {
     </div>
   );
 }
+
+export default memo(Block);
