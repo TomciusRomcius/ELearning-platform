@@ -1,4 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model, Document } from "mongoose";
+
+export interface Block extends Document {
+  type: string;
+  content: string;
+  order: number;
+}
 
 export const blockSchema = new mongoose.Schema({
   type: {
@@ -15,4 +21,6 @@ export const blockSchema = new mongoose.Schema({
   },
 });
 
-export const BlockModel = mongoose.models.Block || mongoose.model("Block", blockSchema);
+type BlockModelType = Model<Block>;
+
+export const BlockModel: BlockModelType = mongoose.models.Block || mongoose.model("Block", blockSchema);

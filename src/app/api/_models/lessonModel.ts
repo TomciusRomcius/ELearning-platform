@@ -1,5 +1,12 @@
-import mongoose from "mongoose";
-import { blockSchema } from "./blockModel";
+import mongoose, { Model, Document } from "mongoose";
+import { Block, blockSchema } from "./blockModel";
+
+interface Lesson extends Document {
+  title: string;
+  description: string;
+  order: number;
+  blocks: Block[];
+}
 
 export const lessonSchema = new mongoose.Schema({
   title: {
@@ -17,4 +24,6 @@ export const lessonSchema = new mongoose.Schema({
   blocks: [blockSchema],
 })
 
-export const LessonModel = mongoose.models.Lesson || mongoose.model("Lesson", lessonSchema);
+type LessonModelType = Model<Lesson>;
+
+export const LessonModel: LessonModelType = mongoose.models.Lesson || mongoose.model("Lesson", lessonSchema);
