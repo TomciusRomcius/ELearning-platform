@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LessonType } from "../courses/[...id]/utils/types";
+import { LessonType } from "../app/courses/[...id]/utils/types";
 
 export async function updateLesson(
   courseId: string,

@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, memo } from "react";
 import { BlockType } from "../utils/types";
 import BlockTypeSelector from "./BlockTypeSelector";
-import TextArea from "@/app/_ui/TextArea";
+import TextArea from "@/ui/TextArea";
 
 type BlockProps = {
   setCurrentIndex: (index: number) => void;

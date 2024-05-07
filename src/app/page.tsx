@@ -2,19 +2,15 @@
 import { useEffect, useState } from "react";
 import CourseCard from "./_components/CourseCard";
 import axios from "axios";
+import { getCourses } from "@/services/getCourses";
 
 export default function Page() {
   let [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios.get("api/courses")
-      .then((courses) => {
-        setCourses(courses.data);
-        console.log(courses.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    getCourses().then((fetchedCourses) => {
+      setCourses(fetchedCourses);
+    });
   }, []);
 
   return (

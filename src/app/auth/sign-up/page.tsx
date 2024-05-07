@@ -1,5 +1,6 @@
 "use client"
 
+import { createUser } from "@/services/createUser";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 
@@ -10,18 +11,9 @@ export default function SignUp() {
   const handleSignUp = () => {
     if (!usernameRef.current?.value || !passwordRef.current?.value)
       return;
-    axios.post("/api/sign-up", {
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
-    })
+    createUser(usernameRef.current.value, passwordRef.current.value);
   }
 
-  useEffect(() => {
-    axios.get("/api/sign-up")
-      .then((users) => {
-        console.log(users);
-      })
-  }, []);
   return (
     <main className="w-screen h-screen flex justify-center items-center">
       <div className="w-1/4">

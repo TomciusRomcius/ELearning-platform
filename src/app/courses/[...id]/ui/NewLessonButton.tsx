@@ -1,4 +1,4 @@
-import axios from "axios";
+import { createLesson } from "@/services/createLesson";
 import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
@@ -12,15 +12,11 @@ export default function NewLessonButton(props: NewLessonButtonProps) {
   const handleClick = () => {
     setActive(!active);
   };
-
   const onCreate = () => {
-    const title = nameRef.current?.value;
-    if (!title) return;
-    axios.post(`/api/courses/new-lesson?id=${props.courseId}`, {
-      title: title,
-    });
+    if (!nameRef.current?.value) return;
+    createLesson(props.courseId, nameRef.current?.value)
   };
-
+  
   return (
     <div>
       <button onClick={handleClick} className="p-2 bg-gray-200 rounded-md">
