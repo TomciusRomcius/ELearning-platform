@@ -1,39 +1,66 @@
-import { MutableRefObject, useEffect } from "react";
+import { ChangeEvent, MutableRefObject, useEffect, useState } from "react";
 import { BlockType } from "../utils/types";
+import BlockTypeSelector from "./BlockTypeSelector";
+import TextArea from "@/app/_ui/TextArea";
 
 type BlockProps = {
   setCurrentIndex: (index: number) => void;
+  setBlock: (block: BlockType) => void;
   insertBlock: () => void;
   onDelete: () => void;
   block: BlockType;
-}
+};
 
 export default function Block(props: BlockProps) {
+  let [type, setType] = useState(props.block.type);
   console.log(props.block.content);
 
-  let className = "w-full ";
-  switch (props.block.type) {
+  let className = "w-full h-2";
+  switch (type) {
     case "paragraph":
-      className += "text-base";
+      className += " text-base";
       break;
     case "h1":
-      className += "text-2xl";
+      className += " text-2xl";
       break;
   }
 
   const onFocus = () => {
     props.setCurrentIndex(props.block.order);
-  }
+  };
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       props.insertBlock();
       e.currentTarget.blur();
     }
+  };
+
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const block = structuredClone(props.block);
+    block.content = e.currentTarget.value;
+    props.setBlock(block);
+
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+  };
+
+  const setBlockType = (type: string) => {
+    setType(type); 
+    const block = structuredClone(props.block);
+    block.type = type;
+    props.setBlock(block);
   }
 
   return (
-    <textarea defaultValue={props.block.content} onKeyDown={onKeyDown} onFocus={onFocus} className={className}>
-    </textarea>
-  )
+    <div className="flex flex-row gap-4 py-2">
+      <BlockTypeSelector setType={setBlockType}/>
+      <TextArea
+        onChange={onChange}
+        defaultValue={props.block.content}
+        onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        className={className}
+      ></TextArea>
+    </div>
+  );
 }

@@ -8,6 +8,7 @@ export type LessonType = {
   title: string;
   blocks: BlockType[]
   order: number;
+  _id: string;
 }
 
 export type CourseType = {
