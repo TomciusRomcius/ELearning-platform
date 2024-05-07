@@ -2,6 +2,7 @@ import { ChangeEvent, useState, memo } from "react";
 import { BlockType } from "../utils/types";
 import BlockTypeSelector from "./BlockTypeSelector";
 import TextArea from "@/ui/TextArea";
+import { blockClasses } from "../utils/blocks";
 
 type BlockProps = {
   setCurrentIndex: (index: number) => void;
@@ -16,14 +17,8 @@ function Block(props: BlockProps) {
   console.log(props.block.content);
 
   let className = "w-full h-2";
-  switch (type) {
-    case "paragraph":
-      className += " text-base";
-      break;
-    case "h1":
-      className += " text-2xl";
-      break;
-  }
+  
+  className += " " + blockClasses.get(type);
 
   const onFocus = () => {
     props.setCurrentIndex(props.block.order);
