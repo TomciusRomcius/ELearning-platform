@@ -1,69 +1,82 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BlockType, LessonType } from "../utils/types";
 import Block from "./Block";
-import TextArea from "@/app/_ui/TextArea";
-import axios from "axios";
+import { updateLesson } from "@/app/_services/updateLesson";
 
 type LessonContainerProps = {
-  currentLesson?: LessonType;
-  courseId?: string;
+  currentLesson: LessonType;
+  courseId: string;
 };
 
 export default function LessonContainer(props: LessonContainerProps) {
   let titleRef = useRef<HTMLInputElement>(null);
-  let [blocksCount, setBlocksCount] = useState(0);
   let [updated, setUpdated] = useState(false);
-  let blocks = useMemo(() => {
-    if (!props.currentLesson) return [];
-    if (props.currentLesson?.blocks.length === 0) {
-      setBlocksCount(1);
-      return [{ type: "paragraph", content: "Start", order: 0 }];
-    }
-    setBlocksCount(props.currentLesson.blocks.length);
-
-    return props.currentLesson.blocks;
-  }, [props.currentLesson]);
+  let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
-
+  
   const insertBlock = () => {
-    console.log(currentIndex.current);
-    blocks.splice(currentIndex.current + 1, 0, {
+    const newBlocks = [...blocks];
+    const block: BlockType = {
       type: "Paragraph",
       content: "New",
       order: currentIndex.current + 1,
-    });
-    setBlocksCount(blocks.length);
+    }
+    if (currentIndex.current === blocks.length) {
+      newBlocks.push(block)
+    }
+    else {
+      newBlocks.splice(currentIndex.current + 1, 0, block);
+    }
+    setBlocks(newBlocks);
     setUpdated(true);
   };
-  const onDelete = () => {};
 
-  const setCurrentIndex = (index: number) => {
+  // Handles block deletion(when user presses backspace on a block with no content)
+  const onDelete = () => {
+    const newBlocks = [...blocks];
+    if (currentIndex.current === blocks.length) {
+      newBlocks.pop();
+    }
+    else {
+      newBlocks.splice(currentIndex.current, 1);
+    }
+    setBlocks(newBlocks);
+  };
+  // Used for handling insertion in the middle of the lesson document
+  const setCurrentIndex = useCallback((index: number) => {
     currentIndex.current = index;
+  }, []);
+
+  // Update the lesson in the database
+  const handleLessonSave = () => {
+    updateLesson(props.courseId, props.currentLesson?._id, {
+      ...props.currentLesson,
+      title: titleRef.current?.value || props.currentLesson?.title,
+      blocks: blocks,
+    });
   };
 
-  const onSave = () => {
-    if (!props.courseId) return;
-    axios.post(
-      `/api/courses/update-lesson?courseId=${props.courseId}&lessonId=${props.currentLesson?._id}`,
-      {
-        lesson: {
-          title: titleRef.current?.value || props.currentLesson?.title,
-          blocks: blocks,
-        },
-      }
-    );
-  };
+  // Set the blocks
+  useEffect(() => {
+    if (props.currentLesson?.blocks.length === 0) {
+      setBlocks([{ type: "paragraph", content: "Start", order: 0 }]);
+    }
+    else {
+      setBlocks(props.currentLesson.blocks);
+    }
+  }, [props.currentLesson]);
 
   return (
     <div className="p-4 flex-1 relative">
+      {/* Title */}
       <input ref={titleRef} defaultValue={props.currentLesson?.title} className="w-full text-center text-4xl"/>
-      {blocks?.map((block) => {
+      {/* Blocks */}
+      {blocks.map((block) => {
         const setBlock = (arg: BlockType) => {
           block.content = arg.content;
           block.type = arg.type;
           setUpdated(true);
         };
-
         return (
           <Block
             key={block.type + block.content + block.order.toString()}
@@ -75,9 +88,11 @@ export default function LessonContainer(props: LessonContainerProps) {
           />
         );
       })}
+
+      {/* Save button container */}
       <div className="absolute bottom-0 p-4 flex items-center justify-center">
         <button
-          onClick={onSave}
+          onClick={handleLessonSave}
           className={`text-xl bg-gray-400 px-4 py-2 rounded-lg ${updated ? "bg-cyan-500" : null}`}
         >
           Save
