@@ -27,7 +27,9 @@ export default function Page() {
         })}
         <NewLessonButton courseId={course._id} />
       </nav>
-      <LessonContainer courseId={course._id} currentLesson={currentLesson}/>
+      {currentLesson ? (
+        <LessonContainer courseId={course._id} currentLesson={currentLesson}/>
+      ) : null}
     </div>
   );
 }
