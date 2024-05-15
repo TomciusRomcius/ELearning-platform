@@ -1,15 +1,15 @@
 // Handles auto resizing
 
-import { TextareaHTMLAttributes, useLayoutEffect, useRef } from "react"
+import { TextareaHTMLAttributes, memo, useLayoutEffect, useRef } from "react"
 
-export default function TextArea(props: TextareaHTMLAttributes<any>) {
+function TextArea(props: TextareaHTMLAttributes<any>) {
   let ref = useRef<HTMLTextAreaElement>(null);
 
   // Handle setting initial height
 
   const resize = () => {
     if (!ref.current) return;
-    ref.current.style.height = "0px";
+    ref.current.style.height = "1px";
     ref.current.style.height = `${ref.current?.scrollHeight}px`;
   }
 
@@ -17,7 +17,8 @@ export default function TextArea(props: TextareaHTMLAttributes<any>) {
     if (!ref.current) return;
     resize();
 
-    ref.current.addEventListener("input", () => resize());
+    ref.current.addEventListener("input", resize);
+    return () => ref.current?.removeEventListener("input", resize);
     console.log("Layout");
   }, [props.className]);
 
@@ -26,3 +27,5 @@ export default function TextArea(props: TextareaHTMLAttributes<any>) {
     <textarea ref={ref} {...props}></textarea>
   )
 }
+
+export default memo(TextArea);

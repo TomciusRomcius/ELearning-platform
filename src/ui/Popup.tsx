@@ -1,4 +1,4 @@
-import { HTMLAttributes, useLayoutEffect, useRef, useState } from "react";
+import { HTMLAttributes, useLayoutEffect, useRef, useState, MouseEvent } from "react";
 
 interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   isFixed: boolean;
@@ -39,6 +39,15 @@ export default function Popup(props: PopupProps) {
     if (rect.x < 0) {
       setXPos(0);
     }
+
+
+    const windowOnClick = (e: MouseEvent<any>) => {
+      if (!divRef.current?.contains(e.target as Node)) {
+        props.onClose();
+      }
+    }
+    window.addEventListener("mousedown", windowOnClick);
+    return () => window.removeEventListener("mousedown", windowOnClick);
   }, []);
 
   return (
