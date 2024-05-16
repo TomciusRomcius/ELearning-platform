@@ -6,10 +6,19 @@ export async function createModule(courseId: string, moduleName: string) {
   let course = await CourseModel.findById(courseId);
   if (!course) console.log("Course not found");
   let module: Module = {
-    _id: new mongoose.Types.ObjectId().toString(),
+    _id: new mongoose.Types.ObjectId(),
     moduleName: moduleName,
     lessons: [],
   };
   course?.modules.push(module);
+  course?.save();
+}
+
+export async function deleteModule(courseId: string, moduleId: string) {
+  let course = await CourseModel.findById(courseId);
+  if (!course) throw new Error("Course not found");
+  const moduleIndex = course?.modules.findIndex((element) => element._id.toString() === moduleId);
+  if (moduleIndex === -1) throw new Error("Module not found");
+  course.modules.splice(moduleIndex, 1);
   course?.save();
 }

@@ -34,3 +34,26 @@ export async function updateLesson(
   lesson.blocks = newLesson.blocks;
   course.save();
 }
+
+export async function deleteLesson(
+  courseId: string,
+  moduleId: string,
+  lessonId: string
+) {
+  let course = await CourseModel.findById(courseId);
+  if (!course) throw new Error("Course not found");
+  const module = course.modules.find(
+    (element) => element._id.toString() === moduleId
+  );
+  if (!module) throw new Error("Module not found");
+  const lessonIndex = module?.lessons.findIndex(
+    (element) => element._id.toString() === lessonId
+  );
+
+  if (lessonIndex !== -1) {
+    module?.lessons.splice(lessonIndex, 1);
+  }
+
+  else throw new Error("Lesson not found");
+  course.save();
+}
