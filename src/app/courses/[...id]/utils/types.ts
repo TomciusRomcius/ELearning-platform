@@ -23,3 +23,9 @@ export type CourseType = {
   modules: ModuleType[];
   _id: string;
 }
+
+type ModuleIdType = {
+  moduleId: string;
+}
+
+export type CurrentLessonType = LessonType & ModuleIdType;

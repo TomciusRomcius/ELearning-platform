@@ -1,31 +1,35 @@
 import axios from "axios";
 import { redirect, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { CourseType, LessonType } from "../utils/types";
+import { useEffect, useRef, useState } from "react";
+import { CourseType, CurrentLessonType, LessonType } from "../utils/types";
 
 export function useCourse() {
   let [course, setCourse] = useState<CourseType>();
   let [currentLessonId, setCurrentLessonId] = useState<string>();
-  let [currentModuleId, setCurrentModuleId] = useState<string>();
-  let err = "";
+  let currentModuleId = useRef<string | null>();
   const params = useParams();
 
-  const getLesson = (moduleId: string, lessonId: string) => {
-    console.log(moduleId, lessonId);
-    const module = course?.modules.find((element) => element._id === moduleId);
-    const lesson = module?.lessons.find((element) => element._id === lessonId);
-    return lesson || null;
+  const getLesson = (): CurrentLessonType | null => {
+    const module = course?.modules.find(
+      (element) => element._id === currentModuleId.current
+    );
+    const lesson = module?.lessons.find(
+      (element) => element._id === currentLessonId
+    );
+    if (lesson && module) {
+      const castedLesson = lesson as CurrentLessonType;
+      castedLesson.moduleId = module._id;
+      return castedLesson;
+    }
+    return null;
   };
 
-  const setLesson = (moduleId: string, lessonId: string) => {
+  const setCurrentLesson = (moduleId: string, lessonId: string) => {
     setCurrentLessonId(lessonId);
-    setCurrentModuleId(moduleId);
-  }
+    currentModuleId.current = moduleId;
+  };
 
-  let lesson: LessonType | null = null;
-  if (currentLessonId && currentModuleId) {
-    lesson = getLesson(currentModuleId, currentLessonId);
-  }
+  let lesson: CurrentLessonType | null = getLesson();
 
   useEffect(() => {
     axios
@@ -34,15 +38,12 @@ export function useCourse() {
         setCourse(apiCourse.data);
       })
       .catch((error) => {
-        err = error;
         redirect("./");
       });
+
+    setCurrentLessonId(course?.modules[0].lessons[0]._id);
+    currentModuleId.current = course?.modules[0]._id;
   }, []);
 
-  useEffect(() => {
-    setCurrentLessonId(course?.modules[0].lessons[0]._id);
-    setCurrentModuleId(course?.modules[0]._id);
-  }, [course])
-
-  return { setLesson, course, currentLessonId, currentModuleId, lesson };
+  return { setCurrentLesson, course, lesson };
 }

@@ -6,7 +6,7 @@ import { Module } from "./ui/Module";
 import NewModuleButton from "./ui/NewModuleButton";
 
 export default function Page() {
-  let { setLesson, course, currentLessonId, currentModuleId, lesson } = useCourse();
+  let { setCurrentLesson, course, lesson } = useCourse();
 
   if (!course) return <h1>Loading...</h1>;
   return (
@@ -23,7 +23,7 @@ export default function Page() {
         <NewModuleButton courseId={course._id} />
       </nav>
       {lesson ? (
-        <LessonContainer courseId={course._id} moduleId={currentModuleId} currentLesson={lesson} />
+        <LessonContainer courseId={course._id} moduleId={lesson.moduleId} currentLesson={lesson} />
       ) : null}
     </div>
   );
