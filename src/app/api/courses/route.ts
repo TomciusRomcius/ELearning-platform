@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import { getCourses } from "../_controllers/couseController";
+import { createCourse, getCourses } from "../_controllers/courseController";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: Request) {
   try {
     const courses = await getCourses();
     return Response.json(courses);
@@ -13,4 +13,10 @@ export async function GET(req: NextRequest, res: NextResponse) {
       status: 400
     });
   }
+}
+
+export async function POST(req: Request) {
+  let { title, description } = await req.json();
+  await createCourse(title, description);
+  return new NextResponse("suc");
 }
