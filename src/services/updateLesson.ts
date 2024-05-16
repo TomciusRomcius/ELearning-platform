@@ -3,14 +3,15 @@ import { LessonType } from "../app/courses/[...id]/utils/types";
 
 export async function updateLesson(
   courseId: string,
+  moduleId: string,
   lessonId: string,
   lesson: LessonType
 ) {
   if (!courseId) return;
   
   try {
-    axios.post(
-      `/api/courses/update-lesson?courseId=${courseId}&lessonId=${lessonId}`,
+    axios.put(
+      `/api/courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`,
       {
         lesson: {
           title: lesson.title,
