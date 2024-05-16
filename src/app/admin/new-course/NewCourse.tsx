@@ -10,7 +10,7 @@ export default function NewCourse() {
     const title = courseNameRef.current?.value;
     const description = courseNameRef.current?.value;
     if (!title || !description) return;
-    axios.post("/api/new-course", {
+    axios.post("/api/courses", {
       title: title,
       description: description,
     });
