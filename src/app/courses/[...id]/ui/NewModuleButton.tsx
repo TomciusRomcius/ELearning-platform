@@ -4,10 +4,9 @@ import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
   courseId: string;
-  moduleId: string;
 }
 
-export default function NewLessonButton(props: NewLessonButtonProps) {
+export default function NewModuleButton(props: NewLessonButtonProps) {
   let [active, setActive] = useState(false);
   let nameRef = useRef<HTMLInputElement>(null);
 
@@ -16,17 +15,17 @@ export default function NewLessonButton(props: NewLessonButtonProps) {
   };
   const onCreate = () => {
     if (!nameRef.current?.value) return;
-    createLesson(props.courseId, props.moduleId, nameRef.current?.value)
+    createModule(props.courseId, nameRef.current?.value)
   };
   
   return (
     <div>
       <button onClick={handleClick} className="p-2 bg-gray-200 rounded-md">
-        New lesson
+        New module
       </button>
       {active ? (
         <>
-          <input ref={nameRef} placeholder="Lesson Name" />
+          <input ref={nameRef} placeholder="Module Name" />
           <button onClick={onCreate}>Submit</button>
         </>
       ) : null}

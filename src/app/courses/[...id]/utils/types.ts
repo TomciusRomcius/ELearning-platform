@@ -11,9 +11,15 @@ export type LessonType = {
   _id: string;
 }
 
+export type ModuleType = {
+  _id: string;
+  moduleName: string;
+  lessons: LessonType[];
+}
+
 export type CourseType = {
   title: string;
   description: string;
-  lessons: LessonType[];
+  modules: ModuleType[];
   _id: string;
 }

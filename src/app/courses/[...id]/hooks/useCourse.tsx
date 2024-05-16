@@ -1,27 +1,48 @@
 import axios from "axios";
 import { redirect, useParams } from "next/navigation";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CourseType, LessonType } from "../utils/types";
 
 export function useCourse() {
   let [course, setCourse] = useState<CourseType>();
-  let [currentLesson, setCurrentLesson] = useState<LessonType>()
+  let [currentLessonId, setCurrentLessonId] = useState<string>();
+  let [currentModuleId, setCurrentModuleId] = useState<string>();
   let err = "";
   const params = useParams();
 
-  useLayoutEffect(() => {
+  const getLesson = (moduleId: string, lessonId: string) => {
+    console.log(moduleId, lessonId);
+    const module = course?.modules.find((element) => element._id === moduleId);
+    const lesson = module?.lessons.find((element) => element._id === lessonId);
+    return lesson || null;
+  };
+
+  const setLesson = (moduleId: string, lessonId: string) => {
+    setCurrentLessonId(lessonId);
+    setCurrentModuleId(moduleId);
+  }
+
+  let lesson: LessonType | null = null;
+  if (currentLessonId && currentModuleId) {
+    lesson = getLesson(currentModuleId, currentLessonId);
+  }
+
+  useEffect(() => {
     axios
-      .get(`/api/load-course?id=${params.id}`)
+      .get(`/api/courses/${params.id}`)
       .then((apiCourse) => {
-        console.log(apiCourse.data);
         setCourse(apiCourse.data);
       })
       .catch((error) => {
         err = error;
         redirect("./");
       });
-    setCurrentLesson(course?.lessons[0]);
   }, []);
 
-  return {course, currentLesson, setCurrentLesson};
+  useEffect(() => {
+    setCurrentLessonId(course?.modules[0].lessons[0]._id);
+    setCurrentModuleId(course?.modules[0]._id);
+  }, [course])
+
+  return { setLesson, course, currentLessonId, currentModuleId, lesson };
 }

@@ -6,6 +6,7 @@ import { updateLesson } from "@/services/updateLesson";
 type LessonContainerProps = {
   currentLesson: LessonType;
   courseId: string;
+  moduleId: string;
 };
 
 export default function LessonContainer(props: LessonContainerProps) {
@@ -13,7 +14,6 @@ export default function LessonContainer(props: LessonContainerProps) {
   let [updated, setUpdated] = useState(false);
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
-  
   const insertBlock = () => {
     const newBlocks = [...blocks];
     const block: BlockType = {
@@ -49,7 +49,7 @@ export default function LessonContainer(props: LessonContainerProps) {
 
   // Update the lesson in the database
   const handleLessonSave = () => {
-    updateLesson(props.courseId, props.currentLesson?._id, {
+    updateLesson(props.courseId, props.moduleId, props.currentLesson?._id, {
       ...props.currentLesson,
       title: titleRef.current?.value || props.currentLesson?.title,
       blocks: blocks,

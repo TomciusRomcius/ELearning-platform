@@ -2,26 +2,28 @@
 import NewLessonButton from "./ui/NewLessonButton";
 import { useCourse } from "./hooks/useCourse";
 import LessonContainer from "./ui/LessonContainer";
-import LessonButton from "./ui/LessonButton";
+import { Module } from "./ui/Module";
+import NewModuleButton from "./ui/NewModuleButton";
 
 export default function Page() {
-  let { course, currentLesson, setCurrentLesson } = useCourse();
+  let { setLesson, course, currentLessonId, currentModuleId, lesson } = useCourse();
 
   if (!course) return <h1>Loading...</h1>;
-
   return (
     <div className="flex flex-row w-screen h-screen">
       <nav className="p-4 flex flex-col gap-4 border-r-2 border-gray-200 w-1/6 h-screen">
         <h2 className="text-2xl text-center">Title {course.title}</h2>
-        {course.lessons.map((lesson) => {
-          return (
-            <LessonButton setCurrentLesson={setCurrentLesson} lesson={lesson} />
-          );
-        })}
-        <NewLessonButton courseId={course._id} />
+        {course.modules.map((module) => (
+          <Module
+            courseId={course._id}
+            setCurrentLesson={setLesson}
+            module={module}
+          />
+        ))}
+        <NewModuleButton courseId={course._id} />
       </nav>
-      {currentLesson ? (
-        <LessonContainer courseId={course._id} currentLesson={currentLesson} />
+      {lesson ? (
+        <LessonContainer courseId={course._id} moduleId={currentModuleId} currentLesson={lesson} />
       ) : null}
     </div>
   );
