@@ -1,10 +1,10 @@
 import mongoose, { Model, Document } from "mongoose";
-import { lessonSchema } from "./lessonModel";
+import { Module, moduleShema } from "./moduleModel";
 
 interface Course extends Document {
   title: string;
   description: string;
-  lessons: any[]; // Define the type for lessons according to your schema
+  modules: Module[]; // Define the type for lessons according to your schema
 }
 
 
@@ -17,7 +17,11 @@ export const courseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  lessons: [lessonSchema],
+  modules: {
+    type: [moduleShema],
+    required: false,
+    default: [],
+  }
 });
 
 type CourseModelType = Model<Course>;
