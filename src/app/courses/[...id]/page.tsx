@@ -16,7 +16,7 @@ export default function Page() {
         {course.modules.map((module) => (
           <Module
             courseId={course._id}
-            setCurrentLesson={setLesson}
+            setCurrentLesson={setCurrentLesson}
             module={module}
           />
         ))}
