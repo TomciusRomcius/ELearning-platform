@@ -11,8 +11,8 @@ export default function Page() {
   if (!course) return <h1>Loading...</h1>;
   return (
     <div className="flex flex-row w-screen h-screen">
-      <nav className="p-4 flex flex-col gap-4 border-r-2 border-gray-200 w-1/6 h-screen">
-        <h2 className="text-2xl text-center">Title {course.title}</h2>
+      <nav className="bg-foreground p-4 flex flex-col gap-4 border-r-2 border-primary-300 w-1/6 h-screen">
+        <h2 className="text-text-light text-4xl font-medium text-center">{course.title}</h2>
         {course.modules.map((module) => (
           <Module
             courseId={course._id}

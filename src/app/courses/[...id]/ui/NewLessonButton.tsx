@@ -1,11 +1,10 @@
 import { createLesson } from "@/services/createLesson";
-import { createModule } from "@/services/moduleService";
 import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
   courseId: string;
   moduleId: string;
-}
+};
 
 export default function NewLessonButton(props: NewLessonButtonProps) {
   let [active, setActive] = useState(false);
@@ -16,12 +15,15 @@ export default function NewLessonButton(props: NewLessonButtonProps) {
   };
   const onCreate = () => {
     if (!nameRef.current?.value) return;
-    createLesson(props.courseId, props.moduleId, nameRef.current?.value)
+    createLesson(props.courseId, props.moduleId, nameRef.current?.value);
   };
-  
+
   return (
     <div>
-      <button onClick={handleClick} className="p-2 bg-gray-200 rounded-md">
+      <button
+        onClick={handleClick}
+        className="text-start w-full p-2 text-text-grayed border-2  border-text-grayed rounded-md"
+      >
         New lesson
       </button>
       {active ? (

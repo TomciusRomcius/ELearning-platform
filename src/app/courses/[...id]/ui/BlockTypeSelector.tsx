@@ -23,7 +23,7 @@ export default function BlockTypeSelector(props: BlockTypeSelectorProps) {
         alt=""/>
       {popupVisible ? (
         <Popup isFixed={false}  onClose={() => setPopupVisible(false)}>
-          <div className="flex flex-col gap-2 items-start p-4 bg-white shadow-lg rounded-lg">
+          <div className="text-text-grayed flex flex-col gap-2 items-start p-4 bg-primary-200 border-2 border-border shadow-lg rounded-lg">
             <button onClick={() => onSelect("paragraph")}>Paragraph</button>
             <button onClick={() => onSelect("h1")}>Header 1</button>
             <button onClick={() => onSelect("h2")}>Header 2</button>

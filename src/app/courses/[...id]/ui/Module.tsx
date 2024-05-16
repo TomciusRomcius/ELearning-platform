@@ -10,8 +10,8 @@ type ModuleProps = {
 
 export function Module(props: ModuleProps) {
   return (
-    <div>
-      <h1 className="text-2xl">{props.module.moduleName}</h1>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-center text-text-light text-2xl">Module: {props.module.moduleName}</h1>
       {props.module.lessons.map((lesson) => <LessonButton setCurrentLesson={props.setCurrentLesson} moduleId={props.module._id} lesson={lesson}/>)}
       <NewLessonButton courseId={props.courseId} moduleId={props.module._id}/>
     </div>

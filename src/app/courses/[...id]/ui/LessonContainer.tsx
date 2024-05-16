@@ -20,11 +20,10 @@ export default function LessonContainer(props: LessonContainerProps) {
       type: "Paragraph",
       content: "New",
       order: currentIndex.current + 1,
-    }
+    };
     if (currentIndex.current === blocks.length) {
-      newBlocks.push(block)
-    }
-    else {
+      newBlocks.push(block);
+    } else {
       newBlocks.splice(currentIndex.current + 1, 0, block);
     }
     setBlocks(newBlocks);
@@ -36,8 +35,7 @@ export default function LessonContainer(props: LessonContainerProps) {
     const newBlocks = [...blocks];
     if (currentIndex.current === blocks.length) {
       newBlocks.pop();
-    }
-    else {
+    } else {
       newBlocks.splice(currentIndex.current, 1);
     }
     setBlocks(newBlocks);
@@ -60,7 +58,7 @@ export default function LessonContainer(props: LessonContainerProps) {
   useEffect(() => {
     if (props.currentLesson?.blocks.length === 0) {
       setBlocks([{ type: "paragraph", content: "Start", order: 0 }]);
-    }
+    } 
     else {
       setBlocks(props.currentLesson.blocks);
     }
@@ -69,7 +67,11 @@ export default function LessonContainer(props: LessonContainerProps) {
   return (
     <div className="p-4 flex-1 relative">
       {/* Title */}
-      <input ref={titleRef} defaultValue={props.currentLesson?.title} className="w-full text-center text-4xl"/>
+      <input
+        ref={titleRef}
+        defaultValue={props.currentLesson?.title}
+        className="w-full text-center text-4xl text-text-light"
+      />
       {/* Blocks */}
       {blocks.map((block) => {
         const setBlock = (arg: BlockType) => {
@@ -93,7 +95,9 @@ export default function LessonContainer(props: LessonContainerProps) {
       <div className="absolute bottom-0 p-4 flex items-center justify-center">
         <button
           onClick={handleLessonSave}
-          className={`text-xl bg-gray-400 px-4 py-2 rounded-lg ${updated ? "bg-cyan-500" : null}`}
+          className={`text-xl text-text-grayed border-primary-400 border-2 px-4 py-2 rounded-lg ${
+            updated ? "bg-cyan-500" : null
+          }`}
         >
           Save
         </button>

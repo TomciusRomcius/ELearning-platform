@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, memo } from "react";
+import { useState, memo } from "react";
 import { BlockType } from "../utils/types";
 import BlockTypeSelector from "./BlockTypeSelector";
 import TextArea from "@/ui/TextArea";
@@ -14,9 +14,8 @@ type BlockProps = {
 
 function Block(props: BlockProps) {
   let [type, setType] = useState(props.block.type);
-  console.log(props.block.content);
 
-  let className = "w-full h-2";
+  let className = "text-text-light w-full h-2";
   
   className += " " + blockClasses.get(type);
 
@@ -24,7 +23,7 @@ function Block(props: BlockProps) {
     props.setCurrentIndex(props.block.order);
   };
 
-  const onKeyDown = (e: KeyboardEvent) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       props.insertBlock();
       e.currentTarget.blur();
@@ -35,7 +34,7 @@ function Block(props: BlockProps) {
     }
   };
 
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const block = structuredClone(props.block);
     block.content = e.currentTarget.value;
     props.setBlock(block);

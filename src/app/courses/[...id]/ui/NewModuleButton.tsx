@@ -20,7 +20,7 @@ export default function NewModuleButton(props: NewLessonButtonProps) {
   
   return (
     <div>
-      <button onClick={handleClick} className="p-2 bg-gray-200 rounded-md">
+      <button onClick={handleClick} className="text-start w-full p-2 text-text-grayed border-2  border-text-grayed rounded-md">
         New module
       </button>
       {active ? (

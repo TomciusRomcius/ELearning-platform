@@ -35,7 +35,7 @@ export default function LessonButton(props: LessonButtonProps) {
           </div>
         </Popup>
       ) : null}
-      <button onContextMenu={onContextMenu} onClick={onLessonSelect}>
+      <button className="w-full text-start text-xl text-gray-600" onContextMenu={onContextMenu} onClick={onLessonSelect}>
         {props.lesson.title}
       </button>
     </div>
