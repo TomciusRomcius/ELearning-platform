@@ -2,16 +2,13 @@ import mongoose from "mongoose";
 import { CourseModel } from "../_models/courseModel";
 import { Module } from "../_models/moduleModel";
 
-export async function createModule(courseId: string, moduleName: string) {
+export async function createModule(courseId: string, module: Module) {
   let course = await CourseModel.findById(courseId);
   if (!course) console.log("Course not found");
-  let module: Module = {
-    _id: new mongoose.Types.ObjectId(),
-    moduleName: moduleName,
-    lessons: [],
-  };
+  module._id = new mongoose.Types.ObjectId();
   course?.modules.push(module);
   course?.save();
+  return module._id;
 }
 
 export async function deleteModule(courseId: string, moduleId: string) {
@@ -20,5 +17,14 @@ export async function deleteModule(courseId: string, moduleId: string) {
   const moduleIndex = course?.modules.findIndex((element) => element._id.toString() === moduleId);
   if (moduleIndex === -1) throw new Error("Module not found");
   course.modules.splice(moduleIndex, 1);
+  course?.save();
+}
+
+export async function updateModulePatch(courseId: string, moduleId: string, module: APIModuleType) {
+  let course = await CourseModel.findById(courseId);
+  if (!course) throw new Error("Course not found");
+  const moduleRef = course?.modules.find((element) => element._id.toString() === moduleId);
+  if (!moduleRef) throw new Error("Module not found");
+  moduleRef.moduleName = module.moduleName || moduleRef.moduleName;
   course?.save();
 }
