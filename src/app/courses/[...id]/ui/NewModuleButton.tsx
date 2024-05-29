@@ -1,5 +1,4 @@
-import { createLesson } from "@/services/createLesson";
-import { createModule } from "@/services/moduleService";
+import CourseEditorManager from "@/services/courseEditorManager";
 import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
@@ -15,7 +14,7 @@ export default function NewModuleButton(props: NewLessonButtonProps) {
   };
   const onCreate = () => {
     if (!nameRef.current?.value) return;
-    createModule(props.courseId, nameRef.current?.value)
+    CourseEditorManager.createModule(nameRef.current?.value);
   };
   
   return (
