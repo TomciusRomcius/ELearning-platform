@@ -1,5 +1,4 @@
 "use client";
-import NewLessonButton from "./ui/NewLessonButton";
 import { useCourse } from "./hooks/useCourse";
 import LessonContainer from "./ui/LessonContainer";
 import { Module } from "./ui/Module";
@@ -7,7 +6,6 @@ import NewModuleButton from "./ui/NewModuleButton";
 
 export default function Page() {
   let { setCurrentLesson, course, lesson } = useCourse();
-
   if (!course) return <h1>Loading...</h1>;
   return (
     <div className="flex flex-row w-screen h-screen">
@@ -15,6 +13,7 @@ export default function Page() {
         <h2 className="text-text-light text-4xl font-medium text-center">{course.title}</h2>
         {course.modules.map((module) => (
           <Module
+            key={module._id}
             courseId={course._id}
             setCurrentLesson={setCurrentLesson}
             module={module}
