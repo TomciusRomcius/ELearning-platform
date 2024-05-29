@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request, {params}: {params: {courseId: string}}) {
   const courseId = params.courseId;
-  const { moduleName } = await req.json();
+  const { module } = await req.json();
   console.log(`id: ${courseId}`)
-  await createModule(courseId, moduleName);
-  return NextResponse.json("Suc");
+  const _id = await createModule(courseId, module);
+  return NextResponse.json({ _id: _id });
 }
