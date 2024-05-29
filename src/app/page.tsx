@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
-import CourseCard from "./_components/CourseCard";
+import CourseCard from "../frontend/components/CourseCard";
 import axios from "axios";
-import { getCourses } from "@/services/getCourses";
+import { getCourses } from "@/frontend/services/getCourses";
 
 export default function Page() {
   let [courses, setCourses] = useState([]);

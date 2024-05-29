@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CourseModel } from "../_models/courseModel";
+import { CourseModel } from "../models/courseModel";
 
 export async function createCourse(title: string, description: string): Promise<void> {
   try {

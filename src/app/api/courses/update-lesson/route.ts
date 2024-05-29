@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { updateLesson } from "../../_controllers/lessonController";
+import { updateLesson } from "../../../../backend/controllers/lessonController";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const courseId = req.nextUrl.searchParams.get("courseId");

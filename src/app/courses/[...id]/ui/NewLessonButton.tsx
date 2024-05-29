@@ -1,4 +1,5 @@
-import { createLesson } from "@/services/createLesson";
+import CourseEditorManager from "@/frontend/services/courseEditorManager";
+import { createLesson } from "@/frontend/services/createLesson";
 import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
@@ -15,7 +16,7 @@ export default function NewLessonButton(props: NewLessonButtonProps) {
   };
   const onCreate = () => {
     if (!nameRef.current?.value) return;
-    createLesson(props.courseId, props.moduleId, nameRef.current?.value);
+    CourseEditorManager.createLesson(nameRef.current.value, props.moduleId);
   };
 
   return (

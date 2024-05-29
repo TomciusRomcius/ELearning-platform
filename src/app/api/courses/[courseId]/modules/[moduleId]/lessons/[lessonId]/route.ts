@@ -1,4 +1,4 @@
-import { deleteLesson, updateLesson } from "@/app/api/_controllers/lessonController";
+import { deleteLesson, updateLesson } from "@/backend/controllers/lessonController";
 
 export async function PUT(
   req: Request,

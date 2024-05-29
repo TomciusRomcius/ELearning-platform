@@ -3,8 +3,8 @@ import { LessonType, ModuleType } from "../utils/types";
 import LessonButton from "./LessonButton";
 import NewLessonButton from "./NewLessonButton";
 import Image from "next/image";
-import Popup from "@/ui/Popup";
-import CourseEditorManager from "@/services/courseEditorManager";
+import Popup from "@/frontend/ui/Popup";
+import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
 type ModuleProps = {
   courseId: string;
@@ -29,7 +29,7 @@ export function Module(props: ModuleProps) {
     let newName = nameRef.current?.value;
     if (!newName) return;
     let newModule = structuredClone(props.module);
-    newModule.moduleName = newName;
+    newModule.title = newName;
     CourseEditorManager.updateModule(newModule);
     setIsRenaming(false);
   }
@@ -51,11 +51,11 @@ export function Module(props: ModuleProps) {
       <div className="flex gap-2">
         {!isRenaming ? (
           <h1 className="text-text-light text-2xl">
-            Module: {props.module.moduleName}
+            Module: {props.module.title}
           </h1>
         ) : (
           <div className="flex gap-2">
-            <input ref={nameRef} defaultValue={props.module.moduleName} />
+            <input ref={nameRef} defaultValue={props.module.title} />
             <button onClick={onRename}>Submit</button>
           </div>
         )}

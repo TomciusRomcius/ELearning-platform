@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from "mongoose";
-import { CourseModel } from "../_models/courseModel";
-import { Lesson } from "../_models/lessonModel";
+import { CourseModel } from "../models/courseModel";
+import { Lesson } from "../models/lessonModel";
 
 // TODO: fetch only the needed data
 export async function createLesson(

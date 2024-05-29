@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { UserModel } from "../_models/userModel";
+import { UserModel } from "../models/userModel";
 
 export async function createUser(email: any, password: any): Promise<void> {
   try {

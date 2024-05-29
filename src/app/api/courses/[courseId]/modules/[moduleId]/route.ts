@@ -1,4 +1,4 @@
-import { deleteModule, updateModulePatch } from "@/app/api/_controllers/moduleController";
+import { deleteModule, updateModulePatch } from "@/backend/controllers/moduleController";
 import { NextResponse } from "next/server";
 
 export async function PATCH(

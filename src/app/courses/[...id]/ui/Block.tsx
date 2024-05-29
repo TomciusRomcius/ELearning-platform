@@ -1,7 +1,7 @@
 import { useState, memo } from "react";
 import { BlockType } from "../utils/types";
 import BlockTypeSelector from "./BlockTypeSelector";
-import TextArea from "@/ui/TextArea";
+import TextArea from "@/frontend/ui/TextArea";
 import { blockClasses } from "../utils/blocks";
 
 type BlockProps = {

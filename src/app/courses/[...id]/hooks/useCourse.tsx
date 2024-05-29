@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CourseType, CurrentLessonType, LessonType } from "../utils/types";
-import CourseEditorManager from "@/services/courseEditorManager";
+import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
 export function useCourse() {
   let [course, setCourse] = useState<CourseType | null>(null);

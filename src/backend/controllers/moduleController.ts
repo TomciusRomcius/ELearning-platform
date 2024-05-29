@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { CourseModel } from "../_models/courseModel";
-import { Module } from "../_models/moduleModel";
+import { CourseModel } from "../models/courseModel";
+import { Module } from "../models/moduleModel";
 
 export async function createModule(courseId: string, module: Module) {
   let course = await CourseModel.findById(courseId);
@@ -25,6 +25,6 @@ export async function updateModulePatch(courseId: string, moduleId: string, modu
   if (!course) throw new Error("Course not found");
   const moduleRef = course?.modules.find((element) => element._id.toString() === moduleId);
   if (!moduleRef) throw new Error("Module not found");
-  moduleRef.moduleName = module.moduleName || moduleRef.moduleName;
+  moduleRef.title = module.title || moduleRef.title;
   course?.save();
 }

@@ -1,4 +1,4 @@
-import { createLesson } from "@/app/api/_controllers/lessonController";
+import { createLesson } from "@/backend/controllers/lessonController";
 
 export async function POST(
   req: Request,

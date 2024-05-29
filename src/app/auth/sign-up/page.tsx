@@ -1,6 +1,6 @@
 "use client"
 
-import { createUser } from "@/services/createUser";
+import { createUser } from "@/frontend/services/createUser";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 

@@ -5,6 +5,7 @@ import {
   LessonType,
   ModuleType,
 } from "@/app/courses/[...id]/utils/types";
+import { createLesson } from "./createLesson";
 
 export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
@@ -18,11 +19,11 @@ export default class CourseEditorManager {
     } catch (err) {}
   }
 
-  public static async createModule(moduleName: string) {
+  public static async createModule(title: string) {
     if (!CourseEditorManager.currentCourse)
       throw new Error("Course not loaded!");
     const module: ModuleType = {
-      moduleName: moduleName,
+      title: title,
       lessons: [],
     };
     let req = await createModule(
@@ -59,22 +60,27 @@ export default class CourseEditorManager {
     );
     if (!moduleRef)
       throw new Error("Module not found!");
-    moduleRef.moduleName = module.moduleName;
+    moduleRef.title = module.title;
     CourseEditorManager.notifySubscribers();
   }
 
   public static async createLesson(lessonName: string, moduleId: string) {
     if (!CourseEditorManager.currentCourse)
       throw new Error("Course not loaded!");
+
+    let req = await createLesson(CourseEditorManager.currentCourse._id, moduleId, lessonName);
+    const lesson: LessonType = {
+      title: lessonName,
+      blocks: [],
+      _id: req.data._id,
+    };
+
     let module = CourseEditorManager.currentCourse.modules.find(
       (element) => element._id === moduleId
     );
-    const lesson: LessonType = {
-      _id: generateId(),
-      title: lessonName,
-      blocks: [],
-    };
-    module?.lessons.push();
+    
+    module?.lessons.push(lesson);
+    CourseEditorManager.notifySubscribers();
   }
 
   private static notifySubscribers() {

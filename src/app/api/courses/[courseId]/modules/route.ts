@@ -1,5 +1,5 @@
-import { createLesson } from "@/app/api/_controllers/lessonController";
-import { createModule } from "@/app/api/_controllers/moduleController";
+import { createLesson } from "@/backend/controllers/lessonController";
+import { createModule } from "@/backend/controllers/moduleController";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request, {params}: {params: {courseId: string}}) {

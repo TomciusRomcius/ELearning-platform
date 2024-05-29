@@ -12,7 +12,7 @@ export type LessonType = {
 
 export type ModuleType = {
   _id?: string;
-  moduleName: string;
+  title: string;
   lessons: LessonType[];
 }
 

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import { createUser } from "../_controllers/userController";
+import { createUser } from "../../../backend/controllers/userController";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {

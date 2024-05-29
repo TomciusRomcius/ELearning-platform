@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import { createCourse, getCourses } from "../_controllers/courseController";
+import { createCourse, getCourses } from "../../../backend/controllers/courseController";
 
 export async function GET(req: Request) {
   try {

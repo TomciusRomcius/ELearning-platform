@@ -19,7 +19,7 @@ export async function updateModule(courseId: string, module: ModuleType) {
     throw new Error("Module doesn't containt an id!");
   axios.patch(`/api/courses/${courseId}/modules/${module._id}`, {
     module: {
-      moduleName: module.moduleName,
+      title: module.title,
     },
   })
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import Popup from "@/ui/Popup";
+import Popup from "@/frontend/ui/Popup";
 
 type BlockTypeSelectorProps = {
   setType: (type: string) => void;

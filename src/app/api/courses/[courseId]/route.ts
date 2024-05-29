@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { createLesson } from "../../_controllers/lessonController";
-import { getCourse } from "../../_controllers/courseController";
+import { createLesson } from "../../../../backend/controllers/lessonController";
+import { getCourse } from "../../../../backend/controllers/courseController";
 
 // Load course
 export async function GET(

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BlockType, LessonType } from "../utils/types";
 import Block from "./Block";
-import { updateLesson } from "@/services/updateLesson";
+import { updateLesson } from "@/frontend/services/updateLesson";
 
 type LessonContainerProps = {
   currentLesson: LessonType;

@@ -3,12 +3,12 @@ import { Lesson, lessonSchema } from "./lessonModel";
 
 export interface Module {
   _id: mongoose.Types.ObjectId;
-  moduleName: string;
+  title: string;
   lessons: Lesson[];
 }
 
 export const moduleShema = new mongoose.Schema({
-  moduleName: {
+  title: {
     type: String,
     required: true,
   },

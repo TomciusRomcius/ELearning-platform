@@ -1,8 +1,8 @@
-import Popup from "@/ui/Popup";
+import Popup from "@/frontend/ui/Popup";
 import Image from "next/image";
 import { LessonType } from "../utils/types";
 import { useState } from "react";
-import { deleteLesson } from "@/services/deleteLesson";
+import { deleteLesson } from "@/frontend/services/deleteLesson";
 
 type LessonButtonProps = {
   setCurrentLesson: (moduleId: string, lessonId: string) => void;
