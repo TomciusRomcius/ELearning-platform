@@ -5,7 +5,6 @@ import {
   LessonType,
   ModuleType,
 } from "@/app/courses/[...id]/utils/types";
-import generateId from "@/lib/generateId";
 
 export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
