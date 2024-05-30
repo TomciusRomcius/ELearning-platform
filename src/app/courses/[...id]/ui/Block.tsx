@@ -10,17 +10,18 @@ type BlockProps = {
   insertBlock: () => void;
   onDelete: () => void;
   block: BlockType;
+  order: number;
 };
+
+const defaultClassName = "text-text-light w-full h-2 ";
 
 function Block(props: BlockProps) {
   let [type, setType] = useState(props.block.type);
 
-  let className = "text-text-light w-full h-2";
-  
-  className += " " + blockClasses.get(type);
+  let className = defaultClassName + blockClasses.get(type);
 
   const onFocus = () => {
-    props.setCurrentIndex(props.block.order);
+    props.setCurrentIndex(props.order);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

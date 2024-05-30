@@ -66,6 +66,8 @@ export default function LessonContainer(props: LessonContainerProps) {
     }
   }, [props.currentLesson]);
 
+  let blockIndex = 0;
+
   return (
     <div className="p-4 flex-1 relative">
       {/* Title */}
@@ -82,16 +84,20 @@ export default function LessonContainer(props: LessonContainerProps) {
           block.type = arg.type;
           setUpdated(true);
         };
-        return (
+
+        let blockComponent = (
           <Block
-            key={block.type + block.content + block.order.toString()}
+            key={block.type + block.content + blockIndex}
             setBlock={setBlock}
             setCurrentIndex={setCurrentIndex}
             insertBlock={insertBlock}
             onDelete={onDelete}
             block={block}
+            order={blockIndex}
           />
         );
+        blockIndex++;
+        return blockComponent;        
       })}
 
       {/* Save button container */}
