@@ -1,7 +1,6 @@
 export type BlockType = {
   type: string;
   content: string;
-  order: number;
 }
 
 export type LessonType = {

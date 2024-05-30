@@ -20,7 +20,6 @@ export default function LessonContainer(props: LessonContainerProps) {
     const block: BlockType = {
       type: "Paragraph",
       content: "New",
-      order: currentIndex.current + 1,
     };
     if (currentIndex.current === blocks.length) {
       newBlocks.push(block);
@@ -60,7 +59,7 @@ export default function LessonContainer(props: LessonContainerProps) {
   // Set the blocks
   useEffect(() => {
     if (props.currentLesson?.blocks.length === 0) {
-      setBlocks([{ type: "paragraph", content: "Start", order: 0 }]);
+      setBlocks([{ type: "paragraph", content: "Start" }]);
     } 
     else {
       setBlocks(structuredClone(props.currentLesson.blocks));

@@ -3,7 +3,6 @@ import mongoose, { Model, Document } from "mongoose";
 export interface Block extends Document {
   type: string;
   content: string;
-  order: number;
 }
 
 export const blockSchema = new mongoose.Schema({
@@ -14,10 +13,6 @@ export const blockSchema = new mongoose.Schema({
   content: {
     type: String,
     required: true
-  },
-  order: {
-    type: Number,
-    required: true,
   },
 });
 
