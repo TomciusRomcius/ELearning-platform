@@ -6,6 +6,8 @@ import {
   ModuleType,
 } from "@/app/courses/[...id]/utils/types";
 import { createLesson } from "./createLesson";
+import { updateLesson } from "./updateLesson";
+import { deleteLesson } from "./deleteLesson";
 
 export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
@@ -20,7 +22,7 @@ export default class CourseEditorManager {
   }
 
   public static async createModule(title: string) {
-    if (!CourseEditorManager.currentCourse)
+    if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
     const module: ModuleType = {
       title: title,
@@ -38,7 +40,7 @@ export default class CourseEditorManager {
   }
 
   public static async deleteModule(moduleId: string) {
-    if (!CourseEditorManager.currentCourse)
+    if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
     await deleteModule(CourseEditorManager.currentCourse._id, moduleId);
     let index = CourseEditorManager.currentCourse.modules.findIndex(
@@ -51,7 +53,7 @@ export default class CourseEditorManager {
   // The given module must already have an _id
   // Note: this only currently updates module name
   public static async updateModule(module: ModuleType) {
-    if (!CourseEditorManager.currentCourse)
+    if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
     if (!module._id) throw new Error("Module doesn't containt an id!");
     await updateModule(CourseEditorManager.currentCourse._id, module);
@@ -65,14 +67,15 @@ export default class CourseEditorManager {
   }
 
   public static async createLesson(lessonName: string, moduleId: string) {
-    if (!CourseEditorManager.currentCourse)
+    if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
 
     let req = await createLesson(CourseEditorManager.currentCourse._id, moduleId, lessonName);
+    let { _id } = req.data;
     const lesson: LessonType = {
       title: lessonName,
       blocks: [],
-      _id: req.data._id,
+      _id: _id,
     };
 
     let module = CourseEditorManager.currentCourse.modules.find(
@@ -83,9 +86,50 @@ export default class CourseEditorManager {
     CourseEditorManager.notifySubscribers();
   }
 
+  public static async updateLesson(moduleId: string, lesson: LessonType) {
+    if (!CourseEditorManager.currentCourse?._id)
+      throw new Error("Course not loaded!");
+    
+    let req = await updateLesson(CourseEditorManager.currentCourse._id, moduleId, lesson._id, lesson);
+    
+    let moduleRef = CourseEditorManager.currentCourse?.modules.find((element) => element._id === moduleId);
+    if (!moduleRef)
+      throw new Error("Module does not exist!");
+    let lessonRef = moduleRef?.lessons.find((element) => element._id === lesson._id);
+    if (!lessonRef)
+      throw new Error("Lesson does not exist!");
+    lessonRef.title = lesson.title;
+    lessonRef.blocks = lesson.blocks;
+    CourseEditorManager.notifySubscribers();
+  }
+
+  public static async deleteLesson(moduleId: string, lessonId: string) {
+    if (!CourseEditorManager.currentCourse?._id)
+      throw new Error("Course not loaded!");
+    await deleteLesson(CourseEditorManager.currentCourse._id, moduleId, lessonId);
+    let moduleRef = CourseEditorManager.getModule(moduleId);
+    moduleRef.lessons = moduleRef.lessons.filter((element) => element._id !== lessonId);
+    CourseEditorManager.notifySubscribers();
+  }
+
   private static notifySubscribers() {
     CourseEditorManager.subscribers.forEach((subscriber) => {
       subscriber();
     });
+  }
+
+  private static getModule(moduleId: string) {
+    let moduleRef = CourseEditorManager.currentCourse?.modules.find((element) => element._id === moduleId);
+    if (!moduleRef)
+      throw new Error("Module does not exist!");
+    return moduleRef;
+  }
+
+  private static getLesson(moduleId: string, lessonId: string) {
+    let moduleRef = CourseEditorManager.getModule(moduleId);
+    let lessonRef = moduleRef.lessons.find((element) => element._id === lessonId);
+    if (!lessonRef)
+      throw new Error("Lesson does not exist!");
+    return lessonRef;
   }
 }

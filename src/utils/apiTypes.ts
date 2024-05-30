@@ -1,14 +1,17 @@
-type APILessonType = {
+export type APILessonType = {
   lessonName?: string;
   description?: string;
+  _id: string;
 }
 
-type APIModuleType = {
+export type APIModuleType = {
   title?: string;
   description?: string;
+  _id: string;
 }
 
-type APICourseType = {
+export type APICourseType = {
   courseName?: string;
   description?: string;
+  _id: string;
 }

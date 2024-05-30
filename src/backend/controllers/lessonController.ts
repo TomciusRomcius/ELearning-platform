@@ -7,16 +7,17 @@ export async function createLesson(
   courseId: string,
   moduleId: string,
   title: string
-): Promise<void> {
+): Promise<string> {
   const course = await CourseModel.findById(courseId);
   const lessonId = new mongoose.mongo.ObjectId();
   if (!course) throw new Error("Course not found");
   course.modules.forEach((module) => {
     if (module._id.toString() === moduleId) {
-      module.lessons.push({title: title, description: "hard-coded", blocks: [], _id: new mongoose.Types.ObjectId().toString()})
+      module.lessons.push({title: title, description: "hard-coded", blocks: [], _id: lessonId.toString()})
     }
   });
   course.save();
+  return lessonId.toString();
 }
 
 export async function updateLesson(

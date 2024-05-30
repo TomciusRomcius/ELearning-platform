@@ -3,6 +3,7 @@ import Image from "next/image";
 import { LessonType } from "../utils/types";
 import { useState } from "react";
 import { deleteLesson } from "@/frontend/services/deleteLesson";
+import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
 type LessonButtonProps = {
   setCurrentLesson: (moduleId: string, lessonId: string) => void;
@@ -27,8 +28,7 @@ export default function LessonButton(props: LessonButtonProps) {
   const onClosePopup = () => setPopupVisible(false);
 
   const onDelete = () => {
-    deleteLesson(props.courseId, props.moduleId, props.lesson._id);
-    alert("del");
+    CourseEditorManager.deleteLesson(props.moduleId, props.lesson._id);
   };
 
   const onFocus = () => {

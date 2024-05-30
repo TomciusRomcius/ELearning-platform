@@ -1,4 +1,5 @@
 import { ModuleType } from "@/app/courses/[...id]/utils/types";
+import { APIModuleType } from "@/utils/apiTypes";
 import axios from "axios";
 
 export async function createModule(courseId: string, module: ModuleType) {
@@ -14,7 +15,7 @@ export async function deleteModule(courseId: string, moduleId: string) {
 }
 
 // We must have an _id assotiated with the module!
-export async function updateModule(courseId: string, module: ModuleType) {
+export async function updateModule(courseId: string, module: APIModuleType) {
   if (!module._id)
     throw new Error("Module doesn't containt an id!");
   axios.patch(`/api/courses/${courseId}/modules/${module._id}`, {

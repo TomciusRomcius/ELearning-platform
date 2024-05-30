@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BlockType, LessonType } from "../utils/types";
 import Block from "./Block";
-import { updateLesson } from "@/frontend/services/updateLesson";
+import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
 type LessonContainerProps = {
   currentLesson: LessonType;
@@ -14,6 +14,7 @@ export default function LessonContainer(props: LessonContainerProps) {
   let [updated, setUpdated] = useState(false);
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
+  
   const insertBlock = () => {
     const newBlocks = [...blocks];
     const block: BlockType = {
@@ -40,6 +41,7 @@ export default function LessonContainer(props: LessonContainerProps) {
     }
     setBlocks(newBlocks);
   };
+
   // Used for handling insertion in the middle of the lesson document
   const setCurrentIndex = useCallback((index: number) => {
     currentIndex.current = index;
@@ -47,11 +49,10 @@ export default function LessonContainer(props: LessonContainerProps) {
 
   // Update the lesson in the database
   const handleLessonSave = () => {
-    updateLesson(props.courseId, props.moduleId, props.currentLesson?._id, {
-      ...props.currentLesson,
-      title: titleRef.current?.value || props.currentLesson?.title,
-      blocks: blocks,
-    });
+    const newLesson = structuredClone(props.currentLesson);
+    newLesson.title = titleRef.current?.value || props.currentLesson?.title;
+    newLesson.blocks = blocks;
+    CourseEditorManager.updateLesson(props.moduleId, newLesson)
   };
 
   // Set the blocks
@@ -60,7 +61,7 @@ export default function LessonContainer(props: LessonContainerProps) {
       setBlocks([{ type: "paragraph", content: "Start", order: 0 }]);
     } 
     else {
-      setBlocks(props.currentLesson.blocks);
+      setBlocks(structuredClone(props.currentLesson.blocks));
     }
   }, [props.currentLesson]);
 
@@ -68,6 +69,7 @@ export default function LessonContainer(props: LessonContainerProps) {
     <div className="p-4 flex-1 relative">
       {/* Title */}
       <input
+        key={props.currentLesson?.title}
         ref={titleRef}
         defaultValue={props.currentLesson?.title}
         className="w-full text-center text-4xl text-text-light"
