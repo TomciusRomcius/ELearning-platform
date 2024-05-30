@@ -52,7 +52,9 @@ export default function LessonContainer(props: LessonContainerProps) {
     const newLesson = structuredClone(props.currentLesson);
     newLesson.title = titleRef.current?.value || props.currentLesson?.title;
     newLesson.blocks = blocks;
-    CourseEditorManager.updateLesson(props.moduleId, newLesson)
+    CourseEditorManager.updateLesson(props.moduleId, newLesson).then(() => {
+      setUpdated(false);
+    });
   };
 
   // Set the blocks
