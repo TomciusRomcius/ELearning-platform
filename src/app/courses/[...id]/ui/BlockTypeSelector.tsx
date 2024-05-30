@@ -8,7 +8,6 @@ type BlockTypeSelectorProps = {
 
 export default function BlockTypeSelector(props: BlockTypeSelectorProps) {
   let [popupVisible, setPopupVisible] = useState(false);
-  console.log(popupVisible);
   const onToggle = () => setPopupVisible(!popupVisible);
   const onSelect = (type: string) => {
     props.setType(type);
