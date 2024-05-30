@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
-import { LessonType, ModuleType } from "../utils/types";
+import { useState } from "react";
+import { ModuleType } from "../utils/types";
 import LessonButton from "./LessonButton";
 import NewLessonButton from "./NewLessonButton";
 import Image from "next/image";
 import Popup from "@/frontend/ui/Popup";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
+import ModuleName from "./ModuleName";
 
 type ModuleProps = {
   courseId: string;
@@ -15,7 +16,6 @@ type ModuleProps = {
 export function Module(props: ModuleProps) {
   let [popupVisible, setPopupVisible] = useState(false);
   let [isRenaming, setIsRenaming] = useState(false);
-  let nameRef = useRef<HTMLInputElement>(null);
 
   const onTogglePopup = () => {
     setPopupVisible(!popupVisible);
@@ -25,21 +25,13 @@ export function Module(props: ModuleProps) {
     setIsRenaming(!isRenaming);
   }
 
-  const onRename = () => {
-    let newName = nameRef.current?.value;
-    if (!newName) return;
-    let newModule = structuredClone(props.module);
-    newModule.title = newName;
-    CourseEditorManager.updateModule(newModule);
-    setIsRenaming(false);
-  }
-
   const onDelete = () => {
     CourseEditorManager.deleteModule(props.module._id || "");
   }
 
   return (
     <div className="flex flex-col gap-4 relative">
+      {/* Popup */}
       {popupVisible ? (
         <Popup onClose={onTogglePopup} isFixed={false}>
           <div className="text-text-grayed flex flex-col gap-2 items-start p-4 bg-primary-200 border-2 border-border shadow-lg rounded-lg">
@@ -48,21 +40,14 @@ export function Module(props: ModuleProps) {
           </div>
         </Popup>
       ) : null}
+      {/* Lesson button */}
       <div className="flex gap-2">
-        {!isRenaming ? (
-          <h1 className="text-text-light text-2xl">
-            Module: {props.module.title}
-          </h1>
-        ) : (
-          <div className="flex gap-2">
-            <input ref={nameRef} defaultValue={props.module.title} />
-            <button onClick={onRename}>Submit</button>
-          </div>
-        )}
+        <ModuleName module={props.module} isRenaming={isRenaming} setIsRenaming={setIsRenaming}/>
         <button onClick={onTogglePopup}>
           <Image src="/moreHorizontal.svg" width={24} height={24} alt="" />
         </button>
       </div>
+      {/* Display lessons */}
       {props.module.lessons.map((lesson) => (
         <LessonButton
           courseId={props.courseId}
@@ -71,6 +56,7 @@ export function Module(props: ModuleProps) {
           lesson={lesson}
         />
       ))}
+      {/* Create new lesson */}
       <NewLessonButton courseId={props.courseId} moduleId={props.module._id} />
     </div>
   );
