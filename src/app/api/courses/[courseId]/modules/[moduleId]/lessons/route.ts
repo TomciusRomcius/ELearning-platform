@@ -1,4 +1,5 @@
 import { createLesson } from "@/backend/controllers/lessonController";
+import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
@@ -6,6 +7,6 @@ export async function POST(
 ) {
   const { courseId, moduleId } = params;
   const { title } = await req.json();
-  await createLesson(courseId, moduleId, title);
-  return new Response("a");
+  let _id = await createLesson(courseId, moduleId, title);
+  return NextResponse.json({ _id: _id }, { status: 200 });
 }
