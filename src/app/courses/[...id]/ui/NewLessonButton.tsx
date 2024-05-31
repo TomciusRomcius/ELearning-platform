@@ -20,18 +20,18 @@ export default function NewLessonButton(props: NewLessonButtonProps) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <button
         onClick={handleClick}
-        className="text-start w-full p-2 text-text-grayed border-2  border-text-grayed rounded-md"
+        className="text-start w-full p-2 text-text-grayed border-1  border-text-grayed rounded-md"
       >
         New lesson
       </button>
       {active ? (
-        <>
+        <div className="flex justify-between">
           <input ref={nameRef} placeholder="Lesson Name" />
           <button onClick={onCreate}>Submit</button>
-        </>
+        </div>
       ) : null}
     </div>
   );

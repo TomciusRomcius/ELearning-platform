@@ -14,20 +14,19 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="flex flex-col gap-10">
-      <header className="flex justify-between px-20 py-5 items-center border-b-2 border-gray-200">
+    <main className="flex flex-col h-26 gap-10">
+      <header className="flex justify-between px-20 py-5 items-center border-b-1 border-border">
         <span className="flex gap-20">
           <a href="my-courses">My courses</a>
           <a href="browse-courses">Courses</a>
         </span>
         <span className="flex gap-20">
-          <a href="my-courses">My courses</a>
-          <a href="browse-courses">Courses</a>
+
         </span>
       </header>
       <section className="flex flex-col gap-10 px-60">
         <h1 className="text-6xl text-center">Browse</h1>
-        <div className="flex flex-wrap justify-start gap-10">
+        <div className="flex flex-row flex-wrap gap-10">
           {courses.map((course) => <CourseCard url={course?._id} title={course?.title}/>)}
         </div>
       </section>

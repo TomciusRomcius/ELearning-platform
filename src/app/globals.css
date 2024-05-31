@@ -16,4 +16,5 @@ textarea, textarea:focus, input, input:focus {
 
 * {
   box-sizing: border-box;
+  color: white;
 }

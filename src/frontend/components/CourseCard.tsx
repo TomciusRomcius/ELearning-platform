@@ -5,11 +5,12 @@ type CourseCardProps = {
 
 export default function CourseCard(props: CourseCardProps) {
   return (
-    <a href={`/courses/${props.url}`} className="flex flex-col w-80 h-40 border-2 rounded-md">
-      <div className="text-lg">{props.title}</div>
-      <div className="w-full h-[2px] bg-gray-200"></div>
-      <div className="bg-green-200 flex-1">
-        <p>Image</p>
+    <a href={`/courses/${props.url}`} className="flex flex-col bg-primary-100 w-80 h-72 border-1 border-border rounded-md">
+      <div className="h-3/4 p-4 border-b-1 border-border">
+        <div className=""></div>
+      </div>
+      <div className="flex flex-row flex-1 items-center p-2">
+        <h4 className="text-lg">{props.title}</h4>
       </div>
     </a>
   );
