@@ -1,10 +1,10 @@
 import { useState, memo } from "react";
-import { BlockType } from "../utils/types";
-import BlockTypeSelector from "./BlockTypeSelector";
+import { BlockType } from "@/utils/types";
+import BlockTypeSelector from "./AdminBlockTypeSelector";
 import TextArea from "@/frontend/ui/TextArea";
 import { blockClasses } from "../utils/blocks";
 
-type BlockProps = {
+type AdminBlockProps = {
   setCurrentIndex: (index: number) => void;
   setBlock: (block: BlockType) => void;
   insertBlock: () => void;
@@ -15,7 +15,7 @@ type BlockProps = {
 
 const defaultClassName = "text-text-light w-full h-2 ";
 
-function Block(props: BlockProps) {
+function AdminBlock(props: AdminBlockProps) {
   let [type, setType] = useState(props.block.type);
 
   let className = defaultClassName + blockClasses.get(type);
@@ -64,4 +64,4 @@ function Block(props: BlockProps) {
   );
 }
 
-export default memo(Block);
+export default memo(AdminBlock);

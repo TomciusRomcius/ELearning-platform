@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { ModuleType } from "../utils/types";
+import { ModuleType } from "../../../../utils/types";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
 type ModuleNameProps = {

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { CourseModel } from "../models/courseModel";
+import { CourseType } from "@/utils/types";
 
 export async function createCourse(title: string, description: string): Promise<void> {
   try {
@@ -17,12 +18,8 @@ export async function getCourses() {
 }
 
 export async function getCourse(id: string) {
-  try {
-    const course = await CourseModel.findById(new mongoose.Types.ObjectId(id));
-    return course;
-  }
-  catch (err) {
-    console.log(err);
-    return null;
-  }
+  const dbCourse = await CourseModel.findById(new mongoose.Types.ObjectId(id));
+  if (!dbCourse) return;
+  const course = dbCourse.toObject();
+  return course;
 }

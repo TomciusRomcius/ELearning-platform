@@ -4,7 +4,7 @@ import {
   CourseType,
   LessonType,
   ModuleType,
-} from "@/app/courses/[...id]/utils/types";
+} from "@/utils/types";
 import { createLesson } from "./createLesson";
 import { updateLesson } from "./updateLesson";
 import { deleteLesson } from "./deleteLesson";

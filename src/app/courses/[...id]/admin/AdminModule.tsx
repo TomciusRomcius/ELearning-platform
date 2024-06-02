@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ModuleType } from "../utils/types";
-import LessonButton from "./LessonButton";
-import NewLessonButton from "./NewLessonButton";
+import { ModuleType } from "../../../../utils/types";
+import LessonButton from "./AdminLessonButton";
+import NewLessonButton from "./AdminNewLessonButton";
 import Image from "next/image";
 import Popup from "@/frontend/ui/Popup";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
-import ModuleName from "./ModuleName";
+import ModuleName from "./AdminModuleName";
 
 type ModuleProps = {
   courseId: string;
@@ -13,7 +13,7 @@ type ModuleProps = {
   setCurrentLesson: (moduleId: string, lessonId: string) => void;
 };
 
-export function Module(props: ModuleProps) {
+export function AdminModule(props: ModuleProps) {
   let [popupVisible, setPopupVisible] = useState(false);
   let [isRenaming, setIsRenaming] = useState(false);
 

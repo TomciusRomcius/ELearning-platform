@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BlockType, LessonType } from "../utils/types";
-import Block from "./Block";
+import { BlockType, LessonType } from "../../../../utils/types";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
+import AdminBlock from "./AdminBlock";
 
 type LessonContainerProps = {
   currentLesson: LessonType;
@@ -9,7 +9,7 @@ type LessonContainerProps = {
   moduleId: string;
 };
 
-export default function LessonContainer(props: LessonContainerProps) {
+export default function AdminLessonContainer(props: LessonContainerProps) {
   let titleRef = useRef<HTMLInputElement>(null);
   let [updated, setUpdated] = useState(false);
   let [blocks, setBlocks] = useState<BlockType[]>([]);
@@ -86,7 +86,7 @@ export default function LessonContainer(props: LessonContainerProps) {
         };
 
         let blockComponent = (
-          <Block
+          <AdminBlock
             key={block.type + block.content + blockIndex}
             setBlock={setBlock}
             setCurrentIndex={setCurrentIndex}

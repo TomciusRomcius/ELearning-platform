@@ -1,15 +1,21 @@
 import mongoose, { Document, Model } from "mongoose";
 
+enum UserRole {
+  NORMAL,
+  PREMIUM,
+  ADMIN,
+}
+
 interface User extends Document {
   email: string;
   password: string;
-  role: number;
+  role: UserRole;
 }
 
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-  role: Number,
+  role: UserRole,
 });
 
 type UserModelType = Model<User>

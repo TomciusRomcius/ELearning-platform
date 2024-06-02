@@ -8,7 +8,6 @@ export async function GET(
   { params }: { params: { courseId: string } }
 ) {
   const courseId = params.courseId;
-
   // If course id was not provided
   if (courseId === null) {
     return NextResponse.json(null, {

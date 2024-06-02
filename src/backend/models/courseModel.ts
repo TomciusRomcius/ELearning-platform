@@ -1,7 +1,7 @@
 import mongoose, { Model, Document } from "mongoose";
 import { Module, moduleShema } from "./moduleModel";
 
-interface Course extends Document {
+export interface Course extends Document {
   title: string;
   description: string;
   modules: Module[]; // Define the type for lessons according to your schema

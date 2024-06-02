@@ -1,4 +1,4 @@
-import { ModuleType } from "@/app/courses/[...id]/utils/types";
+import { ModuleType } from "@/utils/types";
 import { APIModuleType } from "@/utils/apiTypes";
 import axios from "axios";
 

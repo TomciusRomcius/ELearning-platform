@@ -29,7 +29,6 @@ export default function Popup(props: PopupProps) {
     if (rect.y + rect.height > window.innerHeight) {
       let diff = rect.y + rect.height - window.innerHeight;
       setYPos((y) => y - diff);
-      alert("e");
     }
 
     if (rect.y < 0) {

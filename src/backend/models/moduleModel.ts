@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Lesson, lessonSchema } from "./lessonModel";
 
 export interface Module {
-  _id: mongoose.Types.ObjectId;
+  _id: string;
   title: string;
   lessons: Lesson[];
 }
