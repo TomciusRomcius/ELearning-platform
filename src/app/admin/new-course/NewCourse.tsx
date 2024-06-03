@@ -1,3 +1,5 @@
+"use client"
+
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRef } from "react";
@@ -15,8 +17,9 @@ export default function NewCourse() {
       description: description,
     });
   }
-  if (session?.status === "unauthenticated")
+  if (session?.status === "unauthenticated") {
     return <h1>Not allowed</h1>
+  }
   return (
     <main className="flex items-center justify-center w-screen h-screen">
       <div className="py-2 px-4 border-gray-200 border-2 w-1/4">
