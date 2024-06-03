@@ -15,6 +15,7 @@ textarea, textarea:focus, input, input:focus {
 }
 
 * {
+  font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   color: white;
 }
