@@ -1,6 +1,6 @@
 import mongoose, { Document, Model } from "mongoose";
 
-enum UserRole {
+export enum UserRole {
   NORMAL,
   PREMIUM,
   ADMIN,
@@ -10,12 +10,14 @@ interface User extends Document {
   email: string;
   password: string;
   role: UserRole;
+  enrolledCourseIds: string[];
 }
 
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-  role: UserRole,
+  role: Number,
+  enrolledCourseIds: [ { type: String, required: false } ]
 });
 
 type UserModelType = Model<User>
