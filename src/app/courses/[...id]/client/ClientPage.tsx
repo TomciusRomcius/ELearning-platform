@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CourseType } from "@/utils/types";
+import { CourseType, LessonType } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import { DataDetailsContext } from "./utils/dataDetailsContext";
 import Sidebar from "./Sidebar";
@@ -15,9 +15,11 @@ type ClientPageProps = {
 export default function ClientPage(props: ClientPageProps) {
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentLesson, setCurrentLesson] = useState(
-    props.course.modules[0].lessons[0]
+  const [currentLesson, setCurrentLesson] = useState<LessonType | undefined>(
+    props.course.modules[0]?.lessons[0]
   );
+
+  if (!currentLesson) return;
 
   useEffect(() => {
     // router.push(`/lesson?v=${currentLesson._id}`);
