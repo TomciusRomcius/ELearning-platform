@@ -58,12 +58,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
 
   // Set the blocks
   useEffect(() => {
-    if (props.currentLesson?.blocks.length === 0) {
-      setBlocks([{ type: "paragraph", content: "Start" }]);
-    } 
-    else {
-      setBlocks(structuredClone(props.currentLesson.blocks));
-    }
+    setBlocks(structuredClone(props.currentLesson.blocks));
   }, [props.currentLesson]);
 
   let blockIndex = 0;
@@ -78,6 +73,10 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
         className="w-full text-center text-4xl text-text-light"
       />
       {/* Blocks */}
+      {blocks.length === 0 ? (
+        <button onClick={insertBlock} className="p-4 border-border border-1">Create block</button>
+      ) : null}
+
       {blocks.map((block) => {
         const setBlock = (arg: BlockType) => {
           block.content = arg.content;
