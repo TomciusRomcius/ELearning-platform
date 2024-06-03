@@ -12,7 +12,12 @@ export function Module(props: ModuleProps) {
   console.log(props.module.lessons);
   return (
     <div className="flex flex-col gap-4 relative">
-      <h2 className="text-text-light text-2xl">{props.module.title}</h2>
+      <div className="flex flex-row gap-2 items-center">
+        <span className="flex-1 h-[1px] bg-primary-300"></span>
+        <h2 className="text-center text-text-light text-2xl">{props.module.title}</h2>
+        <span className="flex-1 h-[1px] bg-primary-300"></span>
+
+      </div>
       {/* Display lessons */}
       {props.module.lessons.map((lesson) => (
         <LessonButton
