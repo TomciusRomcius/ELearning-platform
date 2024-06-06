@@ -9,15 +9,21 @@ export type LessonType = {
   _id: string;
 }
 
-export type ModuleType = {
+export type ModuleType<Lesson = LessonType> = {
   _id: string;
   title: string;
-  lessons: LessonType[];
+  lessons: Lesson[];
 }
 
-export type CourseType = {
+export type CourseType<Lesson = LessonType> = {
   title: string;
   description: string;
-  modules: ModuleType[];
+  modules: ModuleType<Lesson>[];
   _id: string;
 }
+
+export interface ClientLessonType extends LessonType {
+  completed: boolean;
+}
+
+export type ClientCourseType = CourseType<ClientLessonType>

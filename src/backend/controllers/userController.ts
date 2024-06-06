@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { UserModel, UserRole } from "../models/userModel";
 
 export async function createUser(email: any, password: any): Promise<void> {
@@ -17,14 +16,11 @@ export async function createUser(email: any, password: any): Promise<void> {
 export async function signIn(
   email: string,
   password: string
-): Promise<boolean> {
-  try {
+): Promise<string> {
     const user = await UserModel.findOne({ email });
-    if (password === (user?.password as string)) {
-      return true;
-    } else return false;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+    if (!user) throw new Error("User not found!");
+    if (password === (user.password as string)) {
+      return user._id.toString();
+    }
+    else return "";
 }

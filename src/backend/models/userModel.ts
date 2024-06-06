@@ -10,14 +10,20 @@ interface User extends Document {
   email: string;
   password: string;
   role: UserRole;
-  enrolledCourseIds: string[];
+  enrolledCourses: [{ courseId: string, completedLessonIds: string[] }];
 }
 
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   role: Number,
-  enrolledCourseIds: [ { type: String, required: false } ]
+  enrolledCourses: [ 
+    { 
+      courseId: String, 
+      completedLessonIds: [String],
+      _id: false,
+    } 
+  ]
 });
 
 type UserModelType = Model<User>

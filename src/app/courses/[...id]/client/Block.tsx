@@ -5,7 +5,7 @@ type BlockProps = {
   block: BlockType;
 };
 
-const defaultClassName = "text-text-light w-full h-2 ";
+const defaultClassName = "text-text-light w-full ";
 
 export default function Block(props: BlockProps) {
   let className = defaultClassName + blockClasses.get(props.block.type);

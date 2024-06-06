@@ -1,6 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
 import { CourseModel } from "../models/courseModel";
 import { Lesson } from "../models/lessonModel";
+import { UserModel } from "../models/userModel";
 
 // TODO: fetch only the needed data
 export async function createLesson(
@@ -57,4 +58,26 @@ export async function deleteLesson(
 
   else throw new Error("Lesson not found");
   course.save();
+}
+
+export async function completeLesson(userId: string, courseId: string, lessonId: string) {
+  let user = await UserModel.findById(userId);
+  let course = user?.enrolledCourses.find((element) => element.courseId === courseId);
+  if (!course) throw new Error("Course not found!");
+  let index = course.completedLessonIds.findIndex((id) => id === lessonId);
+  if (index !== -1) throw new Error("The lesson is already created");
+  course.completedLessonIds.push(lessonId);
+  user?.save();
+}
+
+export async function getCompletedLessons(userId: string, courseId: string) {
+  console.log("id: ", courseId);
+  let user = await UserModel.findById(userId);
+  let course = user?.enrolledCourses.find((element) => element.courseId === courseId);
+  if (!course) throw new Error("Course not found!");
+  let completedLessons = [];
+  for (const lesson of course.completedLessonIds) {
+    completedLessons.push(lesson);
+  }
+  return completedLessons;
 }

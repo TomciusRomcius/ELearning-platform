@@ -8,8 +8,6 @@ type ModuleProps = {
 }
 
 export function Module(props: ModuleProps) {
-  const { course } = useDataDetails();
-  console.log(props.module.lessons);
   return (
     <div className="flex flex-col gap-4 relative">
       <div className="flex flex-row gap-2 items-center">
@@ -22,6 +20,7 @@ export function Module(props: ModuleProps) {
       {props.module.lessons.map((lesson) => (
         <LessonButton
           lesson={lesson}
+          moduleId={props.module._id}
         />
       ))}
     </div>
