@@ -4,7 +4,7 @@ import { Module } from "../models/moduleModel";
 
 export async function createModule(courseId: string, module: Module) {
   let course = await CourseModel.findById(courseId);
-  if (!course) console.log("Course not found");
+  if (!course) throw new Error("Course not found");
   module._id = new mongoose.Types.ObjectId();
   course?.modules.push(module);
   course?.save();
