@@ -15,10 +15,22 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
   
-  const insertBlock = () => {
+  const insertBlock = (selectedBlock?: BlockType, selectionStart?: number, selectionEnd?: number) => {
     const newBlocks = [...blocks];
+    if (selectedBlock && selectionStart) {
+      const startText = selectedBlock.content.substring(0, selectionStart);
+      const endText = selectedBlock.content.substring(selectionStart, selectedBlock.content.length);
+      const currentBlock = structuredClone(selectedBlock);
+      const nextBlock = structuredClone(selectedBlock);
+      currentBlock.content = startText;
+      nextBlock.content = endText;
+      newBlocks[currentIndex.current] = currentBlock;
+      newBlocks.splice(currentIndex.current + 1, 0, nextBlock);
+      setBlocks(newBlocks);
+      return;
+    }
     const block: BlockType = {
-      type: "Paragraph",
+      type: selectedBlock?.type || "Paragraph",
       content: "New",
     };
     if (currentIndex.current === blocks.length) {
@@ -29,6 +41,10 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
     setBlocks(newBlocks);
     setUpdated(true);
   };
+
+  const splitBlock = (block: BlockType, selectionStart: number, selectionEnd: number) => {
+
+  }
 
   // Handles block deletion(when user presses backspace on a block with no content)
   const onDelete = () => {

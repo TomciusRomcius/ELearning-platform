@@ -1,12 +1,12 @@
 // Handles auto resizing
 
-import { TextareaHTMLAttributes, memo, useLayoutEffect, useRef } from "react"
+import React, { RefObject, TextareaHTMLAttributes, forwardRef, memo, useLayoutEffect, useRef } from "react"
 
-function TextArea(props: TextareaHTMLAttributes<any>) {
-  let ref = useRef<HTMLTextAreaElement>(null);
-
+const TextArea = forwardRef((props: TextareaHTMLAttributes<any>, forwardedRef) => {
+  let textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const ref = forwardedRef as RefObject<HTMLTextAreaElement> || textAreaRef;
+  
   // Handle setting initial height
-
   const resize = () => {
     if (!ref.current) return;
     ref.current.style.height = "1px";
@@ -26,6 +26,6 @@ function TextArea(props: TextareaHTMLAttributes<any>) {
   return (
     <textarea ref={ref} {...props}></textarea>
   )
-}
+});
 
 export default memo(TextArea);
