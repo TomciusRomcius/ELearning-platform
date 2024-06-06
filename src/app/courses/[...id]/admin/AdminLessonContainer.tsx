@@ -15,11 +15,20 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
   
-  const insertBlock = (selectedBlock?: BlockType, selectionStart?: number, selectionEnd?: number) => {
+  const insertBlock = (
+    selectedBlock?: BlockType,
+    selectionStart?: number,
+    selectionEnd?: number
+  ) => {
     const newBlocks = [...blocks];
-    if (selectedBlock && selectionStart) {
+    // Handle the case where the block is provided
+    // and the text is selected(inserting additional block, breaking block)
+    if (selectedBlock && selectionStart && selectionEnd) {
       const startText = selectedBlock.content.substring(0, selectionStart);
-      const endText = selectedBlock.content.substring(selectionStart, selectedBlock.content.length);
+      const endText = selectedBlock.content.substring(
+        selectionStart,
+        selectedBlock.content.length
+      );
       const currentBlock = structuredClone(selectedBlock);
       const nextBlock = structuredClone(selectedBlock);
       currentBlock.content = startText;
@@ -27,24 +36,25 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
       newBlocks[currentIndex.current] = currentBlock;
       newBlocks.splice(currentIndex.current + 1, 0, nextBlock);
       setBlocks(newBlocks);
-      return;
+    } 
+    // Handle block creation where the selected index
+    // is not provided. Example: Clicking on a button
+    // to create a block.
+    else {
+      const block: BlockType = {
+        type: selectedBlock?.type || "Paragraph",
+        content: "New",
+      };
+      if (currentIndex.current === blocks.length) {
+        newBlocks.push(block);
+      } 
+      else {
+        newBlocks.splice(currentIndex.current + 1, 0, block);
+      }
+      setBlocks(newBlocks);
+      setUpdated(true);
     }
-    const block: BlockType = {
-      type: selectedBlock?.type || "Paragraph",
-      content: "New",
-    };
-    if (currentIndex.current === blocks.length) {
-      newBlocks.push(block);
-    } else {
-      newBlocks.splice(currentIndex.current + 1, 0, block);
-    }
-    setBlocks(newBlocks);
-    setUpdated(true);
   };
-
-  const splitBlock = (block: BlockType, selectionStart: number, selectionEnd: number) => {
-
-  }
 
   // Handles block deletion(when user presses backspace on a block with no content)
   const onDelete = () => {
@@ -72,11 +82,12 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
     });
   };
 
-  // Set the blocks
+  // Reset the blocks, when current lesson changes
   useEffect(() => {
     setBlocks(structuredClone(props.currentLesson.blocks));
   }, [props.currentLesson]);
 
+  // Used for setting block order
   let blockIndex = 0;
 
   return (
