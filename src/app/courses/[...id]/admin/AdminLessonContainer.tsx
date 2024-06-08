@@ -15,6 +15,10 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
   
+  const onCreateFirstBlock = () => {
+    insertBlock();
+  }
+
   const insertBlock = (
     selectedBlock?: BlockType,
     selectionStart?: number,
@@ -91,7 +95,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let blockIndex = 0;
 
   return (
-    <div className="p-4 flex-1 relative">
+    <div className="p-4 flex-1 relative overflow-y-scroll">
       {/* Title */}
       <input
         key={props.currentLesson?.title}
@@ -101,7 +105,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
       />
       {/* Blocks */}
       {blocks.length === 0 ? (
-        <button onClick={insertBlock} className="p-4 border-border border-1">Create block</button>
+        <button onClick={onCreateFirstBlock} className="p-4 border-border border-1">Create block</button>
       ) : null}
 
       {blocks.map((block) => {

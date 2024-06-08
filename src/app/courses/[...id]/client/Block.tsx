@@ -10,5 +10,5 @@ const defaultClassName = "text-text-light w-full ";
 export default function Block(props: BlockProps) {
   let className = defaultClassName + blockClasses.get(props.block.type);
 
-  return <p className={className}>{props.block.content}</p>;
+return <p className={`py-2 ${className}`}>{props.block.content}</p>;
 }

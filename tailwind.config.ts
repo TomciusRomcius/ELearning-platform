@@ -25,6 +25,7 @@ const config: Config = {
           200: "#3E3E43",
           300: "#7A7A88",
         },
+        secondary: "#F9F9FF", 
         border: "#5C5C63",
         text: {
           light: "#F9F9FF",

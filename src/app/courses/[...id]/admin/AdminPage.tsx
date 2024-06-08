@@ -10,7 +10,7 @@ export default function AdminPage() {
   
   return (
     <div className="flex flex-row w-screen h-screen">
-      <nav className="bg-foreground p-4 flex flex-col gap-4 border-r-2 border-primary-300 w-1/6 h-screen">
+      <nav className="bg-foreground p-4 flex flex-col gap-4 border-r-1 border-primary-300 w-1/6 h-screen">
         <h2 className="text-text-light text-4xl font-medium text-center">{course.title}</h2>
         {course.modules.map((module) => (
           <AdminModule

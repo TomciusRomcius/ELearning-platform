@@ -1,5 +1,6 @@
 import { ClientLessonType, LessonType } from "@/utils/types";
 import { useDataDetails } from "./utils/useDataDetails";
+import Checkmark from "@/frontend/resources/svg/Checkmark";
 
 type LessonButtonProps = {
   lesson: ClientLessonType;
@@ -19,8 +20,9 @@ export default function LessonButton(props: LessonButtonProps) {
 
   return (
     <div className="relative">
-      <button className={className} onClick={onSelect}>
+      <button className={`w-full flex flex-row justify-between ${className}`} onClick={onSelect}>
         {props.lesson.title}
+        <Checkmark className={props.lesson.completed ? " fill-secondary" : "fill-text-grayed"}/>
       </button>
     </div>
   );
