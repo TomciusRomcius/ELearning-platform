@@ -38,12 +38,20 @@ export default function CoursesTab() {
                   <td className="px-24 py-2">{course.title}</td>
                   <td className="px-24 py-2">{course.description}</td>
                   <td className="px-24 py-2">Category not defined</td>
-                  <td onClick={() => navigate(`/courses/${course._id}?isAdmin=1`)} className="px-24 py-2">Edit</td>
+                  <td className="px-24 py-4">
+                    <button
+                      onClick={() =>
+                        navigate(`/courses/${course._id}?isAdmin=1`)
+                      }
+                    >
+                      Edit
+                    </button>
+                  </td>
                 </tr>
               </>
             ))}
             <tr>
-              <td>
+              <td className="py-2">
                 <button onClick={onCreateCourse}>Create course</button>
               </td>
             </tr>
