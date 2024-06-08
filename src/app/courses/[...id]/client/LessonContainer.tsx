@@ -4,7 +4,7 @@ import { completeLesson } from "@/frontend/services/completeLesson";
 import { getCurrentLesson } from "./utils/getCurrentLesson";
 
 export default function LessonContainer() {
-  const { currentLesson, course, setCourse } = useDataDetails();
+  const { currentLesson, course, setCourse, setCurrentLesson } = useDataDetails();
 
   if (!currentLesson) return;
 
@@ -27,6 +27,10 @@ export default function LessonContainer() {
     completeLesson(course._id, currentLesson.lessonId);
   };
 
+  const onNextLesson = () => {
+    onComplete();
+  }
+
   return (
     <div className="flex flex-col px-10 py-10 flex-1">
       <div className="w-full h-full relative">
@@ -44,12 +48,17 @@ export default function LessonContainer() {
           <div className="py-10"></div>
         </div>
 
-        <div className="rounded-lg absolute bottom-0 right-2 flex justify-end">
+        <div className="absolute bottom-0 w-full p-2 bg-primary-100 rounded-lg border-border border-1 right-2 flex gap-4 justify-end">
           <button
             className="rounded-lg border-border border-1 bg-primary-0 px-4 py-2"
             onClick={onComplete}
           >
             Complete
+          </button>
+          <button
+            className="rounded-lg border-border border-1 bg-primary-0 px-4 py-2"
+          >
+            Next lesson
           </button>
         </div>
       </div>
