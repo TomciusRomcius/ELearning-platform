@@ -1,6 +1,11 @@
-import { NextResponse } from "next/server";
-import { createLesson } from "../../../../backend/controllers/lessonController";
-import { getCourse } from "../../../../backend/controllers/courseController";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  createCourse,
+  deleteCourse,
+  getCourse,
+  updateCourse,
+} from "@/backend/controllers/courseController";
+import { APICourseType } from "@/utils/apiTypes";
 
 // Load course
 export async function GET(
@@ -26,14 +31,36 @@ export async function POST(
   const courseId = params.courseId;
   const { title } = await req.json();
   console.log(`id: ${courseId}`);
-  await createLesson(title, courseId);
+  await createCourse(title, courseId);
   return NextResponse.json("Suc");
 }
 
 // Update course
-export async function PUT(
-  req: Request,
+export async function PATCH(
+  req: NextRequest,
   { params }: { params: { courseId: string } }
 ) {
   const courseId = params.courseId;
+  const { course }: { course: APICourseType } = await req.json();
+  try {
+    await updateCourse(courseId, course);
+  } catch (err) {
+    return NextResponse.json({}, { status: 401 });
+  }
+
+  return NextResponse.json({}, { status: 200 });
 }
+
+export async function DELETE(req: NextRequest, { params }: { params: { courseId: string }  }) {
+  const courseId = params.courseId;
+  try {
+    await deleteCourse(courseId);
+  }
+
+  catch (err) {
+    return NextResponse.json({}, { status: 401 });
+  }
+
+  return NextResponse.json({}, { status: 200 });
+}
+
