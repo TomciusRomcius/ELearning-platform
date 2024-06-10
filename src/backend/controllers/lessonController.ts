@@ -65,8 +65,12 @@ export async function completeLesson(userId: string, courseId: string, lessonId:
   let course = user?.enrolledCourses.find((element) => element.courseId === courseId);
   if (!course) throw new Error("Course not found!");
   let index = course.completedLessonIds.findIndex((id) => id === lessonId);
-  if (index !== -1) throw new Error("The lesson is already created");
-  course.completedLessonIds.push(lessonId);
+  if (index !== -1) {
+    course.completedLessonIds.splice(index, 1);
+  }
+  else {
+    course.completedLessonIds.push(lessonId);
+  }
   user?.save();
 }
 

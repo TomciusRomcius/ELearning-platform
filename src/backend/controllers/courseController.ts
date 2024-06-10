@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { CourseModel } from "../models/courseModel";
 import { UserModel } from "../models/userModel";
+import { APICourseType } from "@/utils/apiTypes";
 
 export async function createCourse(title: string, description: string): Promise<void> {
   try {
@@ -9,6 +10,14 @@ export async function createCourse(title: string, description: string): Promise<
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function updateCourse(courseId: string, course: APICourseType) {
+  let dbCourse = await CourseModel.findById(courseId);
+  if (!dbCourse) throw new Error("Course not found!");
+  dbCourse.title = course.title || dbCourse.title;
+  dbCourse.description = course.description || dbCourse.description;
+  dbCourse.save();
 }
 
 // TODO: Make it more efficient especially in the browse page, so we don't fetch much data at once
@@ -22,6 +31,10 @@ export async function getCourse(id: string) {
   if (!dbCourse) return;
   const course = dbCourse.toJSON();
   return course;
+}
+
+export async function deleteCourse(id: string) {
+  await CourseModel.findByIdAndDelete(id);
 }
 
 export async function getEnrolledCourses(userId: string) {

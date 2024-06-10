@@ -22,7 +22,7 @@ export default function LessonContainer() {
       currentLesson.moduleId,
       currentLesson.lessonId
     );
-    lesson.completed = true;
+    lesson.completed = !lesson?.completed;
     setCourse(newCourse);
     completeLesson(course._id, currentLesson.lessonId);
   };

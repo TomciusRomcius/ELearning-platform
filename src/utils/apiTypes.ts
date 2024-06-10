@@ -11,7 +11,7 @@ export type APIModuleType = {
 }
 
 export type APICourseType = {
-  courseName?: string;
+  title?: string;
   description?: string;
-  _id: string;
+  _id?: string;
 }
