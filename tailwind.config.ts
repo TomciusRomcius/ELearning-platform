@@ -18,6 +18,7 @@ const config: Config = {
       colors: {
         background: "#202022",
         foreground: "#303034",
+        accent: "#3A47D8",
         foregroundLigher: "#5C5C63",
         primary: {
           0: "#202022",
@@ -31,7 +32,6 @@ const config: Config = {
           light: "#F9F9FF",
           grayed: "#5C5C63",
         },
-        accent: "3A47D8",
       },
     },
   },
