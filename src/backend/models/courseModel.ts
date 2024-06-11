@@ -4,9 +4,9 @@ import { Module, moduleShema } from "./moduleModel";
 export interface Course extends Document {
   title: string;
   description: string;
-  modules: Module[]; // Define the type for lessons according to your schema
+  category: string;
+  modules: Module[];
 }
-
 
 export const courseSchema = new mongoose.Schema({
   title: {
@@ -14,6 +14,10 @@ export const courseSchema = new mongoose.Schema({
     required: true,
   },
   description: {
+    type: String,
+    required: true
+  },
+  category: {
     type: String,
     required: true
   },

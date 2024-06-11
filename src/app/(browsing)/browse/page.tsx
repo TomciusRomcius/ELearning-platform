@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import CourseCard from "@/frontend/components/CourseCard";
 import { getCourses } from "@/frontend/services/getCourses";
 import MainHeader from "@/frontend/ui/MainHeader";
+import { CourseType } from "@/utils/types";
 
 export default function Page() {
-  let [courses, setCourses] = useState([]);
+  let [courses, setCourses] = useState<CourseType[]>([]);
 
   useEffect(() => {
     getCourses().then((fetchedCourses) => {
@@ -23,7 +24,7 @@ export default function Page() {
           <h1 className="text-6xl text-center">Browse</h1>
           <div className="flex flex-row flex-wrap gap-10">
             {courses.map((course) => (
-              <CourseCard url={course?._id} title={course?.title} />
+              <CourseCard url={course?._id} title={course?.title} description={course?.description} />
             ))}
           </div>
         </section>

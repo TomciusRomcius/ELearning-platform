@@ -3,10 +3,11 @@ import { CourseModel } from "../models/courseModel";
 import { UserModel } from "../models/userModel";
 import { APICourseType } from "@/utils/apiTypes";
 
-export async function createCourse(title: string, description: string): Promise<void> {
+export async function createCourse(title: string, description: string, category: string): Promise<void> {
   try {
-    let course = await new CourseModel({ title, description });
+    let course = await new CourseModel({ title, description, category: category });
     course.save();
+    console.log(category);
   } catch (error) {
     console.log(error);
   }
@@ -17,6 +18,7 @@ export async function updateCourse(courseId: string, course: APICourseType) {
   if (!dbCourse) throw new Error("Course not found!");
   dbCourse.title = course.title || dbCourse.title;
   dbCourse.description = course.description || dbCourse.description;
+  dbCourse.category = course.category || dbCourse.category;
   dbCourse.save();
 }
 

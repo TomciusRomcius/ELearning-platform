@@ -11,7 +11,7 @@ export type CourseTableProps = {
 export default function CourseTable(props: CourseTableProps) {
   const [courses, dispatch] = useReducer(reducer, structuredClone(props.courses));
   const onCreateCourse = () => {
-    navigate("/admin/new-course");
+    navigate("/admin/courses/new-course");
   };
   console.log(courses, props.courses);
 

@@ -1,5 +1,6 @@
 type CourseCardProps = {
   title: string;
+  description: string;
   url: string;
 }
 
@@ -9,8 +10,9 @@ export default function CourseCard(props: CourseCardProps) {
       <div className="h-3/4 p-4 border-b-1 border-border">
         <div className=""></div>
       </div>
-      <div className="flex flex-row flex-1 items-center p-2">
+      <div className="flex flex-col flex-1 p-2">
         <h4 className="text-lg">{props.title}</h4>
+        <p>{props.description}</p>
       </div>
     </a>
   );

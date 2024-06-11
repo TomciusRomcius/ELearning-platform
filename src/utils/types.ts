@@ -18,6 +18,7 @@ export type ModuleType<Lesson = LessonType> = {
 export type CourseType<Lesson = LessonType> = {
   title: string;
   description: string;
+  category: string;
   modules: ModuleType<Lesson>[];
   _id: string;
 }

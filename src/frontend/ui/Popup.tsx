@@ -4,7 +4,7 @@ interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   isFixed: boolean;
   x?: number;
   y?: number;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const DEFAULT_X = 40;
@@ -39,20 +39,21 @@ export default function Popup(props: PopupProps) {
       setXPos(0);
     }
 
-
     const windowOnClick = (e: MouseEvent<any>) => {
-      if (!divRef.current?.contains(e.target as Node)) {
+      if (props.onClose) {
         props.onClose();
       }
     }
-    window.addEventListener("mousedown", windowOnClick);
-    return () => window.removeEventListener("mousedown", windowOnClick);
+    
+    window.addEventListener("click", windowOnClick);
+    return () => window.removeEventListener("click", windowOnClick);
   }, []);
 
   return (
     <div
       {...htmlProps}
       ref={divRef}
+      className="w-max"
       style={{
         position: isFixed ? "fixed" : "absolute",
         left: xPos,

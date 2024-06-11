@@ -2,7 +2,6 @@
 
 import { authOptions } from "../api/auth/authOptions"
 import { getServerSession } from "next-auth";
-import { SidebarLayout } from "./_layouts/SidebarLayout";
 import AdminPage from "./AdminPage";
 
 
