@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import MainHeader from "@/frontend/ui/MainHeader";
+import SessionContainer from "@/frontend/ui/SessionContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background flex flex-col gap-4`}>
-        <MainHeader/>
-        {children}
+      <body className={`${inter.className} bg-background flex flex-col gap-10`}>
+        <SessionContainer>
+          <>
+            <MainHeader />
+            {children}
+          </>
+        </SessionContainer>
       </body>
     </html>
   );
