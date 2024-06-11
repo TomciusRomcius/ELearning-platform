@@ -3,6 +3,7 @@ import CourseEntry from "./CourseEntry";
 import { useEffect, useReducer, useState } from "react";
 import { CourseType } from "@/utils/types";
 import reducer, { ReducerAction } from "../utils/coursesReducer";
+import AccentButton from "@/frontend/ui/AccentButton";
 
 export type CourseTableProps = {
   courses: CourseType[];
@@ -37,7 +38,7 @@ export default function CourseTable(props: CourseTableProps) {
         ))}
         <tr>
           <td className="py-2">
-            <button onClick={onCreateCourse}>Create course</button>
+            <AccentButton onClick={onCreateCourse}>Create course</AccentButton>
           </td>
         </tr>
       </tbody>

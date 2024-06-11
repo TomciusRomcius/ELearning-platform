@@ -21,6 +21,13 @@ export type ReducerAction =
         id: string;
       };
     }
+    | {
+      type: "change_category";
+      payload: {
+        category: string;
+        id: string;
+      };
+    }
   | {
       type: "delete";
       payload: {
@@ -46,6 +53,10 @@ export default function reducer(state: CourseType[], action: ReducerAction) {
     case "change_description":
       course.description = action.payload.description;
       updateCourse(course._id, { description: course.description });
+      break;
+    case "change_category":
+      course.category = action.payload.category;
+      updateCourse(course._id, { category: course.category });
       break;
     case "delete":
       newState.splice(courseIndex, 1);

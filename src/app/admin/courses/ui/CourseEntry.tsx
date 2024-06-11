@@ -31,6 +31,16 @@ export default function CourseEntry(props: CourseEntryProps) {
     });
   }
 
+  const onChangeCategory = (category: string) => {
+    props.dispatchCourses({
+      type: "change_category",
+      payload: {
+        category: category,
+        id: props.course._id,
+      },
+    });
+  }
+
   const onDelete = () => {
     props.dispatchCourses({
       type: "delete",
@@ -45,7 +55,10 @@ export default function CourseEntry(props: CourseEntryProps) {
         action={onChangeDescription}
         content={props.course.description}
       />
-      <td className="px-24 py-2">Category not defined</td>
+      <EntryField
+        action={onChangeCategory}
+        content={props.course.category}
+      />
       <td className="px-24 py-4">
         <div className="flex gap-4">
           <button
