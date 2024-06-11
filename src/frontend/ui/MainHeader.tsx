@@ -6,6 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import Popup from "./Popup";
 import { useState } from "react";
 import { navigate } from "@/utils/navigation";
+import LinkOption from "./LinkOption";
 
 export default function MainHeader() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -26,17 +27,11 @@ export default function MainHeader() {
     setIsPopupVisible(!isPopupVisible);
   };
 
-  const isActive = (path: string) => {
-    return window.location.pathname === path;
-  }
-
-  let unselectedLinkClass = "text-text-grayed" 
-
   return (
     <header className="flex justify-between sticky px-20 py-5 items-center border-b-1 border-border">
       <span className="flex gap-20">
-        <Link className={isActive("/my-courses") ? "" : unselectedLinkClass} href="/my-courses">My courses</Link>
-        <Link className={isActive("/browse") ? "" : unselectedLinkClass} href="/browse">Browse</Link>
+        <LinkOption className="text-text-grayed" highlightedClass="text-text-light" href="/my-courses">My courses</LinkOption>
+        <LinkOption className="text-text-grayed" highlightedClass="text-text-light" href="/browse">Browse</LinkOption>
       </span>
       <span className="flex gap-20">
         <button className="relative" onClick={onTogglePopup}>
