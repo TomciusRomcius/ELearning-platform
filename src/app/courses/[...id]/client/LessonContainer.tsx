@@ -6,7 +6,7 @@ import { getCurrentLesson } from "./utils/getCurrentLesson";
 export default function LessonContainer() {
   const { currentLesson, course, setCourse, setCurrentLesson } = useDataDetails();
 
-  if (!currentLesson) return;
+  if (!currentLesson.lessonId) return;
 
   const lesson = getCurrentLesson(
     course,

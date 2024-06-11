@@ -25,21 +25,23 @@ export default async function Page({
   
   // Convert CourseType to ClientCourseTypoe 
   let course = await getCourse(courseId);
-  let completedLessonIds = await getCompletedLessons(session?.user.id, course._id.toString());
-  let clientCourse: ClientCourseType = course as ClientCourseType;
-  clientCourse.modules.forEach((module) => {
-    module.lessons.forEach((lesson) => {
-      let exists = completedLessonIds.includes(lesson._id.toString());
-      if (exists) {
-        lesson.completed = true;
-      }
-      else lesson.completed = false;
-    });
-  });
-
   const isEnrolled = await isUserEnrolled(session?.user?.id, courseId);
+  if (!isAdmin && isEnrolled) {
+    let completedLessonIds = await getCompletedLessons(session?.user.id, course._id.toString());
+    let clientCourse: ClientCourseType = course as ClientCourseType;
+    clientCourse.modules.forEach((module) => {
+      module.lessons.forEach((lesson) => {
+        let exists = completedLessonIds.includes(lesson._id.toString());
+        if (exists) {
+          lesson.completed = true;
+        }
+        else lesson.completed = false;
+      });
+    });
+    
+    return <ClientPage course={course}/>
+  }
 
   if (isAdmin) return <AdminPage/>
-  if (isEnrolled) return <ClientPage course={course}/>
   else return <EnrollPage courseId={courseId}/>
 }

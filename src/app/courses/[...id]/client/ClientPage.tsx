@@ -17,7 +17,7 @@ export default function ClientPage(props: ClientPageProps) {
   const [currentLesson, setCurrentLesson] = useState(
     {
       lessonId: props.course.modules[0]?.lessons[0]._id,
-      moduleId: props.course.modules[0]._id,
+      moduleId: props.course.modules[0]?._id,
     }
   );
   const [course, setCourse] = useState(props.course);
