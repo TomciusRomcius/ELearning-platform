@@ -1,4 +1,4 @@
-import { useState, memo, useRef } from "react";
+import { useState, memo, useRef, useLayoutEffect } from "react";
 import { BlockType } from "@/utils/types";
 import BlockTypeSelector from "./AdminBlockTypeSelector";
 import TextArea from "@/frontend/ui/TextArea";
@@ -54,6 +54,10 @@ function AdminBlock(props: AdminBlockProps) {
     block.type = type;
     props.setBlock(block);
   }
+
+  useLayoutEffect(() => {
+    textAreaRef.current.focus();
+  }, []);
 
   return (
     <div className="flex flex-row gap-4 py-2">
