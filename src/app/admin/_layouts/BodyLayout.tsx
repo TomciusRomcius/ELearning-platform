@@ -4,7 +4,7 @@ type BodyLayoutProps = {
 
 export async function BodyLayout(props: BodyLayoutProps) {
   return (
-    <div className="flex justify-center flex-1 px-12 py-36">
+    <div className="flex justify-center flex-1 px-12 py-36 h-screen">
       {props.children}
     </div>
   )

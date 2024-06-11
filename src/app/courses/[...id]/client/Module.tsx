@@ -17,18 +17,18 @@ export function Module(props: ModuleProps) {
 
   return (
     <div className="flex flex-col gap-4 relative">
-      <div className="flex flex-row gap-2 items-center">
-        <span className="w-6 h-[1px] bg-primary-300"></span>
-        <h2 className="flex-1 text-center text-text-light text-xl">
+      <div>
+        <h2 className="flex flex-row justify-between flex-1 font-bold text-text-light text-xl">
           {props.module.title}
-          {` ${completionPercentage}%`}
+          <small className="text-primary ">{` ${completionPercentage}%`}</small>
         </h2>
-        <span className="w-6 h-[1px] bg-primary-300"></span>
       </div>
       {/* Display lessons */}
-      {props.module.lessons.map((lesson) => (
-        <LessonButton lesson={lesson} moduleId={props.module._id} />
-      ))}
+      <div className="flex flex-col pl-4 gap-4">
+        {props.module.lessons.map((lesson) => (
+          <LessonButton lesson={lesson} moduleId={props.module._id} />
+        ))}
+      </div>
     </div>
   );
 }

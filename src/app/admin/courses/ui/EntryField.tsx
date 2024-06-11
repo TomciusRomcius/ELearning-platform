@@ -1,4 +1,5 @@
 import Edit from "@/frontend/resources/svg/Edit";
+import TextArea from "@/frontend/ui/TextArea";
 import { useRef, useState } from "react";
 
 type EntryFieldProps = {
@@ -23,15 +24,15 @@ export default function EntryField(props: EntryFieldProps) {
 
   return (
     <td className="px-24 py-2">
-      <div className="flex gap-4">
+      <div className="max-w-64 flex gap-4">
         {isEditing ? (
-          <input
+          <TextArea
             ref={inputRef}
-            className="border-1 border-border rounded-lg"
+            className="max-w-26 border-1 border-border rounded-lg"
             defaultValue={props.content}
           />
         ) : (
-          <h4>{props.content}</h4>
+          <p className="w-full">{props.content}</p>
         )}
 
         { isEditing ? (

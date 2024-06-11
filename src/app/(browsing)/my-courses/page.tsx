@@ -21,7 +21,12 @@ export default async function MyCourses() {
           <h1 className="text-6xl text-center">Browse</h1>
           <div className="flex flex-row flex-wrap gap-10">
             {enrolledCourses.map((course) => (
-              <CourseCard url={course?._id} title={course?.title} />
+              <CourseCard
+                url={course?._id}
+                title={course?.title}
+                description={course.description}
+                category={course.category}
+              />
             ))}
           </div>
         </section>

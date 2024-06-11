@@ -49,7 +49,7 @@ export default function LessonContainer() {
           <div className="py-10"></div>
         </div>
 
-        <div className="absolute bottom-0 w-full p-2 bg-primary-100 rounded-lg border-border border-1 right-2 flex gap-4 justify-end">
+        <div className="absolute bottom-0 w-full p-2 bg-primary-100 rounded-lg border-border border-1 right-2 flex gap-4 justify-end shadow-lg">
           <button
             className="rounded-lg border-border border-1 bg-primary-0 px-4 py-2"
             onClick={onComplete}
@@ -57,7 +57,6 @@ export default function LessonContainer() {
             Complete
           </button>
           <AccentButton
-            className="border-border border"
           >
             Next lesson
           </AccentButton>

@@ -8,7 +8,7 @@ type LessonButtonProps = {
 };
 
 export default function LessonButton(props: LessonButtonProps) {
-  const { setCurrentLesson } = useDataDetails();
+  const { currentLesson, setCurrentLesson } = useDataDetails();
 
   const onSelect = () => {
     setCurrentLesson({ lessonId: props.lesson._id, moduleId: props.moduleId });
@@ -17,10 +17,13 @@ export default function LessonButton(props: LessonButtonProps) {
   let className = props.lesson.completed
     ? "text-text-light"
     : "text-text-grayed";
+  
+  let currentLessonClassName = "bg-primary-200 rounded-lg font-bold";
+  let isCurrentLesson = props.lesson._id.toString() === currentLesson.lessonId;
 
   return (
     <div className="relative">
-      <button className={`w-full flex flex-row justify-between ${className}`} onClick={onSelect}>
+      <button className={`w-full flex flex-row justify-between px-2 py-2 ${isCurrentLesson ? currentLessonClassName : ""} ${className}`} onClick={onSelect}>
         {props.lesson.title}
         <Checkmark className={props.lesson.completed ? " fill-secondary" : "fill-text-grayed"}/>
       </button>

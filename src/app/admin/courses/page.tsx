@@ -17,7 +17,7 @@ export default function CoursesTab() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 items-center flex-1 p-14">
+    <div className="flex flex-col gap-4 items-center flex-1">
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl text-center">Courses</h1>
         <div className="w-full">
