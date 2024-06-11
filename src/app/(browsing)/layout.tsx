@@ -21,7 +21,6 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background flex flex-col gap-10`}>
         <SessionContainer>
           <>
-            <MainHeader />
             {children}
           </>
         </SessionContainer>
