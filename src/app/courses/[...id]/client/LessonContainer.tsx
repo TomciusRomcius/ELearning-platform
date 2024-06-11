@@ -2,6 +2,7 @@ import { useDataDetails } from "./utils/useDataDetails";
 import Block from "./Block";
 import { completeLesson } from "@/frontend/services/completeLesson";
 import { getCurrentLesson } from "./utils/getCurrentLesson";
+import AccentButton from "@/frontend/ui/AccentButton";
 
 export default function LessonContainer() {
   const { currentLesson, course, setCourse, setCurrentLesson } = useDataDetails();
@@ -55,11 +56,11 @@ export default function LessonContainer() {
           >
             Complete
           </button>
-          <button
-            className="rounded-lg border-border border-1 bg-primary-0 px-4 py-2"
+          <AccentButton
+            className="border-border border"
           >
             Next lesson
-          </button>
+          </AccentButton>
         </div>
       </div>
     </div>
