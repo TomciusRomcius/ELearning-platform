@@ -7,7 +7,7 @@ interface LinkOptionProps extends React.HTMLAttributes<HTMLDivElement> {
   href: string;
   className: string;
   highlightedClass: string;
-  children: React.JSX.Element;
+  children: React.ReactNode;
 }
 
 export default function LinkOption(props: LinkOptionProps) {
