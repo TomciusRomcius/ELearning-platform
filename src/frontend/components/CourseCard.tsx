@@ -11,11 +11,18 @@ export default function CourseCard(props: CourseCardProps) {
       href={`/courses/${props.url}`}
       className="flex flex-col bg-primary-100 w-64 h-72 border-1 border-border rounded-md shadow-lg"
     >
-      <div className="relative flex-1 p-4">
+      <div className="relative h-[70%] p-4">
+        <img
+          src={`/uploads/${props.url}.jpeg`}
+          className="h-full object-contain object-top"
+          alt=""
+        >
+
+        </img>
       </div>
-      <div className="flex flex-col gap-2 h-28 p-4">
+      <div className="h-1/4 flex flex-col gap-2 px-4">
         <small className="text-sm font-semibold text-accent">{props.category}</small>
-        <h4 className="text-xl">{props.title}</h4>
+        <h4 className="text-base">{props.title}</h4>
       </div>
     </a>
   );

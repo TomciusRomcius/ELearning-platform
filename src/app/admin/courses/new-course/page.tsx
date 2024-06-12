@@ -2,12 +2,19 @@
 
 import { createCourse } from "@/frontend/services/createCourse";
 import AccentButton from "@/frontend/ui/AccentButton";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { UploadFile } from "./ui/UploadFile";
+import { fileURLToPath } from "url";
 
 export default function NewCourse() {
   let nameRef = useRef<HTMLInputElement>(null);
   let descriptionRef = useRef<HTMLTextAreaElement>(null);
   let categoryRef = useRef<HTMLInputElement>(null);
+  let file = useRef<File | null>(null);
+
+  const setFile = (fileArg: File) => {
+    file.current = fileArg;
+  };
 
   const onSubmit = () => {
     const name = nameRef.current?.value;
@@ -15,7 +22,9 @@ export default function NewCourse() {
     const category = categoryRef.current?.value;
     if (!name || !description || !category)
       return;
-    createCourse(name, description, category);
+    if (!file.current) 
+      return;
+    createCourse(name, description, category, file.current);
   }
 
   return (
@@ -39,6 +48,7 @@ export default function NewCourse() {
           <input ref={categoryRef}/>
         </div>
       </div>
+      <UploadFile setFile={setFile}></UploadFile>
       <AccentButton onClick={(onSubmit)} className="w-max">
         Submit
       </AccentButton>

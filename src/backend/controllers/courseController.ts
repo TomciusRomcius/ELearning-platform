@@ -7,7 +7,7 @@ export async function createCourse(title: string, description: string, category:
   try {
     let course = await new CourseModel({ title, description, category: category });
     course.save();
-    console.log(category);
+    return course.id;
   } catch (error) {
     console.log(error);
   }

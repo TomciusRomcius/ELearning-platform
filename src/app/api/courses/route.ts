@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import { createCourse, getCourses } from "../../../backend/controllers/courseController";
+import { uploadFile } from "@/utils/fileOperations";
 
 export async function GET(req: Request) {
   try {
@@ -16,7 +17,12 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  let { title, description, category } = await req.json();
-  await createCourse(title, description, category);
+  const formData = await req.formData();
+  let courseString = formData.get("course") as string;
+  const course = JSON.parse(courseString);
+  const { title, description, category } = course;
+  const id = await createCourse(title, description, category);
+  const file = formData.get("file") as File;
+  await uploadFile(id, formData.get("file") as File);
   return new NextResponse("suc");
 }
