@@ -7,6 +7,7 @@ import Popup from "./Popup";
 import { useState } from "react";
 import { navigate } from "@/utils/navigation";
 import LinkOption from "./LinkOption";
+import Logout from "../resources/svg/Logout";
 
 export default function MainHeader() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -17,7 +18,7 @@ export default function MainHeader() {
   };
 
   const signIn = () => {
-    navigate("/api/auth/signin");
+    navigate("/auth/sign-in");
   }
 
   const onTogglePopup = (e?: React.MouseEvent) => {
@@ -39,7 +40,10 @@ export default function MainHeader() {
             <Popup onClose={onTogglePopup} isFixed={false}>
               <div className="w-max p-4 bg-primary-200 border-border border-1 rounded-lg flex flex-col gap-4">
                 {session.data?.user ? (
-                  <button onClick={onSignOut}>Sign out</button>
+                  <button className="flex gap-2" onClick={onSignOut}>
+                    <Logout className="fill-text-grayed"/>
+                    Sign out
+                  </button>
                 ) : (
                   <button onClick={signIn}>Sign in</button>
                 )}

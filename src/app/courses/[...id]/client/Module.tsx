@@ -13,14 +13,14 @@ export function Module(props: ModuleProps) {
     if (lesson.completed) completionSum++;
   }
 
-  let completionPercentage = completionSum / props.module.lessons.length * 100;
+  let completionPercentage = Math.round(completionSum / props.module.lessons.length * 100);
 
   return (
     <div className="flex flex-col gap-4 relative">
       <div>
-        <h2 className="flex flex-row justify-between flex-1 font-bold text-text-light text-xl">
+        <h2 className="flex flex-row justify-between flex-1 font-bold text-text-light text-base">
           {props.module.title}
-          <small className="text-primary ">{` ${completionPercentage}%`}</small>
+          <small className="text-primary text-base">{` ${completionPercentage}%`}</small>
         </h2>
       </div>
       {/* Display lessons */}
