@@ -48,7 +48,7 @@ export default function LessonButton(props: LessonButtonProps) {
         </Popup>
       ) : null}
       <button
-        className="flex justify-between w-full text-start text-xl text-gray-600"
+        className="flex justify-between w-full text-start text-base text-gray-600"
         onContextMenu={onContextMenu}
         onClick={onLessonSelect}
         onMouseOver={onFocus}

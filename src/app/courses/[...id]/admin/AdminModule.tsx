@@ -19,15 +19,15 @@ export function AdminModule(props: ModuleProps) {
 
   const onTogglePopup = () => {
     setPopupVisible(!popupVisible);
-  }
+  };
 
   const onToggleRename = () => {
     setIsRenaming(!isRenaming);
-  }
+  };
 
   const onDelete = () => {
     CourseEditorManager.deleteModule(props.module._id || "");
-  }
+  };
 
   return (
     <div className="flex flex-col gap-4 relative">
@@ -42,22 +42,31 @@ export function AdminModule(props: ModuleProps) {
       ) : null}
       {/* Lesson button */}
       <div className="flex gap-2">
-        <ModuleName module={props.module} isRenaming={isRenaming} setIsRenaming={setIsRenaming}/>
+        <ModuleName
+          module={props.module}
+          isRenaming={isRenaming}
+          setIsRenaming={setIsRenaming}
+        />
         <button onClick={onTogglePopup}>
           <Image src="/moreHorizontal.svg" width={24} height={24} alt="" />
         </button>
       </div>
-      {/* Display lessons */}
-      {props.module.lessons.map((lesson) => (
-        <LessonButton
+      <div className="flex flex-col gap-4 pl-4">
+        {/* Display lessons */}
+        {props.module.lessons.map((lesson) => (
+          <LessonButton
+            courseId={props.courseId}
+            setCurrentLesson={props.setCurrentLesson}
+            moduleId={props.module._id}
+            lesson={lesson}
+          />
+        ))}
+        {/* Create new lesson */}
+      </div>
+        <NewLessonButton
           courseId={props.courseId}
-          setCurrentLesson={props.setCurrentLesson}
           moduleId={props.module._id}
-          lesson={lesson}
         />
-      ))}
-      {/* Create new lesson */}
-      <NewLessonButton courseId={props.courseId} moduleId={props.module._id} />
     </div>
   );
 }

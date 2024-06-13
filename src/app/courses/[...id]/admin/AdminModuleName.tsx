@@ -23,7 +23,7 @@ export default function ModuleName(props: ModuleNameProps) {
   return (
     <>
       {!props.isRenaming ? (
-        <h1 className="text-text-light text-2xl">
+        <h1 className="text-text-light text-base">
           Module: {props.module.title}
         </h1>
       ) : (
