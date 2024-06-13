@@ -13,7 +13,7 @@ export default function CourseCard(props: CourseCardProps) {
     >
       <div className="relative h-[70%] p-4">
         <img
-          src={`/uploads/${props.url}.jpeg`}
+          src={`/uploads/${props.url}`}
           className="h-full object-contain object-top"
           alt=""
         >
