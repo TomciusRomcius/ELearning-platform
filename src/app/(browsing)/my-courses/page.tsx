@@ -6,9 +6,13 @@ import { authOptions } from "../../api/auth/authOptions";
 import { CourseType } from "@/utils/types";
 import CourseCard from "@/frontend/components/CourseCard";
 import MainHeader from "@/frontend/ui/MainHeader";
+import { navigate } from "@/utils/navigation";
 
 export default async function MyCourses() {
   const session = await getServerSession(authOptions);
+  // If the user is not logged in, redirect to log in page.
+  if (!session?.user)
+    await navigate("/auth/sign-in");
   const enrolledCourses: CourseType[] = await getEnrolledCourses(
     session?.user.id
   );
