@@ -9,6 +9,7 @@ import { authOptions } from "@/app/api/auth/authOptions";
 import EnrollPage from "./enroll/EnrollPage";
 import { getCompletedLessons } from "@/backend/controllers/lessonController";
 import { ClientCourseType } from "@/utils/types";
+import { navigate } from "@/utils/navigation";
 
 export default async function Page({
   params,
@@ -19,11 +20,16 @@ export default async function Page({
 }) {
   const session = await getServerSession(authOptions);
   
+  // If the user hasn't log in, redirect to sign in page
+  if (!session?.user) 
+    await navigate("/auth/sign-in");
+
   let courseId = params.id[0];
   // No security yet
   let isAdmin = searchParams.isAdmin;
   
-  // Convert CourseType to ClientCourseTypoe 
+  // Convert CourseType to ClientCourseType and return Client page
+  // if the view is not admin view
   let course = await getCourse(courseId);
   const isEnrolled = await isUserEnrolled(session?.user?.id, courseId);
   if (!isAdmin && isEnrolled) {
@@ -42,6 +48,9 @@ export default async function Page({
     return <ClientPage course={course}/>
   }
 
+  // Display admin page if need be 
   if (isAdmin) return <AdminPage/>
+
+  // If the user hasn't enrolled, display the enroll page
   else return <EnrollPage courseId={courseId}/>
 }
