@@ -1,26 +1,61 @@
-"use client"
+"use client";
 
+import { signIn } from "next-auth/react";
+import AuthLayout from "../authLayout";
+import AuthInput from "../ui/AuthInput";
+import GithubButton from "../ui/GithubButton";
+import GoogleButton from "../ui/GoogleButton";
+import CredentialsButton from "../ui/CredentialsButton";
+import { useRef } from "react";
+import { navigate } from "@/utils/navigation";
+import Link from "next/link";
 import { createUser } from "@/frontend/services/createUser";
-import axios from "axios";
-import { useEffect, useRef } from "react";
 
-export default function SignUp() {
-  let usernameRef = useRef<HTMLInputElement>(null);
+export default function SignIn() {
+  let emailRef = useRef<HTMLInputElement>(null);
   let passwordRef = useRef<HTMLInputElement>(null);
+  let repeatPasswordRef = useRef<HTMLInputElement>(null);
 
-  const handleSignUp = () => {
-    if (!usernameRef.current?.value || !passwordRef.current?.value)
+  const onCredentialsSignUp = () => {
+    if (
+      !emailRef.current?.value ||
+      !passwordRef.current?.value ||
+      !repeatPasswordRef.current?.value
+    ) {
+      alert("no data");
       return;
-    createUser(usernameRef.current.value, passwordRef.current.value);
-  }
+    }
+    
+    createUser(emailRef.current.value, passwordRef.current.value).then(() =>
+      navigate("/auth/sign-in")
+    );
+  };
+
+  const onGithubSignIn = () => {
+    signIn("github")
+      .then(() => navigate("/my-courses"))
+      .catch((err) => alert(err));
+  };
+
+  const onGoogleSignIn = () => {};
 
   return (
-    <main className="w-screen h-screen flex justify-center items-center">
-      <div className="w-1/4">
-        <input ref={usernameRef} placeholder="username"/>
-        <input ref={passwordRef} placeholder="password"/>
-        <button onClick={handleSignUp}>Sign up</button>
-      </div>
-    </main>
-  )
+    <AuthLayout>
+      <h1 className="text-center text-5xl">Sign up</h1>
+      <Link href="/auth/sign-in" className="text-accent">
+        or log in
+      </Link>
+      <small>Email</small>
+      <AuthInput ref={emailRef} placeholder="Email" />
+      <small>Password</small>
+      <AuthInput ref={passwordRef} placeholder="Password" />
+      <small>Repeat password</small>
+      <AuthInput ref={repeatPasswordRef} placeholder="Repeat password" />
+      <CredentialsButton onClick={onCredentialsSignUp}>
+        Sign up
+      </CredentialsButton>
+      <GoogleButton>Sign up with Google</GoogleButton>
+      <GithubButton onClick={onGithubSignIn}>Sign up with Github</GithubButton>
+    </AuthLayout>
+  );
 }

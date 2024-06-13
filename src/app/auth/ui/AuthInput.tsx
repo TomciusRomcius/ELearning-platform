@@ -1,0 +1,14 @@
+import { forwardRef } from "react";
+
+const AuthInput = forwardRef((
+  props: React.InputHTMLAttributes<HTMLInputElement>,
+  forwardedRef: React.ForwardedRef<HTMLInputElement>
+) => {
+  return (
+    <div className={`border-border border-1 rounded-lg ${props.className}`}>
+      <input ref={forwardedRef} {...props} className="p-2" />
+    </div>
+  );
+});
+
+export default AuthInput;
