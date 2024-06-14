@@ -33,9 +33,9 @@ export default function LessonContainer() {
   }
 
   return (
-    <div className="flex flex-col px-10 py-10 flex-1">
+    <div className="flex flex-col px-24 py-10 flex-1">
       <div className="w-full h-full relative">
-        <div className="relative h-full overflow-y-scroll">
+        <div className="relative h-full overflow-y-scroll flex flex-col gap-2">
           {/* Title */}
           <h4 className="w-full text-center text-4xl text-text-light">
             {lesson.title}

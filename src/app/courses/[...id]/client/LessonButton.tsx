@@ -17,15 +17,30 @@ export default function LessonButton(props: LessonButtonProps) {
   let className = props.lesson.completed
     ? "text-text-light"
     : "text-text-grayed";
-  
+
   let currentLessonClassName = "bg-primary-200 rounded-lg font-bold";
   let isCurrentLesson = props.lesson._id.toString() === currentLesson.lessonId;
 
   return (
     <div className="relative">
-      <button className={`w-full flex flex-row justify-between px-2 py-2 ${isCurrentLesson ? currentLessonClassName : ""} ${className}`} onClick={onSelect}>
-        <h4 className="flex-1">{props.lesson.title}</h4>
-        <Checkmark className={props.lesson.completed ? "w-max fill-secondary" : "fill-text-grayed"}/>
+      <button
+        className={`w-full flex flex-row justify-between px-2 py-2 ${
+          isCurrentLesson ? currentLessonClassName : ""
+        } ${className}`}
+        onClick={onSelect}
+      >
+        <h4
+          className={`flex-1 ${
+            props.lesson.completed ? "text-secondary" : "text-text-grayed"
+          }`}
+        >
+          {props.lesson.title}
+        </h4>
+        <Checkmark
+          className={
+            props.lesson.completed ? "w-max fill-secondary" : "fill-text-grayed"
+          }
+        />
       </button>
     </div>
   );
