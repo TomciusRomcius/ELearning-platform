@@ -52,5 +52,5 @@ export default async function Page({
   if (isAdmin) return <AdminPage/>
 
   // If the user hasn't enrolled, display the enroll page
-  else return <EnrollPage courseId={courseId}/>
+  else return <EnrollPage course={course}/>
 }
