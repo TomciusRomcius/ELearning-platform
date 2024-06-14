@@ -24,8 +24,8 @@ export default function LessonButton(props: LessonButtonProps) {
   return (
     <div className="relative">
       <button className={`w-full flex flex-row justify-between px-2 py-2 ${isCurrentLesson ? currentLessonClassName : ""} ${className}`} onClick={onSelect}>
-        {props.lesson.title}
-        <Checkmark className={props.lesson.completed ? " fill-secondary" : "fill-text-grayed"}/>
+        <h4 className="flex-1">{props.lesson.title}</h4>
+        <Checkmark className={props.lesson.completed ? "w-max fill-secondary" : "fill-text-grayed"}/>
       </button>
     </div>
   );

@@ -24,7 +24,7 @@ export function Module(props: ModuleProps) {
         </h2>
       </div>
       {/* Display lessons */}
-      <div className="flex flex-col pl-4 gap-4">
+      <div className="flex flex-col pl-4 gap-2">
         {props.module.lessons.map((lesson) => (
           <LessonButton lesson={lesson} moduleId={props.module._id} />
         ))}
