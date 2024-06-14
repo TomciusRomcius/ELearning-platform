@@ -18,8 +18,6 @@ services:
     container_name: e-learning-mongo
     ports:
       - 27017:27017
-    volumes:
-      - ./data:/data/db
   mongo-express:
     depends_on:
       - mongo
