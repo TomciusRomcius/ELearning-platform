@@ -23,3 +23,7 @@ textarea, textarea:focus, input, input:focus {
 button {
   text-align: start;
 }
+
+input[type="file"] {
+  display: none;
+}
