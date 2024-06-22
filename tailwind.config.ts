@@ -19,6 +19,7 @@ const config: Config = {
         background: "#202022",
         foreground: "#303034",
         accent: "#3A47D8",
+        accentHover: "#4854db",
         foregroundLigher: "#5C5C63",
         primary: {
           0: "#202022",
