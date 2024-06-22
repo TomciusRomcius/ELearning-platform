@@ -1,13 +1,10 @@
 import axios from "axios";
-import { createModule, deleteModule, updateModule } from "./moduleService";
 import {
   CourseType,
   LessonType,
   ModuleType,
 } from "@/utils/types";
-import { createLesson } from "./createLesson";
-import { updateLesson } from "./updateLesson";
-import { deleteLesson } from "./deleteLesson";
+import courseService from "./courseService";
 
 export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
@@ -28,7 +25,7 @@ export default class CourseEditorManager {
       title: title,
       lessons: [],
     };
-    let req = await createModule(
+    let req = await courseService.createModule(
       CourseEditorManager.currentCourse?._id,
       module
     );
@@ -42,7 +39,7 @@ export default class CourseEditorManager {
   public static async deleteModule(moduleId: string) {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
-    await deleteModule(CourseEditorManager.currentCourse._id, moduleId);
+    await courseService.deleteModule(CourseEditorManager.currentCourse._id, moduleId);
     let index = CourseEditorManager.currentCourse.modules.findIndex(
       (element) => element._id === moduleId
     );
@@ -56,7 +53,7 @@ export default class CourseEditorManager {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
     if (!module._id) throw new Error("Module doesn't containt an id!");
-    await updateModule(CourseEditorManager.currentCourse._id, module);
+    await courseService.updateModule(CourseEditorManager.currentCourse._id, module);
     let moduleRef = CourseEditorManager.currentCourse.modules.find(
       (element) => element._id === module._id
     );
@@ -70,7 +67,7 @@ export default class CourseEditorManager {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
 
-    let req = await createLesson(CourseEditorManager.currentCourse._id, moduleId, lessonName);
+    let req = await courseService.createLesson(CourseEditorManager.currentCourse._id, moduleId, lessonName);
     let { _id } = req.data;
     const lesson: LessonType = {
       title: lessonName,
@@ -90,7 +87,7 @@ export default class CourseEditorManager {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
     
-    let req = await updateLesson(CourseEditorManager.currentCourse._id, moduleId, lesson._id, lesson);
+    const res = await courseService.updateLesson(CourseEditorManager.currentCourse._id, moduleId, lesson._id, lesson);
     
     let moduleRef = CourseEditorManager.currentCourse?.modules.find((element) => element._id === moduleId);
     if (!moduleRef)
@@ -106,7 +103,7 @@ export default class CourseEditorManager {
   public static async deleteLesson(moduleId: string, lessonId: string) {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
-    await deleteLesson(CourseEditorManager.currentCourse._id, moduleId, lessonId);
+    await courseService.deleteLesson(CourseEditorManager.currentCourse._id, moduleId, lessonId);
     let moduleRef = CourseEditorManager.getModule(moduleId);
     moduleRef.lessons = moduleRef.lessons.filter((element) => element._id !== lessonId);
     CourseEditorManager.notifySubscribers();

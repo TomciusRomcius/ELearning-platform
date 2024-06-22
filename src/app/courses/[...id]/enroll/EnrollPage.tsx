@@ -1,6 +1,6 @@
 "use client";
 
-import { courseEnroll } from "@/frontend/services/courseEnroll";
+import courseService from "@/frontend/services/courseService";
 import AccentButton from "@/frontend/ui/AccentButton";
 import MainHeader from "@/frontend/ui/MainHeader";
 import { navigate } from "@/utils/navigation";
@@ -12,7 +12,7 @@ type EnrollPageProps = {
 
 export default function EnrollPage(props: EnrollPageProps) {
   const onEnroll = () => {
-    courseEnroll(props.course._id)
+    courseService.courseEnroll(props.course._id)
       .then(() => {
         navigate(`/courses/${props.course._id}`);
       })

@@ -1,5 +1,4 @@
-import { deleteCourse } from "@/frontend/services/deleteCourse";
-import { updateCourse } from "@/frontend/services/updateCourse";
+import courseService from "@/frontend/services/courseService";
 import { CourseType } from "@/utils/types";
 
 export type ReducerAction =
@@ -48,19 +47,19 @@ export default function reducer(state: CourseType[], action: ReducerAction) {
   switch (action.type) {
     case "rename":
       course.title = action.payload.name;
-      updateCourse(course._id, { title: course.title });
+      courseService.updateCourse(course._id, { title: course.title });
       break;
     case "change_description":
       course.description = action.payload.description;
-      updateCourse(course._id, { description: course.description });
+      courseService.updateCourse(course._id, { description: course.description });
       break;
     case "change_category":
       course.category = action.payload.category;
-      updateCourse(course._id, { category: course.category });
+      courseService.updateCourse(course._id, { category: course.category });
       break;
     case "delete":
       newState.splice(courseIndex, 1);
-      deleteCourse(action.payload.id);
+      courseService.deleteCourse(action.payload.id);
       break;
   }
   return newState;
