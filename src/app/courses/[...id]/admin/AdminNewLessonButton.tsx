@@ -1,5 +1,4 @@
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
-import { createLesson } from "@/frontend/services/createLesson";
 import { useRef, useState } from "react";
 
 type NewLessonButtonProps = {
