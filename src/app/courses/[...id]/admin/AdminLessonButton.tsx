@@ -19,7 +19,7 @@ export default function LessonButton(props: LessonButtonProps) {
     props.setCurrentLesson(props.moduleId, props.lesson._id);
   };
 
-  const onContextMenu = (e) => {
+  const onContextMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setPopupVisible(!popupVisible);
   };

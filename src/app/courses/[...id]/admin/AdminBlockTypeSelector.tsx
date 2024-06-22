@@ -8,14 +8,17 @@ type BlockTypeSelectorProps = {
 
 export default function BlockTypeSelector(props: BlockTypeSelectorProps) {
   let [popupVisible, setPopupVisible] = useState(false);
-  const onToggle = (e) => {
+
+  const onToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setPopupVisible(!popupVisible);
   };
+
   const onSelect = (type: string) => {
     props.setType(type);
     setPopupVisible(false);
   }
+  
   return (
     <button className="relative" onClick={onToggle}>
       <Image
