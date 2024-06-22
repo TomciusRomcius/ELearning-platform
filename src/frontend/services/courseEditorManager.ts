@@ -5,6 +5,7 @@ import {
   ModuleType,
 } from "@/utils/types";
 import courseService from "./courseService";
+import { APIModuleType } from "@/utils/apiTypes";
 
 export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
@@ -21,16 +22,21 @@ export default class CourseEditorManager {
   public static async createModule(title: string) {
     if (!CourseEditorManager.currentCourse?._id)
       throw new Error("Course not loaded!");
-    const module: ModuleType = {
+    const apiModule: APIModuleType = {
       title: title,
       lessons: [],
     };
     let req = await courseService.createModule(
       CourseEditorManager.currentCourse?._id,
-      module
+      apiModule
     );
     let { _id } = req.data;
-    module._id = _id;
+    apiModule._id = _id;
+    const module: ModuleType = {
+      title: title,
+      _id: _id,
+      lessons: [],
+    }
     CourseEditorManager.currentCourse.modules.push(module);
     CourseEditorManager.notifySubscribers();
     console.log(CourseEditorManager.currentCourse.modules);

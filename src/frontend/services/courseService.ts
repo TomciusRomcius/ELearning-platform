@@ -46,10 +46,11 @@ export class CourseService {
     const res = await axios.post(`/api/courses/enrolled-courses`, {
       courseId: courseId,
     });
+    
     return res;
   }
 
-  public async createModule(courseId: string, module: ModuleType) {
+  public async createModule(courseId: string, module: APIModuleType) {
     let res = await axios.post(`/api/courses/${courseId}/modules`, {
       module: module,
     });
