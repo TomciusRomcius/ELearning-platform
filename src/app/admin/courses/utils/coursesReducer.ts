@@ -1,38 +1,48 @@
 import courseService from "@/frontend/services/courseService";
 import { CourseType } from "@/utils/types";
 
+type ResetType = {
+  type: "reset";
+  payload: { courses: CourseType[] };
+};
+
+type RenameType = {
+  type: "rename";
+  payload: {
+    name: string;
+    id: string;
+  };
+};
+
+type ChangeDescriptionType = {
+  type: "change_description";
+  payload: {
+    description: string;
+    id: string;
+  };
+};
+
+type ChangeCategoryType = {
+  type: "change_category";
+  payload: {
+    category: string;
+    id: string;
+  };
+};
+
+type DeleteType = {
+  type: "delete";
+  payload: {
+    id: string;
+  };
+};
+
 export type ReducerAction =
-  | {
-      type: "reset";
-      payload: { courses: CourseType[] };
-    }
-  | {
-      type: "rename";
-      payload: {
-        name: string;
-        id: string;
-      };
-    }
-  | {
-      type: "change_description";
-      payload: {
-        description: string;
-        id: string;
-      };
-    }
-    | {
-      type: "change_category";
-      payload: {
-        category: string;
-        id: string;
-      };
-    }
-  | {
-      type: "delete";
-      payload: {
-        id: string;
-      };
-    };
+  | ResetType
+  | RenameType
+  | ChangeDescriptionType
+  | ChangeCategoryType
+  | DeleteType;
 
 export default function reducer(state: CourseType[], action: ReducerAction) {
   if (action.type === "reset") {
@@ -51,7 +61,9 @@ export default function reducer(state: CourseType[], action: ReducerAction) {
       break;
     case "change_description":
       course.description = action.payload.description;
-      courseService.updateCourse(course._id, { description: course.description });
+      courseService.updateCourse(course._id, {
+        description: course.description,
+      });
       break;
     case "change_category":
       course.category = action.payload.category;
