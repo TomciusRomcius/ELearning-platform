@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import CourseCard from "@/frontend/components/CourseCard";
-import { getCourses } from "@/frontend/services/getCourses";
 import MainHeader from "@/frontend/ui/MainHeader";
 import { CourseType } from "@/utils/types";
+import courseService from "@/frontend/services/courseService";
 
 export default function Page() {
   let [courses, setCourses] = useState<CourseType[]>([]);
@@ -38,7 +38,7 @@ export default function Page() {
   });
 
   useEffect(() => {
-    getCourses().then((fetchedCourses) => {
+    courseService.getCourses().then((fetchedCourses) => {
       setCourses(fetchedCourses);
     });
   }, []);

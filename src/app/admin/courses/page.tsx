@@ -1,17 +1,15 @@
 "use client";
 
-import Edit from "@/frontend/resources/svg/Edit";
-import { getCourses } from "@/frontend/services/getCourses";
-import { navigate } from "@/utils/navigation";
 import { CourseType } from "@/utils/types";
 import { useEffect, useState } from "react";
 import CourseTable from "./ui/CourseTable";
+import courseService from "@/frontend/services/courseService";
 
 export default function CoursesTab() {
   const [courses, setCourses] = useState<CourseType[]>([]);
 
   useEffect(() => {
-    getCourses().then((fetchedCourses) => {
+    courseService.getCourses().then((fetchedCourses) => {
       setCourses(fetchedCourses);
     });
   }, []);
