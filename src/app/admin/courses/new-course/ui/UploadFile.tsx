@@ -14,7 +14,7 @@ export function UploadFile(props: UploadFileProps) {
   return (
     <form action={uploadFile}>
       <label>
-        <span>Upload file</span>
+        <span className="border-accent border-1 p-2 rounded-lg cursor-pointer">Upload file</span>
         <input onChange={uploadFile} ref={fileInput} type="file" name="file"/>
       </label>
     </form>
