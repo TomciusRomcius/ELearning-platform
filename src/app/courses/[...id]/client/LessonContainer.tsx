@@ -1,8 +1,8 @@
 import { useDataDetails } from "./utils/useDataDetails";
 import Block from "./Block";
-import { completeLesson } from "@/frontend/services/completeLesson";
 import { getCurrentLesson } from "./utils/getCurrentLesson";
 import AccentButton from "@/frontend/ui/AccentButton";
+import courseService from "@/frontend/services/courseService";
 
 export default function LessonContainer() {
   const { currentLesson, course, setCourse, setCurrentLesson } = useDataDetails();
@@ -25,7 +25,7 @@ export default function LessonContainer() {
     );
     lesson.completed = !lesson?.completed;
     setCourse(newCourse);
-    completeLesson(course._id, currentLesson.lessonId);
+    courseService.completeLesson(course._id, currentLesson.lessonId);
   };
 
   const onNextLesson = () => {
