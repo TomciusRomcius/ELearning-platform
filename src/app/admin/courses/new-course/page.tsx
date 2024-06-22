@@ -1,10 +1,10 @@
 "use client";
 
-import { createCourse } from "@/frontend/services/createCourse";
 import AccentButton from "@/frontend/ui/AccentButton";
 import { useCallback, useRef, useState } from "react";
 import { UploadFile } from "./ui/UploadFile";
 import { fileURLToPath } from "url";
+import courseService from "@/frontend/services/courseService";
 
 export default function NewCourse() {
   let nameRef = useRef<HTMLInputElement>(null);
@@ -24,7 +24,7 @@ export default function NewCourse() {
       return;
     if (!file.current) 
       return;
-    createCourse(name, description, category, file.current);
+    courseService.createCourse(name, description, category, file.current);
   }
 
   return (
