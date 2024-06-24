@@ -5,7 +5,7 @@ export default function GithubButton(props: React.ButtonHTMLAttributes<HTMLButto
     <button
       {...props}
       className="flex flex-row gap-4 items-center justify-center font-bold text-text-light border-border border-1 p-2 rounded-lg">
-      <Github className="stroke-secondary"/>
+      <Github width={24} height={24}/>
       {props.children}
     </button>
   );

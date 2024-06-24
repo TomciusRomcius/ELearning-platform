@@ -5,7 +5,7 @@ export default function GoogleButton(props: React.ButtonHTMLAttributes<HTMLButto
     <button
       {...props}
       className="flex flex-row gap-4 items-center justify-center font-bold text-primary-0 bg-secondary p-2 rounded-lg">
-      <Google className="stroke-secondary"/>
+      <Google/>
       {props.children}
     </button>
   );
