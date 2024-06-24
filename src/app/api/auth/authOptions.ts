@@ -1,7 +1,9 @@
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, User } from "next-auth";
-import { signIn } from "../../../backend/controllers/userController";
+import { createUser, doesUserExist, signIn } from "../../../backend/controllers/userController";
+import { navigate } from "@/utils/navigation";
+import { randomUUID } from "crypto";
 
 export interface CustomUser extends User {
   role: number;
@@ -18,6 +20,24 @@ export const authOptions: NextAuthOptions = {
         token.role = customUser.role;
       }
       return token;
+    },
+
+    signIn: async ({ user }) => {
+      if (!user.email) throw new Error("No email provided!");
+      const exists = await doesUserExist(user.email);
+      console.log(exists);
+      if (exists) {
+        return true;
+      }
+      else {
+        const id = await createUser(user.email, randomUUID());
+        if (!id) 
+          return false;
+        else {
+          user.id = id;
+          return true;
+        }
+      } 
     },
 
     session: async ({ session, user, token }) => {
