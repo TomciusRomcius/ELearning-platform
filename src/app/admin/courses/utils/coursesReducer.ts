@@ -48,6 +48,9 @@ export default function reducer(state: CourseType[], action: ReducerAction) {
   if (action.type === "reset") {
     return structuredClone(action.payload.courses);
   }
+
+  // Duplicate courses and get the course reference
+  // by payload id
   let newState = structuredClone(state);
   const courseIndex = newState.findIndex(
     (element) => element._id === action.payload.id
