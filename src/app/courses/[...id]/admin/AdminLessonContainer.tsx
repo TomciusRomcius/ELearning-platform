@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BlockType, LessonType } from "../../../../utils/types";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
 import AdminBlock from "./AdminBlock";
+import AccentButton from "@/frontend/ui/AccentButton";
 
 type LessonContainerProps = {
   currentLesson: LessonType;
@@ -14,10 +15,10 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let [updated, setUpdated] = useState(false);
   let [blocks, setBlocks] = useState<BlockType[]>([]);
   let currentIndex = useRef(0);
-  
+
   const onCreateFirstBlock = () => {
     insertBlock();
-  }
+  };
 
   const insertBlock = (
     selectedBlock?: BlockType,
@@ -40,7 +41,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
       newBlocks[currentIndex.current] = currentBlock;
       newBlocks.splice(currentIndex.current + 1, 0, nextBlock);
       setBlocks(newBlocks);
-    } 
+    }
     // Handle block creation where the selected index
     // is not provided. Example: Clicking on a button
     // to create a block.
@@ -51,8 +52,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
       };
       if (currentIndex.current === blocks.length) {
         newBlocks.push(block);
-      } 
-      else {
+      } else {
         newBlocks.splice(currentIndex.current + 1, 0, block);
       }
       setBlocks(newBlocks);
@@ -95,52 +95,59 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let blockIndex = 0;
 
   return (
-    <div className="p-4 flex-1 relative overflow-y-scroll">
-      {/* Title */}
-      <input
-        key={props.currentLesson?.title}
-        ref={titleRef}
-        defaultValue={props.currentLesson?.title}
-        className="w-full text-center text-4xl text-text-light"
-      />
-      {/* Blocks */}
-      {blocks.length === 0 ? (
-        <button onClick={onCreateFirstBlock} className="p-4 border-border border-1">Create block</button>
-      ) : null}
+    <div className="flex-1 h-screen relative">
+      <div className="p-4 h-full overflow-y-scroll">
+        {/* Title */}
+        <input
+          key={props.currentLesson?.title}
+          ref={titleRef}
+          defaultValue={props.currentLesson?.title}
+          className="w-full text-center text-4xl text-text-light"
+        />
+        {/* Blocks */}
+        {blocks.length === 0 ? (
+          <button
+            onClick={onCreateFirstBlock}
+            className="p-4 border-border border-1"
+          >
+            Create block
+          </button>
+        ) : null}
 
-      {blocks.map((block) => {
-        const setBlock = (arg: BlockType) => {
-          block.content = arg.content;
-          block.type = arg.type;
-          setUpdated(true);
-        };
+        {blocks.map((block) => {
+          const setBlock = (arg: BlockType) => {
+            block.content = arg.content;
+            block.type = arg.type;
+            setUpdated(true);
+          };
 
-        let blockComponent = (
-          <AdminBlock
-            key={block.type + block.content + blockIndex}
-            setBlock={setBlock}
-            setCurrentIndex={setCurrentIndex}
-            insertBlock={insertBlock}
-            onDelete={onDelete}
-            block={block}
-            order={blockIndex}
-          />
-        );
-        blockIndex++;
-        return blockComponent;        
-      })}
+          let blockComponent = (
+            <AdminBlock
+              key={block.type + block.content + blockIndex}
+              setBlock={setBlock}
+              setCurrentIndex={setCurrentIndex}
+              insertBlock={insertBlock}
+              onDelete={onDelete}
+              block={block}
+              order={blockIndex}
+            />
+          );
+          blockIndex++;
+          return blockComponent;
+        })}
 
-      {/* Save button container */}
-      <div className="absolute bottom-0 p-4 flex items-center justify-center">
-        <button
-          onClick={handleLessonSave}
-          className={`text-xl text-text-grayed border-primary-400 border-2 px-4 py-2 rounded-lg ${
-            updated ? "bg-cyan-500" : null
-          }`}
-        >
-          Save
-        </button>
       </div>
+        {/* Save button container */}
+        <div className="absolute bottom-0 p-4 flex items-center justify-center">
+          <AccentButton
+            onClick={handleLessonSave}
+            className={`${
+              !updated ? "bg-primary-200 border-border border-1" : null
+            }`}
+          >
+            Save
+          </AccentButton>
+        </div>
     </div>
   );
 }
