@@ -1,27 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createCourse, getCourses } from "@/backend/controllers/courseController";
+import {
+  createCourse,
+  getCourses,
+} from "@/backend/controllers/courseController";
 import { uploadFile } from "@/utils/fileOperations";
+import { authOptions } from "../auth/authOptions";
+import { getServerSession } from "next-auth";
+import { UserRole } from "@/backend/models/userModel";
+import { isAdmin } from "@/backend/utils/isAdmin";
 
 export async function GET(req: NextRequest) {
   try {
     const courses = await getCourses();
     return NextResponse.json(courses);
-  }
-  catch(error) {
+  } catch (error) {
     console.log(error);
     return Response.json("err", {
-      status: 400
+      status: 400,
     });
   }
 }
 
 export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  let courseString = formData.get("course") as string;
-  const course = JSON.parse(courseString);
-  const { title, description, category } = course;
-  const id = await createCourse(title, description, category);
-  const file = formData.get("file") as File;
-  await uploadFile(id, formData.get("file") as File);
-  return new NextResponse("suc");
+  if (await isAdmin()) {
+    const formData = await req.formData();
+    let courseString = formData.get("course") as string;
+    const course = JSON.parse(courseString);
+    const { title, description, category } = course;
+    const id = await createCourse(title, description, category);
+    const file = formData.get("file") as File;
+    await uploadFile(id, formData.get("file") as File);
+    return NextResponse.json(null, { status: 200 });
+  } else return NextResponse.json(null, { status: 401 });
 }
