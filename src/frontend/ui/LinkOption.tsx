@@ -13,7 +13,7 @@ interface LinkOptionProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function LinkOption(props: LinkOptionProps) {
   const pathName = usePathname();
   let isActive = false;
-  if (pathName === props.href)
+  if (pathName.includes(props.href))
     isActive = true;
   
   return (
