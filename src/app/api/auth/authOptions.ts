@@ -1,8 +1,7 @@
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, User } from "next-auth";
-import { createUser, doesUserExist, signIn } from "../../../backend/controllers/userController";
-import { navigate } from "@/utils/navigation";
+import { createUser, getUserByEmail, signIn } from "../../../backend/controllers/userController";
 import { randomUUID } from "crypto";
 
 export interface CustomUser extends User {
@@ -22,22 +21,29 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
 
-    signIn: async ({ user }) => {
-      if (!user.email) throw new Error("No email provided!");
-      const exists = await doesUserExist(user.email);
-      console.log(exists);
-      if (exists) {
-        return true;
-      }
-      else {
-        const id = await createUser(user.email, randomUUID());
-        if (!id) 
-          return false;
-        else {
-          user.id = id;
+    signIn: async ({ profile, user }) => {
+      if (profile) {
+        const loggedUser = await getUserByEmail(profile.email);
+  
+        if (loggedUser?._id) {
+          user.id = loggedUser._id.toString();
+          user.role = loggedUser.role;
           return true;
         }
-      } 
+  
+        else {
+          const dbUser = await createUser(user.email, randomUUID());
+          console.log(dbUser?._id.toString());
+          if (!dbUser?._id.toString()) 
+            return false;
+          else {
+            user.id = dbUser._id.toString();
+            user.role = dbUser.role;
+            return true;
+          }
+        } 
+      }
+      return true;
     },
 
     session: async ({ session, user, token }) => {
@@ -72,14 +78,15 @@ export const authOptions: NextAuthOptions = {
         const email = credentials?.email;
         const password = credentials?.password;
         if (!email || !password) return null;
-        const id = await signIn(email, password);
-        if (id) {
-          let user = { 
+        const user = await signIn(email, password);
+        if (user?._id.toString()) {
+          const jwtUser = { 
             email: email,
             password: password,
-            id: id,
+            id: user._id.toString(),
+            role: user.role,
           }
-          return user;
+          return jwtUser;
         }
         else return null;
       },

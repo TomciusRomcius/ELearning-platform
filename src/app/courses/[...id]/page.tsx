@@ -10,6 +10,7 @@ import EnrollPage from "./enroll/EnrollPage";
 import { getCompletedLessons } from "@/backend/controllers/lessonController";
 import { ClientCourseType } from "@/utils/types";
 import { navigate } from "@/utils/navigation";
+import { UserRole } from "@/backend/models/userModel";
 
 export default async function Page({
   params,
@@ -25,14 +26,20 @@ export default async function Page({
     await navigate("/auth/sign-in");
 
   let courseId = params.id[0];
-  // No security yet
-  let isAdmin = searchParams.isAdmin;
+
+  if (searchParams.isAdmin && session?.user?.role === UserRole.ADMIN) {
+    return <AdminPage/>
+  }
+  
+  else if (searchParams.isAdmin) {
+    await navigate("/not-authorized");
+  }
   
   // Convert CourseType to ClientCourseType and return Client page
   // if the view is not admin view
   let course = await getCourse(courseId);
   const isEnrolled = await isUserEnrolled(session?.user?.id, courseId);
-  if (!isAdmin && isEnrolled) {
+  if (isEnrolled) {
     let completedLessonIds = await getCompletedLessons(session?.user.id, course._id.toString());
     let clientCourse: ClientCourseType = course as ClientCourseType;
     clientCourse.modules.forEach((module) => {
@@ -44,13 +51,10 @@ export default async function Page({
         else lesson.completed = false;
       });
     });
-    
+
     return <ClientPage course={course}/>
   }
 
-  // Display admin page if need be 
-  if (isAdmin) return <AdminPage/>
-
-  // If the user hasn't enrolled, display the enroll page
-  else return <EnrollPage course={course}/>
+  else 
+  return <EnrollPage course={course}/>
 }

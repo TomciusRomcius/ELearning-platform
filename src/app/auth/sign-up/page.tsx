@@ -15,6 +15,7 @@ export default function SignIn() {
   let emailRef = useRef<HTMLInputElement>(null);
   let passwordRef = useRef<HTMLInputElement>(null);
   let repeatPasswordRef = useRef<HTMLInputElement>(null);
+  let isAdminRef = useRef<HTMLInputElement>(null);
 
   const onCredentialsSignUp = () => {
     if (
@@ -26,7 +27,8 @@ export default function SignIn() {
       return;
     }
     
-    createUser(emailRef.current.value, passwordRef.current.value).then(() =>
+    const isAdmin = isAdminRef.current?.checked ? true : false;
+    createUser(emailRef.current.value, passwordRef.current.value, isAdmin).then(() =>
       navigate("/auth/sign-in")
     );
   };
@@ -51,6 +53,10 @@ export default function SignIn() {
       <AuthInput ref={passwordRef} placeholder="Password" />
       <small>Repeat password</small>
       <AuthInput ref={repeatPasswordRef} placeholder="Repeat password" />
+      <div className="flex flex-row gap-2">
+        <small>Is admin?</small>
+        <input ref={isAdminRef} type="checkbox"/>
+      </div>
       <CredentialsButton onClick={onCredentialsSignUp}>
         Sign up
       </CredentialsButton>

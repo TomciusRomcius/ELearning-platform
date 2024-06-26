@@ -4,8 +4,13 @@ import { createUser } from "../../../backend/controllers/userController";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
-    const { username, password } = await req.json();
-    await createUser(username, password);
+    const { username, password, admin } = await req.json();
+    if (!admin) {
+      await createUser(username, password);
+    }
+    else {
+      await createUser(username, password, true);
+    }
   }
   catch(err) {
     console.log(err);
