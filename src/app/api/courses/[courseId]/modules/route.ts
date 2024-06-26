@@ -1,4 +1,3 @@
-import { createLesson } from "@/backend/controllers/lessonController";
 import { createModule } from "@/backend/controllers/moduleController";
 import { isAdmin } from "@/backend/utils/isAdmin";
 import { NextResponse } from "next/server";

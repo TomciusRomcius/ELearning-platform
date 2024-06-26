@@ -4,9 +4,6 @@ import {
   getCourses,
 } from "@/backend/controllers/courseController";
 import { uploadFile } from "@/utils/fileOperations";
-import { authOptions } from "../auth/authOptions";
-import { getServerSession } from "next-auth";
-import { UserRole } from "@/backend/models/userModel";
 import { isAdmin } from "@/backend/utils/isAdmin";
 
 export async function GET(req: NextRequest) {
