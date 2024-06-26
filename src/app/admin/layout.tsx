@@ -18,7 +18,6 @@ export default function RootLayout({
         <div className="flex flex-row w-screen h-screen">
           <SidebarLayout>
             <>
-              <LinkOption className="text-lg text-text-grayed" highlightedClass="text-text-light" href="/admin/kpis">KPIs</LinkOption>
               <LinkOption className="text-lg text-text-grayed" highlightedClass="text-text-light" href="/admin/courses">Courses</LinkOption>
             </>
           </SidebarLayout>
