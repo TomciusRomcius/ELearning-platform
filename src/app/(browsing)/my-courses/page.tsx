@@ -20,20 +20,19 @@ export default async function MyCourses() {
   return (
     <>
       <MainHeader />
-      <div>
-        <section className="flex flex-col gap-10 px-60">
-          <h1 className="text-6xl text-center">Browse</h1>
-          <div className="flex flex-row flex-wrap gap-10">
-            {enrolledCourses.map((course) => (
-              <CourseCard
-                url={course?._id}
-                title={course?.title}
-                description={course.description}
-                category={course.category}
-              />
-            ))}
-          </div>
-        </section>
+      <section className="flex flex-col gap-10 px-60 py-10">
+        <h1 className="text-6xl text-center">Browse</h1>
+        <div className="flex flex-row flex-wrap gap-10">
+          {enrolledCourses.map((course) => (
+            <CourseCard
+              url={course?._id}
+              title={course?.title}
+              description={course.description}
+              category={course.category}
+            />
+          ))}
+        </div>
+      </section>
       </div>
     </>
   );

@@ -48,7 +48,7 @@ export default function Page() {
       <MainHeader />
 
       <main className="flex flex-col h-26 gap-10">
-        <section className="flex flex-col gap-10 px-60">
+        <section className="flex flex-col gap-10 px-60 py-10">
           <h1 className="text-6xl text-center">Browse</h1>
           {bodyElements}
         </section>
