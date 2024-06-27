@@ -33,7 +33,6 @@ export default async function MyCourses() {
           ))}
         </div>
       </section>
-      </div>
     </>
   );
 }
