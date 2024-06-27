@@ -1,14 +1,6 @@
 import mongoose, { ConnectOptions } from "mongoose";
+import { connectToDb } from "./backend/utils/connectToDb";
 
 export async function register() {
-  const uri = "mongodb://mongo:27017";
-
-  await mongoose.connect(uri)
-    .then(() => {
-      console.log("DB success");
-  
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  await connectToDb();
 }
