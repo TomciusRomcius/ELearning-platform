@@ -18,3 +18,5 @@ This is a simple course platform, where users can enroll into courses, complete 
 
 ## Prepolute data
 
+If you'd like to prepopulate course data, visit localhost:3000/api/prepopulate
+
