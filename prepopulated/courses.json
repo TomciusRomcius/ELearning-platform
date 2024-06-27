@@ -1,0 +1,325 @@
+[
+  {
+    "_id": "667d1c160770b542f1e42bc7",
+    "title": "Introduction to Data Science",
+    "description": "A comprehensive course covering the fundamentals of data science, including statistics, programming, and machine learning.",
+    "category": "Technology",
+    "modules": [
+      {
+        "_id": "667d1c3f0770b542f1e42bce",
+        "title": "Foundations of Data Science",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bd3",
+            "title": "What is Data Science?",
+            "description": "An overview of data science and its applications in various industries.",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bd9",
+                "type": "h1",
+                "content": "Introduction to Data Science"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bda",
+                "type": "paragraph",
+                "content": "Data science is an interdisciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from structured and unstructured data."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bdb",
+                "type": "h2",
+                "content": "Key Components of Data Science"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bdc",
+                "type": "ul",
+                "content": "Statistics,Programming,Machine Learning,Domain Expertise,Data Visualization"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bd4",
+            "title": "The Data Science Process",
+            "description": "Understanding the steps involved in a typical data science project.",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bdd",
+                "type": "h1",
+                "content": "The Data Science Process"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bde",
+                "type": "paragraph",
+                "content": "The data science process typically involves several key steps, from problem definition to deployment of solutions."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bdf",
+                "type": "paragraph",
+                "content": "Problem Definition,Data Collection,Data Cleaning,Exploratory Data Analysis,Feature Engineering,Model Selection and Training,Model Evaluation,Model Deployment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bcf",
+        "title": "Programming for Data Science",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bd5",
+            "title": "Introduction to Python",
+            "description": "Getting started with Python programming for data science.",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42be0",
+                "type": "h1",
+                "content": "Python for Data Science"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42be1",
+                "type": "paragraph",
+                "content": "Python is one of the most popular programming languages for data science due to its simplicity and powerful libraries."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42be2",
+                "type": "h2",
+                "content": "Key Python Libraries for Data Science"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42be3",
+                "type": "ul",
+                "content": "NumPy,Pandas,Matplotlib,Scikit-learn,TensorFlow"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__v": 3
+  },
+  {
+    "_id": "667d1c160770b542f1e42bcb",
+    "title": "Comprehensive Environmental Science",
+    "description": "An in-depth exploration of environmental science, covering ecosystems, climate change, and sustainable practices.",
+    "category": "Science",
+    "modules": [
+      {
+        "_id": "667d1c3f0770b542f1e42bd3",
+        "title": "Introduction to Ecosystems",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bd9",
+            "title": "What is an Ecosystem?",
+            "description": "Understanding the basic components and functions of ecosystems",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bf0",
+                "type": "h1",
+                "content": "Ecosystems: The Building Blocks of Our Environment"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf1",
+                "type": "paragraph",
+                "content": "An ecosystem is a community of living organisms in conjunction with the nonliving components of their environment, interacting as a system."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf2",
+                "type": "h2",
+                "content": "Key Components of an Ecosystem"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf3",
+                "type": "ul",
+                "content": "Biotic factors (living organisms),Abiotic factors (non-living elements),Energy flow,Nutrient cycling"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bda",
+            "title": "Types of Ecosystems",
+            "description": "Exploring various ecosystem types and their characteristics",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bf4",
+                "type": "h1",
+                "content": "Diverse Ecosystems Around the World"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf5",
+                "type": "paragraph",
+                "content": "Ecosystems can be classified into various types based on their characteristics and location."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf6",
+                "type": "h2",
+                "content": "Major Ecosystem Types"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf7",
+                "type": "ul",
+                "content": "Terrestrial ecosystems (forests, grasslands, deserts),Aquatic ecosystems (freshwater, marine),Wetlands,Tundra"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bd4",
+        "title": "Climate Change and Global Warming",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bdb",
+            "title": "The Science of Climate Change",
+            "description": "Understanding the causes and effects of climate change",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bf8",
+                "type": "h1",
+                "content": "Climate Change: A Global Challenge"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bf9",
+                "type": "paragraph",
+                "content": "Climate change refers to long-term shifts in global weather patterns and average temperatures."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bfa",
+                "type": "h2",
+                "content": "Key Factors Contributing to Climate Change"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bfb",
+                "type": "ol",
+                "content": "Greenhouse gas emissions,Deforestation,Industrial processes,Agricultural practices"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bdc",
+            "title": "Impacts of Global Warming",
+            "description": "Exploring the consequences of rising global temperatures",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42bfc",
+                "type": "h1",
+                "content": "The Far-Reaching Effects of Global Warming"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bfd",
+                "type": "paragraph",
+                "content": "Global warming has wide-ranging impacts on ecosystems, human societies, and economies worldwide."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bfe",
+                "type": "h2",
+                "content": "Major Impacts of Global Warming"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42bff",
+                "type": "ul",
+                "content": "Sea level rise,Extreme weather events,Biodiversity loss,Food security threats,Health risks"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bd5",
+        "title": "Sustainable Practices and Conservation",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bdd",
+            "title": "Principles of Sustainability",
+            "description": "Understanding the core concepts of sustainable development",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c00",
+                "type": "h1",
+                "content": "Sustainability: Balancing Present and Future Needs"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c01",
+                "type": "paragraph",
+                "content": "Sustainability involves meeting the needs of the present without compromising the ability of future generations to meet their own needs."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c02",
+                "type": "h2",
+                "content": "Key Principles of Sustainability"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c03",
+                "type": "ul",
+                "content": "Environmental stewardship,Social equity,Economic viability,Intergenerational responsibility"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bde",
+            "title": "Conservation Strategies",
+            "description": "Exploring various approaches to environmental conservation",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c04",
+                "type": "h1",
+                "content": "Conservation: Protecting Our Natural Heritage"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c05",
+                "type": "paragraph",
+                "content": "Conservation involves the preservation, protection, and restoration of natural ecosystems and biodiversity."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c06",
+                "type": "h2",
+                "content": "Effective Conservation Strategies"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c07",
+                "type": "ol",
+                "content": "Protected areas and wildlife reserves,Habitat restoration,Species recovery programs,Sustainable resource management,Community-based conservation"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bdf",
+            "title": "Renewable Energy and Green Technologies",
+            "description": "Exploring sustainable energy sources and eco-friendly technologies",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c08",
+                "type": "h1",
+                "content": "The Future of Energy: Renewable and Green"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c09",
+                "type": "paragraph",
+                "content": "Renewable energy and green technologies are crucial for reducing our environmental impact and creating a sustainable future."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c0a",
+                "type": "h2",
+                "content": "Types of Renewable Energy"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c0b",
+                "type": "ul",
+                "content": "Solar power,Wind energy,Hydroelectric power,Geothermal energy,Biomass"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c0c",
+                "type": "h2",
+                "content": "Emerging Green Technologies"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c0d",
+                "type": "ul",
+                "content": "Energy-efficient buildings,Electric vehicles,Smart grids,Carbon capture and storage,Sustainable agriculture technologies"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__v": 3
+  }
+]
