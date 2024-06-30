@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { CourseModel } from "../models/courseModel";
 import { UserModel } from "../models/userModel";
 import { APICourseType } from "@/utils/apiTypes";
+import { ERROR_TYPE } from "../utils/errorTypes";
 
 export async function createCourse(title: string, description: string, category: string): Promise<void> {
   try {
@@ -41,7 +42,7 @@ export async function deleteCourse(id: string) {
 
 export async function getEnrolledCourses(userId: string) {
   const user = await UserModel.findById(userId);
-  if (!user) throw new Error("User not found!");
+  if (!user) throw ERROR_TYPE.userNotFound;
   let courses = [];
   for (let enrolledCourse of user?.enrolledCourses) {
     const courseId = enrolledCourse.courseId;
