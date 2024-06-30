@@ -22,7 +22,7 @@ export default async function Page({
   const session = await getServerSession(authOptions);
   
   // If the user hasn't log in, redirect to sign in page
-  if (!session?.user) 
+  if (!session?.user?.id)
     await navigate("/auth/sign-in");
 
   let courseId = params.id[0];
@@ -39,9 +39,12 @@ export default async function Page({
   // if the view is not admin view
   let course = await getCourse(courseId);
   const isEnrolled = await isUserEnrolled(session?.user?.id, courseId);
+
   if (isEnrolled) {
     let completedLessonIds = await getCompletedLessons(session?.user.id, course._id.toString());
-    let clientCourse: ClientCourseType = course as ClientCourseType;
+    
+    // Evil cast
+    let clientCourse: ClientCourseType = (course as unknown) as ClientCourseType;
     clientCourse.modules.forEach((module) => {
       module.lessons.forEach((lesson) => {
         let exists = completedLessonIds.includes(lesson._id.toString());
@@ -51,10 +54,12 @@ export default async function Page({
         else lesson.completed = false;
       });
     });
-
+    console.log("b");
     return <ClientPage course={course}/>
   }
+  else {
+    console.log("a")
+    return <EnrollPage course={course}/>
 
-  else 
-  return <EnrollPage course={course}/>
+  }
 }
