@@ -321,5 +321,572 @@
       }
     ],
     "__v": 3
+  },
+  {
+    "_id": "667d1c160770b542f1e42bcc",
+    "title": "Artificial Intelligence and Machine Learning Fundamentals",
+    "description": "A comprehensive introduction to AI and ML, covering key concepts, algorithms, and practical applications.",
+    "category": "Technology",
+    "modules": [
+      {
+        "_id": "667d1c3f0770b542f1e42bd6",
+        "title": "Introduction to Artificial Intelligence",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42be0",
+            "title": "What is Artificial Intelligence?",
+            "description": "Understanding the basics of AI and its impact on various industries",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c0e",
+                "type": "h1",
+                "content": "Artificial Intelligence: Shaping the Future"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c0f",
+                "type": "paragraph",
+                "content": "Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c10",
+                "type": "h2",
+                "content": "Key Areas of Artificial Intelligence"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c11",
+                "type": "ul",
+                "content": "Machine Learning,Natural Language Processing,Computer Vision,Robotics,Expert Systems"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42be1",
+            "title": "History and Evolution of AI",
+            "description": "Exploring the development of AI from its inception to current advancements",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c12",
+                "type": "h1",
+                "content": "The Journey of Artificial Intelligence"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c13",
+                "type": "paragraph",
+                "content": "AI has evolved significantly since its conceptualization in the 1950s, with major breakthroughs in recent years."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c14",
+                "type": "h2",
+                "content": "Key Milestones in AI Development"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c15",
+                "type": "ol",
+                "content": "Dartmouth Conference (1956),Expert Systems (1980s),Deep Blue defeats Kasparov (1997),Watson wins Jeopardy! (2011),AlphaGo beats world champion (2016)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bd7",
+        "title": "Machine Learning Basics",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42be2",
+            "title": "Types of Machine Learning",
+            "description": "Understanding supervised, unsupervised, and reinforcement learning",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c16",
+                "type": "h1",
+                "content": "The Three Paradigms of Machine Learning"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c17",
+                "type": "paragraph",
+                "content": "Machine Learning can be broadly categorized into three types based on the nature of the learning signal or feedback available to the learning system."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c18",
+                "type": "h2",
+                "content": "Machine Learning Categories"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c19",
+                "type": "ul",
+                "content": "Supervised Learning,Unsupervised Learning,Reinforcement Learning"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42be3",
+            "title": "Introduction to Neural Networks",
+            "description": "Learning about the building blocks of deep learning",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c1a",
+                "type": "h1",
+                "content": "Neural Networks: The Foundation of Deep Learning"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c1b",
+                "type": "paragraph",
+                "content": "Neural networks are a set of algorithms, modeled loosely after the human brain, that are designed to recognize patterns."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c1c",
+                "type": "h2",
+                "content": "Components of a Neural Network"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c1d",
+                "type": "ul",
+                "content": "Input Layer,Hidden Layers,Output Layer,Neurons,Weights and Biases,Activation Functions"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bd8",
+        "title": "AI and ML Applications",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42be4",
+            "title": "AI in Business and Industry",
+            "description": "Exploring real-world applications of AI across various sectors",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c1e",
+                "type": "h1",
+                "content": "AI Transforming Industries"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c1f",
+                "type": "paragraph",
+                "content": "AI is revolutionizing numerous industries, enhancing efficiency, and creating new opportunities."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c20",
+                "type": "h2",
+                "content": "AI Applications by Industry"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c21",
+                "type": "ul",
+                "content": "Healthcare: Disease diagnosis, Drug discovery,Finance: Fraud detection, Algorithmic trading,Retail: Personalized recommendations, Inventory management,Manufacturing: Predictive maintenance, Quality control,Transportation: Autonomous vehicles, Traffic management"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42be5",
+            "title": "Ethical Considerations in AI",
+            "description": "Discussing the ethical implications and challenges of AI implementation",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c22",
+                "type": "h1",
+                "content": "Navigating the Ethical Landscape of AI"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c23",
+                "type": "paragraph",
+                "content": "As AI becomes more prevalent, it's crucial to address the ethical challenges and ensure responsible development and deployment."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c24",
+                "type": "h2",
+                "content": "Key Ethical Concerns in AI"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c25",
+                "type": "ul",
+                "content": "Bias and Fairness,Privacy and Data Protection,Transparency and Explainability,Accountability and Liability,Job Displacement,Autonomous Weapons and AI Safety"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__v": 3
+  },
+  {
+    "_id": "667d1c160770b542f1e42bcd",
+    "title": "Facebook Marketing Mastery",
+    "description": "A comprehensive guide to leveraging Facebook for business growth, audience engagement, and brand awareness.",
+    "category": "Marketing",
+    "modules": [
+      {
+        "_id": "667d1c3f0770b542f1e42bd9",
+        "title": "Introduction to Facebook Marketing",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42be6",
+            "title": "Why Facebook Marketing?",
+            "description": "Understanding the importance and potential of Facebook for business marketing",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c26",
+                "type": "h1",
+                "content": "The Power of Facebook for Business"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c27",
+                "type": "paragraph",
+                "content": "Facebook, with its massive user base and advanced targeting options, offers unparalleled opportunities for businesses to reach and engage their target audience."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c28",
+                "type": "h2",
+                "content": "Key Benefits of Facebook Marketing"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c29",
+                "type": "ul",
+                "content": "Huge audience reach,Precise targeting capabilities,Cost-effective advertising,Increased brand awareness,Direct customer engagement,Measurable results"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42be7",
+            "title": "Setting Up a Facebook Business Page",
+            "description": "Step-by-step guide to creating and optimizing a Facebook Business Page",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c2a",
+                "type": "h1",
+                "content": "Creating Your Facebook Business Presence"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c2b",
+                "type": "paragraph",
+                "content": "A well-optimized Facebook Business Page is the foundation of your Facebook marketing strategy."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c2c",
+                "type": "h2",
+                "content": "Steps to Set Up Your Business Page"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c2d",
+                "type": "ol",
+                "content": "Choose the right page category,Add profile and cover photos,Fill out the About section,Set up a username,Add a call-to-action button,Customize your page tabs"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bda",
+        "title": "Content Strategy for Facebook",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42be8",
+            "title": "Creating Engaging Facebook Content",
+            "description": "Learn how to create content that resonates with your audience and drives engagement",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c2e",
+                "type": "h1",
+                "content": "Crafting Content that Converts"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c2f",
+                "type": "paragraph",
+                "content": "Engaging content is key to building a loyal following and increasing organic reach on Facebook."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c30",
+                "type": "h2",
+                "content": "Types of Engaging Facebook Content"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c31",
+                "type": "ul",
+                "content": "Visual content (images, infographics, videos),Interactive posts (polls, quizzes),User-generated content,Behind-the-scenes content,Live videos,Storytelling posts"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42be9",
+            "title": "Content Calendar and Posting Strategy",
+            "description": "Developing a content calendar and understanding when to post for maximum engagement",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c32",
+                "type": "h1",
+                "content": "Strategizing Your Facebook Content"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c33",
+                "type": "paragraph",
+                "content": "A well-planned content calendar ensures consistent posting and helps maintain audience engagement."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c34",
+                "type": "h2",
+                "content": "Elements of an Effective Posting Strategy"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c35",
+                "type": "ul",
+                "content": "Determine optimal posting times,Maintain a consistent posting schedule,Balance different types of content,Plan for seasonal and event-based content,Use Facebook Insights to refine your strategy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bdb",
+        "title": "Facebook Advertising",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bea",
+            "title": "Introduction to Facebook Ads",
+            "description": "Understanding the basics of Facebook's advertising platform",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c36",
+                "type": "h1",
+                "content": "Harnessing the Power of Facebook Ads"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c37",
+                "type": "paragraph",
+                "content": "Facebook Ads offer a powerful way to reach specific audiences and achieve various marketing objectives."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c38",
+                "type": "h2",
+                "content": "Key Components of Facebook Advertising"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c39",
+                "type": "ul",
+                "content": "Ad objectives,Audience targeting,Ad formats,Budgeting and bidding,Ad placements,Facebook Pixel"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42beb",
+            "title": "Creating and Optimizing Facebook Ad Campaigns",
+            "description": "Step-by-step guide to creating, managing, and optimizing Facebook ad campaigns",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c3a",
+                "type": "h1",
+                "content": "Mastering Facebook Ad Campaigns"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c3b",
+                "type": "paragraph",
+                "content": "Effective Facebook ad campaigns require careful planning, execution, and ongoing optimization."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c3c",
+                "type": "h2",
+                "content": "Steps to Create and Optimize Facebook Ads"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c3d",
+                "type": "ol",
+                "content": "Define your campaign objective,Set up audience targeting,Choose ad placements,Create compelling ad content,Set budget and schedule,Launch and monitor your campaign,Analyze results and optimize"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "667d1c3f0770b542f1e42bdc",
+        "title": "Measuring and Analyzing Facebook Performance",
+        "lessons": [
+          {
+            "_id": "667d1c470770b542f1e42bec",
+            "title": "Understanding Facebook Insights",
+            "description": "Learn how to use Facebook Insights to measure your page's performance",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c3e",
+                "type": "h1",
+                "content": "Leveraging Facebook Insights for Success"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c3f",
+                "type": "paragraph",
+                "content": "Facebook Insights provides valuable data about your audience and content performance, helping you refine your marketing strategy."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c40",
+                "type": "h2",
+                "content": "Key Metrics in Facebook Insights"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c41",
+                "type": "ul",
+                "content": "Page views and previews,Page likes,Post reach and engagement,Video performance,Audience demographics,Best performing content"
+              }
+            ]
+          },
+          {
+            "_id": "667d1c470770b542f1e42bed",
+            "title": "Calculating ROI for Facebook Marketing",
+            "description": "Methods to measure and improve the return on investment of your Facebook marketing efforts",
+            "blocks": [
+              {
+                "_id": "667d1c6b0770b542f1e42c42",
+                "type": "h1",
+                "content": "Maximizing Your Facebook Marketing ROI"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c43",
+                "type": "paragraph",
+                "content": "Calculating and optimizing ROI is crucial for justifying and improving your Facebook marketing investments."
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c44",
+                "type": "h2",
+                "content": "Steps to Calculate and Improve Facebook ROI"
+              },
+              {
+                "_id": "667d1c6b0770b542f1e42c45",
+                "type": "ol",
+                "content": "Define your conversion goals,Track conversions (using Facebook Pixel or UTM parameters),Calculate total spend,Determine the value of conversions,Calculate ROI,Analyze and optimize campaigns based on ROI"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__v": 3
+  },
+  {
+    "_id": "668a2d390881c653f2e53ad8",
+    "title": "Advanced Email Marketing with AI",
+    "description": "Master the art of email marketing using cutting-edge AI technologies to improve engagement, personalization, and conversion rates.",
+    "category": "Marketing",
+    "modules": [
+      {
+        "_id": "668a2d620881c653f2e53adf",
+        "title": "Foundations of AI-Powered Email Marketing",
+        "lessons": [
+          {
+            "_id": "668a2d6a0881c653f2e53ae4",
+            "title": "Introduction to AI in Email Marketing",
+            "description": "Understand how AI is revolutionizing email marketing strategies and outcomes.",
+            "blocks": [
+              {
+                "_id": "668a2d8e0881c653f2e53aea",
+                "type": "h1",
+                "content": "AI in Email Marketing: An Overview"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53aeb",
+                "type": "paragraph",
+                "content": "Artificial Intelligence is transforming email marketing by enabling more personalized, efficient, and effective campaigns."
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53aec",
+                "type": "h2",
+                "content": "Key AI Applications in Email Marketing"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53aed",
+                "type": "ul",
+                "content": "Predictive Analytics,Natural Language Processing,Machine Learning Algorithms,Automated Segmentation,Real-time Personalization"
+              }
+            ]
+          },
+          {
+            "_id": "668a2d6a0881c653f2e53ae5",
+            "title": "AI-Driven Email Personalization",
+            "description": "Learn how to use AI to create highly personalized email content and experiences.",
+            "blocks": [
+              {
+                "_id": "668a2d8e0881c653f2e53aee",
+                "type": "h1",
+                "content": "Personalization with AI"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53aef",
+                "type": "paragraph",
+                "content": "AI-driven personalization goes beyond simple name insertion, allowing for dynamic content tailored to individual preferences and behaviors."
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af0",
+                "type": "h2",
+                "content": "AI Personalization Techniques"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af1",
+                "type": "ul",
+                "content": "Behavioral Targeting,Content Recommendations,Dynamic Pricing,Send Time Optimization,Predictive Subject Lines"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_id": "668a2d620881c653f2e53ae0",
+        "title": "AI Tools for Email Marketing",
+        "lessons": [
+          {
+            "_id": "668a2d6a0881c653f2e53ae6",
+            "title": "AI-Powered Email Marketing Platforms",
+            "description": "Explore popular AI-enhanced email marketing platforms and their features.",
+            "blocks": [
+              {
+                "_id": "668a2d8e0881c653f2e53af2",
+                "type": "h1",
+                "content": "AI Email Marketing Platforms"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af3",
+                "type": "paragraph",
+                "content": "Modern email marketing platforms leverage AI to provide advanced features for campaign optimization and automation."
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af4",
+                "type": "h2",
+                "content": "Top AI-Powered Email Marketing Tools"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af5",
+                "type": "ul",
+                "content": "Mailchimp,Salesforce Marketing Cloud,Adobe Campaign,Klaviyo,Constant Contact"
+              }
+            ]
+          },
+          {
+            "_id": "668a2d6a0881c653f2e53ae7",
+            "title": "Implementing AI Writing Assistants",
+            "description": "Learn how to use AI writing tools to create compelling email content.",
+            "blocks": [
+              {
+                "_id": "668a2d8e0881c653f2e53af6",
+                "type": "h1",
+                "content": "AI Writing Assistants for Email"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af7",
+                "type": "paragraph",
+                "content": "AI writing assistants can help marketers create engaging email copy, subject lines, and CTAs more efficiently."
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af8",
+                "type": "h2",
+                "content": "Popular AI Writing Tools"
+              },
+              {
+                "_id": "668a2d8e0881c653f2e53af9",
+                "type": "ul",
+                "content": "GPT-3 based tools,Jasper,Copy.ai,Phrasee,Persado"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__v": 3
   }
 ]
