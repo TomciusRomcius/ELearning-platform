@@ -16,13 +16,15 @@ export default function CourseCard(props: CourseCardProps) {
           src={`/uploads/${props.url}`}
           className="h-full object-contain object-top"
           alt=""
-        >
-
-        </img>
+        ></img>
       </div>
       <div className="h-1/4 flex flex-col gap-2 px-4">
-        <small className="text-sm font-semibold text-accent">{props.category}</small>
-        <h4 className="text-base text-ellipsis overflow-hidden w-full whitespace-no-wrap line-clamp-2">{props.title}</h4>
+        <small className="text-sm font-semibold text-accent overflow-hidden text-ellipsis whitespace-no-wrap">
+          {props.category}
+        </small>
+        <h4 className="text-base overflow-hidden text-ellipsis whitespace-no-wrap line-clamp-2">
+          {props.title}
+        </h4>
       </div>
     </a>
   );
