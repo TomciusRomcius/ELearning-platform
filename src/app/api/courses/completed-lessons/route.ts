@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { completeLesson, getCompletedLessons } from "@/backend/controllers/lessonController";
-import { authOptions } from "../../auth/authOptions";
-import { getServerSession } from "next-auth";
+import { getSessionServer } from "@/backend/utils/getServerSession";
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions);
+  
+  const session = await getSessionServer();
   if (!session?.user) {
     return NextResponse.json("User not logged in", { status: 401 });
   }
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
+  const session = await getSessionServer();
   if (!session?.user) {
     return NextResponse.json("User not logged in", { status: 401 });
   }

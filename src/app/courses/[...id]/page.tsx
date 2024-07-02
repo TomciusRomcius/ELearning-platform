@@ -1,16 +1,14 @@
 "use server";
 
-import { getServerSession } from "next-auth";
 import AdminPage from "./admin/AdminPage";
 import ClientPage from "./client/ClientPage";
 import { getCourse } from "@/backend/controllers/courseController";
 import { isUserEnrolled } from "@/backend/utils/isUserEnrolled";
-import { authOptions } from "@/app/api/auth/authOptions";
 import EnrollPage from "./enroll/EnrollPage";
 import { getCompletedLessons } from "@/backend/controllers/lessonController";
-import { ClientCourseType } from "@/utils/types";
 import { navigate } from "@/utils/navigation";
 import { UserRole } from "@/backend/models/userModel";
+import { getSessionServer } from "@/backend/utils/getServerSession";
 
 export default async function Page({
   params,
@@ -19,7 +17,7 @@ export default async function Page({
   params: { id: string[] };
   searchParams: { isAdmin: boolean };
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await getSessionServer();
   
   // If the user hasn't log in, redirect to sign in page
   if (!session?.user?.id) {

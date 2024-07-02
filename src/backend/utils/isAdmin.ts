@@ -1,9 +1,8 @@
-import { authOptions } from "@/app/api/auth/authOptions";
-import { getServerSession } from "next-auth";
 import { UserRole } from "../models/userModel";
+import { getSessionServer } from "./getServerSession";
 
 export async function isAdmin() {
-  const session = await getServerSession(authOptions);
+  const session = await getSessionServer();
   if (session?.user?.role === UserRole.ADMIN)
     return true;
   else 
