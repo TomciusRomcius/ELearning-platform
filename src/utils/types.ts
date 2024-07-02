@@ -25,6 +25,7 @@ export type CourseType<Lesson = LessonType> = {
 
 export interface ClientLessonType extends LessonType {
   completed: boolean;
+  moduleId: string;
 }
 
 export type ClientCourseType = CourseType<ClientLessonType>

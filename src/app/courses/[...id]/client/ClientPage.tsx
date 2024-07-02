@@ -1,39 +1,49 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ClientLessonType, CourseType, LessonType } from "@/utils/types";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { CourseType, LessonType } from "@/utils/types";
 import { DataDetailsContext } from "./utils/dataDetailsContext";
 import Sidebar from "./Sidebar";
-import AdminPage from "../admin/AdminPage";
 import LessonContainer from "./LessonContainer";
+import courseService from "@/frontend/services/courseService";
 
 type ClientPageProps = {
-  course: CourseType<ClientLessonType>;
-  completedLessonIds: string[];
+  course: CourseType;
+  completedLessonIds: Set<string>;
 };
 
 export default function ClientPage(props: ClientPageProps) {
   const [currentLesson, setCurrentLesson] = useState(
-    {
-      lessonId: props.course.modules[0]?.lessons[0]._id,
-      moduleId: props.course.modules[0]?._id,
-    }
+    props.course.modules[0].lessons[0]
   );
-  const [course, setCourse] = useState(props.course);
-  
+
+  const [completedLessonIds, setCompletedLessonIds] = useState(
+    props.completedLessonIds
+  );
+
+  const toggleLessonComplete = (lessonId: string) => {
+    const newState = structuredClone(completedLessonIds);
+    if (newState.has(lessonId)) {
+      newState.delete(lessonId);
+    }
+    else newState.add(lessonId);
+    setCompletedLessonIds(newState);
+    courseService.completeLesson(props.course._id, lessonId);
+  }
+
   return (
     <div className="w-screen h-screen flex flex-row">
       <DataDetailsContext.Provider
         value={{
-          course: course,
+          course: props.course,
           currentLesson: currentLesson,
           setCurrentLesson: setCurrentLesson,
-          setCourse: setCourse,
+          completedLessonIds: completedLessonIds,
+          toggleLessonComplete: toggleLessonComplete,
         }}
       >
         <Sidebar />
-        <LessonContainer/>
+        <LessonContainer />
       </DataDetailsContext.Provider>
     </div>
   );

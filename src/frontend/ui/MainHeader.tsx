@@ -31,8 +31,8 @@ export default function MainHeader() {
   return (
     <header className="flex justify-between sticky px-20 py-5 items-center border-b-1 border-border shadow-lg">
       <span className="flex gap-20">
-        <LinkOption className="text-text-grayed" highlightedClass="text-text-light" href="/my-courses">My courses</LinkOption>
-        <LinkOption className="text-text-grayed" highlightedClass="text-text-light" href="/browse">Browse</LinkOption>
+        <LinkOption className="text-text-grayed hover:text-text-light" highlightedClass="text-text-light" href="/my-courses">My courses</LinkOption>
+        <LinkOption className="text-text-grayed hover:text-text-light" highlightedClass="text-text-light" href="/browse">Browse</LinkOption>
       </span>
       <span className="flex gap-20">
         <button className="relative" onClick={onTogglePopup}>

@@ -8,10 +8,10 @@ type LessonButtonProps = {
 };
 
 export default function LessonButton(props: LessonButtonProps) {
-  const { currentLesson, setCurrentLesson } = useDataDetails();
+  const { currentLesson, setCurrentLesson, completedLessonIds } = useDataDetails();
 
   const onSelect = () => {
-    setCurrentLesson({ lessonId: props.lesson._id, moduleId: props.moduleId });
+    setCurrentLesson(props.lesson);
   };
 
   let className = props.lesson.completed
@@ -19,7 +19,8 @@ export default function LessonButton(props: LessonButtonProps) {
     : "text-text-grayed";
 
   let currentLessonClassName = "bg-primary-200 rounded-lg font-bold";
-  let isCurrentLesson = props.lesson._id.toString() === currentLesson.lessonId;
+  let isCurrentLesson = props.lesson._id.toString() === currentLesson._id;
+  let isCompleted = completedLessonIds.has(props.lesson._id);
 
   return (
     <div className="relative">
@@ -31,14 +32,14 @@ export default function LessonButton(props: LessonButtonProps) {
       >
         <h4
           className={`flex-1 ${
-            props.lesson.completed ? "text-secondary" : "text-text-grayed"
+            isCompleted ? "text-secondary" : "text-text-grayed"
           }`}
         >
           {props.lesson.title}
         </h4>
         <Checkmark
           className={
-            props.lesson.completed ? "w-max fill-secondary" : "fill-text-grayed"
+            isCompleted ? "w-max fill-secondary" : "fill-text-grayed"
           }
         />
       </button>

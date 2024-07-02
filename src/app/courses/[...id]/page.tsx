@@ -22,8 +22,11 @@ export default async function Page({
   const session = await getServerSession(authOptions);
   
   // If the user hasn't log in, redirect to sign in page
-  if (!session?.user?.id)
+  if (!session?.user?.id) {
     await navigate("/auth/sign-in");
+    return; // For TS
+  }
+    
 
   let courseId = params.id[0];
 
@@ -33,33 +36,26 @@ export default async function Page({
   
   else if (searchParams.isAdmin) {
     await navigate("/not-authorized");
+    return; // For TS
   }
   
   // Convert CourseType to ClientCourseType and return Client page
   // if the view is not admin view
-  let course = await getCourse(courseId);
+  const course = await getCourse(courseId);
+  if (!course) throw "Course not found!";
   const isEnrolled = await isUserEnrolled(session?.user?.id, courseId);
 
   if (isEnrolled) {
-    let completedLessonIds = await getCompletedLessons(session?.user.id, course._id.toString());
-    
-    // Evil cast
-    let clientCourse: ClientCourseType = (course as unknown) as ClientCourseType;
-    clientCourse.modules.forEach((module) => {
-      module.lessons.forEach((lesson) => {
-        let exists = completedLessonIds.includes(lesson._id.toString());
-        if (exists) {
-          lesson.completed = true;
-        }
-        else lesson.completed = false;
-      });
-    });
-    console.log("b");
-    return <ClientPage course={course}/>
+    const completedLessonIdsArray = await getCompletedLessons(session?.user.id, course._id.toString());
+    const completedLessonIds = new Set<string>();
+    for (const lessonId of completedLessonIdsArray) {
+      completedLessonIds.add(lessonId);
+      console.log(lessonId);
+    }
+
+    return <ClientPage course={course} completedLessonIds={completedLessonIds}/>
   }
   else {
-    console.log("a")
     return <EnrollPage course={course}/>
-
   }
 }

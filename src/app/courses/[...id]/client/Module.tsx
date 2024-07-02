@@ -8,9 +8,12 @@ type ModuleProps = {
 };
 
 export function Module(props: ModuleProps) {
+  const { completedLessonIds } = useDataDetails();
+
   let completionSum = 0;
   for (let lesson of props.module.lessons) {
-    if (lesson.completed) completionSum++;
+    if (completedLessonIds.has(lesson._id))
+      completionSum++;
   }
 
   let completionPercentage = Math.round(completionSum / props.module.lessons.length * 100);

@@ -1,16 +1,12 @@
 import { createContext } from "react";
-import { ClientLessonType, CourseType, LessonType } from "@/utils/types";
-
-type CurrentLessonType = {
-  lessonId: string;
-  moduleId: string;
-}
+import { CourseType, LessonType } from "@/utils/types";
 
 export type DataDetails = {
-  course: CourseType<ClientLessonType>;
-  currentLesson: CurrentLessonType;
-  setCurrentLesson: (lesson: CurrentLessonType) => void;
-  setCourse: (course: CourseType<ClientLessonType>) => void;
+  course: CourseType;
+  currentLesson: LessonType;
+  setCurrentLesson: (lesson: LessonType) => void;
+  completedLessonIds: Set<string>;
+  toggleLessonComplete: (lessonId: string) => void;
 }
 
 export const DataDetailsContext = createContext<DataDetails | undefined>(undefined);

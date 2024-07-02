@@ -1,35 +1,16 @@
 import { useDataDetails } from "./utils/useDataDetails";
 import Block from "./Block";
-import { getCurrentLesson } from "./utils/getCurrentLesson";
 import AccentButton from "@/frontend/ui/AccentButton";
-import courseService from "@/frontend/services/courseService";
 
 export default function LessonContainer() {
-  const { currentLesson, course, setCourse, setCurrentLesson } = useDataDetails();
-
-  if (!currentLesson.lessonId) return;
-
-  const lesson = getCurrentLesson(
-    course,
-    currentLesson.moduleId,
-    currentLesson.lessonId
-  );
+  const { currentLesson, toggleLessonComplete } = useDataDetails();
 
   const onComplete = () => {
-    // Highly inefficient;
-    const newCourse = structuredClone(course);
-    const lesson = getCurrentLesson(
-      newCourse,
-      currentLesson.moduleId,
-      currentLesson.lessonId
-    );
-    lesson.completed = !lesson?.completed;
-    setCourse(newCourse);
-    courseService.completeLesson(course._id, currentLesson.lessonId);
+    toggleLessonComplete(currentLesson._id);
   };
 
   const onNextLesson = () => {
-    onComplete();
+    // onComplete();
   }
 
   return (
@@ -38,10 +19,10 @@ export default function LessonContainer() {
         <div className="relative h-full overflow-y-scroll flex flex-col gap-2">
           {/* Title */}
           <h4 className="w-full text-center text-4xl text-text-light">
-            {lesson.title}
+            {currentLesson.title}
           </h4>
           {/* Blocks */}
-          {lesson.blocks.map((block) => {
+          {currentLesson.blocks.map((block) => {
             let blockComponent = <Block block={block} />;
             return blockComponent;
           })}
