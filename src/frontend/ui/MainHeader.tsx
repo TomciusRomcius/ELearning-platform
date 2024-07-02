@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Account from "../resources/svg/Account";
 import { signOut, useSession } from "next-auth/react";
 import Popup from "./Popup";
@@ -40,8 +39,8 @@ export default function MainHeader() {
             <Popup onClose={onTogglePopup} isFixed={false}>
               <div className="w-max p-4 bg-primary-200 border-border border-1 rounded-lg flex flex-col gap-4">
                 {session.data?.user ? (
-                  <button className="flex gap-2" onClick={onSignOut}>
-                    <Logout className="fill-text-grayed"/>
+                  <button className="flex gap-2 text-text-grayed hover:text-text-light fill-text-grayed hover:fill-text-light" onClick={onSignOut}>
+                    <Logout className="fill-inherit"/>
                     Sign out
                   </button>
                 ) : (
