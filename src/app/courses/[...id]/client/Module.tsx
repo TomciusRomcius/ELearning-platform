@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ClientLessonType, ModuleType } from "../../../../utils/types";
+import { ClientLessonType, LessonType, ModuleType } from "../../../../utils/types";
 import LessonButton from "./LessonButton";
 import { useDataDetails } from "./utils/useDataDetails";
 
@@ -7,16 +6,21 @@ type ModuleProps = {
   module: ModuleType<ClientLessonType>;
 };
 
-export function Module(props: ModuleProps) {
-  const { completedLessonIds } = useDataDetails();
-
+function calculateCompletionPercentage(lessons: LessonType[], completedLessonIds: Set<string>) {
   let completionSum = 0;
-  for (let lesson of props.module.lessons) {
+  for (let lesson of lessons) {
     if (completedLessonIds.has(lesson._id))
       completionSum++;
   }
 
-  let completionPercentage = Math.round(completionSum / props.module.lessons.length * 100);
+  let completionPercentage = Math.round(completionSum / lessons.length * 100);
+  return completionPercentage;
+}
+
+export function Module(props: ModuleProps) {
+  const { completedLessonIds } = useDataDetails();
+
+  const completionPercentage = calculateCompletionPercentage(props.module.lessons, completedLessonIds);
 
   return (
     <div className="flex flex-col gap-4 relative">

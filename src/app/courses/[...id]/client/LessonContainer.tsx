@@ -1,6 +1,7 @@
 import { useDataDetails } from "./utils/useDataDetails";
 import Block from "./Block";
 import AccentButton from "@/frontend/ui/AccentButton";
+import LessonFunctions from "./LessonFunctions";
 
 export default function LessonContainer() {
   const { currentLesson, toggleLessonComplete } = useDataDetails();
@@ -29,19 +30,7 @@ export default function LessonContainer() {
 
           <div className="py-10"></div>
         </div>
-
-        <div className="absolute bottom-0 w-full p-2 bg-primary-100 rounded-lg border-border border-1 right-2 flex gap-4 justify-end shadow-lg">
-          <button
-            className="rounded-lg border-border border-1 bg-primary-0 px-4 py-2"
-            onClick={onComplete}
-          >
-            Complete
-          </button>
-          <AccentButton
-          >
-            Next lesson
-          </AccentButton>
-        </div>
+        <LessonFunctions/>
       </div>
     </div>
   );
