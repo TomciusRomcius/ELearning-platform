@@ -30,8 +30,8 @@ export default function MainHeader() {
   return (
     <header className="flex justify-between sticky px-20 py-5 items-center border-b-1 border-border shadow-lg">
       <span className="flex gap-20">
-        <LinkOption className="text-text-grayed hover:text-text-light" highlightedClass="text-text-light" href="/my-courses">My courses</LinkOption>
-        <LinkOption className="text-text-grayed hover:text-text-light" highlightedClass="text-text-light" href="/browse">Browse</LinkOption>
+        <LinkOption className="text-text-grayed hover:text-text-light transition-colors" highlightedClass="text-text-light" href="/my-courses">My courses</LinkOption>
+        <LinkOption className="text-text-grayed hover:text-text-light transition-colors" highlightedClass="text-text-light" href="/browse">Browse</LinkOption>
       </span>
       <span className="flex gap-20">
         <button className="relative" onClick={onTogglePopup}>
@@ -39,7 +39,7 @@ export default function MainHeader() {
             <Popup onClose={onTogglePopup} isFixed={false}>
               <div className="w-max p-4 bg-primary-200 border-border border-1 rounded-lg flex flex-col gap-4">
                 {session.data?.user ? (
-                  <button className="flex gap-2 text-text-grayed hover:text-text-light fill-text-grayed hover:fill-text-light" onClick={onSignOut}>
+                  <button className="flex gap-2 text-text-grayed hover:text-text-light fill-text-grayed hover:fill-text-light transition-colors" onClick={onSignOut}>
                     <Logout className="fill-inherit"/>
                     Sign out
                   </button>
@@ -49,7 +49,7 @@ export default function MainHeader() {
               </div>
             </Popup>
           ) : null}
-          <Account className="fill-text-grayed hover:fill-secondary" />
+          <Account className="fill-text-grayed hover:fill-secondary transition-colors" />
         </button>
       </span>
     </header>
