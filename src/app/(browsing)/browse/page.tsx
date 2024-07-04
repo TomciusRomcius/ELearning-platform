@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CourseCard from "@/frontend/components/CourseCard";
 import MainHeader from "@/frontend/ui/MainHeader";
 import { CourseType } from "@/utils/types";
 import courseService from "@/frontend/services/courseService";
-import { getCategoryToCourseMap } from "../utils/getCategoryToCourseMap";
-import { generateBody } from "../utils/generateBody";
+import { generateBody } from "../_utils/generateBody";
+import BodyLayout from "../_layouts/BodyLayout";
 
 export default function Page() {
   let [courses, setCourses] = useState<CourseType[]>([]);
@@ -23,10 +22,10 @@ export default function Page() {
       <MainHeader />
 
       <main className="flex flex-col h-26 gap-10">
-        <section className="flex flex-col gap-10 px-60 py-10">
+        <BodyLayout>
           <h1 className="text-6xl text-center">Browse</h1>
           {bodyElements}
-        </section>
+        </BodyLayout>
       </main>
     </>
   );

@@ -9,7 +9,7 @@ export default function CourseCard(props: CourseCardProps) {
   return (
     <a
       href={`/courses/${props.url}`}
-      className="flex flex-col bg-primary-100 w-64 h-80 border-1 border-border rounded-md shadow-lg"
+      className="flex flex-col bg-primary-100 w-full h-[80vw] md:w-64 md:h-80 border-1 border-border rounded-md shadow-lg"
     >
       <div className="relative h-[70%] p-4">
         <img

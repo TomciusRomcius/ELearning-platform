@@ -7,7 +7,7 @@ import MainHeader from "@/frontend/ui/MainHeader";
 import { navigate } from "@/utils/navigation";
 import { getSessionServer } from "@/backend/utils/getServerSession";
 import { generateBody } from "../_utils/generateBody";
-import { generateBody } from "../utils/generateBody";
+import BodyLayout from "../_layouts/BodyLayout";
 
 export default async function MyCourses() {
   const session = await getSessionServer();
@@ -25,10 +25,10 @@ export default async function MyCourses() {
   return (
     <>
       <MainHeader />
-      <section className="flex flex-col gap-10 px-60 py-10">
+      <BodyLayout>
         <h1 className="text-6xl text-center">Browse</h1>
         <div className="flex flex-col flex-wrap gap-10">{bodyElements}</div>
-      </section>
+      </BodyLayout>
     </>
   );
 }
