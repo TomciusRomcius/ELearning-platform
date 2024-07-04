@@ -6,6 +6,7 @@ import CourseCard from "@/frontend/components/CourseCard";
 import MainHeader from "@/frontend/ui/MainHeader";
 import { navigate } from "@/utils/navigation";
 import { getSessionServer } from "@/backend/utils/getServerSession";
+import { generateBody } from "../_utils/generateBody";
 import { generateBody } from "../utils/generateBody";
 
 export default async function MyCourses() {
