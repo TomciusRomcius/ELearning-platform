@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import Menu from "../resources/svg/Menu";
+import { SidebarLayout } from "@/app/admin/_layouts/SidebarLayout";
 
 const mediaQuery = {
   SM: "(min-width: 640px)",
@@ -17,32 +17,21 @@ type ResponsiveSidebarLayoutProps = {
 export default function ResponsiveSidebarLayout(
   props: ResponsiveSidebarLayoutProps
 ) {
-  const isMobile = !useMediaQuery({ query: mediaQuery.MD });
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
+  const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
+  }
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [isMobile]);
-
-  if (!isMobile) return props.children;
-
-  if (!isOpen)
-    return (
-      <button onClick={toggleOpen} className="absolute top-2 left-2">
-        <Menu/>
+  return (
+    <>
+      <button onClick={toggleSidebar} className={`absolute top-2 left-2 z-50 md:hidden`}>
+        <Menu />
       </button>
-    );
-  else
-    return (
-      <>
-        <button onClick={toggleOpen} className="absolute z-50 top-2 left-2">
-          <Menu/>
-        </button>
+      {/* Make the z-index higher on mobile, and if is open and is on mobile make display: hidden */}
+      <SidebarLayout className={`z-10 md:z-0 ${!isOpen ? "hidden" : ""} md:flex`}>
         {props.children}
-      </>
-    );
+      </SidebarLayout>
+    </>
+  );
 }

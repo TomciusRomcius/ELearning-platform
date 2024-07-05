@@ -1,17 +1,19 @@
 "use client";
 
-import ResponsiveSidebarLayout from "@/frontend/layouts/ResponsiveSidebarLayout";
+import { ReactNode } from "react";
 
 type SidebarLayoutProps = {
-  children: React.JSX.Element;
+  children: ReactNode;
+  className?: string;
 };
 
-export async function SidebarLayout(props: SidebarLayoutProps) {
+export function SidebarLayout(props: SidebarLayoutProps) {
   return (
-    <ResponsiveSidebarLayout>
-      <nav className="fixed md:static w-screen md:w-1/6 h-screen py-8 px-12 flex flex-col gap-4 items-start bg-foreground border-primary-300 border-r-1">
-        {props.children}
-      </nav>
-    </ResponsiveSidebarLayout>
+    // Huge ass classname lol
+    <nav
+      className={`fixed md:static w-screen md:w-2/5 2xl:w-1/5 h-screen py-8 px-12 flex flex-col items-stretch gap-4 bg-foreground border-primary-300 border-r-1 overflow-y-auto ${props.className}`}
+    >
+      {props.children}
+    </nav>
   );
 }

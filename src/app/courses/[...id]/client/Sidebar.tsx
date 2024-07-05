@@ -2,7 +2,6 @@
 
 import { useDataDetails } from "./utils/useDataDetails";
 import { Module } from "./Module";
-import SidebarLayout from "../layouts/SidebarLayout";
 import ResponsiveSidebarLayout from "@/frontend/layouts/ResponsiveSidebarLayout";
 
 export default function Sidebar() {
@@ -10,14 +9,12 @@ export default function Sidebar() {
 
   return (
     <ResponsiveSidebarLayout>
-      <SidebarLayout>
-        <h2 className="text-text-light text-xl font-bold text-center">
-          {course.title}
-        </h2>
-        {course.modules.map((module) => (
-          <Module module={module} />
-        ))}
-      </SidebarLayout>
+      <h2 className="text-text-light text-xl font-bold text-center">
+        {course.title}
+      </h2>
+      {course.modules.map((module) => (
+        <Module module={module} />
+      ))}
     </ResponsiveSidebarLayout>
   );
 }
