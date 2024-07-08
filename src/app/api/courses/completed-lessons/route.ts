@@ -3,7 +3,6 @@ import { completeLesson, getCompletedLessons } from "@/backend/controllers/lesso
 import { getSessionServer } from "@/backend/utils/getServerSession";
 
 export async function GET(req: NextRequest) {
-  
   const session = await getSessionServer();
   if (!session?.user) {
     return NextResponse.json("User not logged in", { status: 401 });

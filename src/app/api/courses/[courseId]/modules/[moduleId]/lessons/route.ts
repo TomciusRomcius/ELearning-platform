@@ -1,15 +1,18 @@
 import { createLesson } from "@/backend/controllers/lessonController";
-import { isAdmin } from "@/backend/utils/isAdmin";
-import { NextResponse } from "next/server";
+import { generateErrorResponse } from "@/backend/utils/generateErrorMessage";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { courseId: string; moduleId: string } }
 ) {
-  if (await isAdmin()) {
+  try {
     const { courseId, moduleId } = params;
     const { title } = await req.json();
     let _id = await createLesson(courseId, moduleId, title);
     return NextResponse.json({ _id: _id }, { status: 200 });
-  } else return NextResponse.json(null, { status: 401 });
+  } catch (error) {
+    const res = generateErrorResponse(error);
+    return NextResponse.json(res.message, { status: res.status });
+  }
 }

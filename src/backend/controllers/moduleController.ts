@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
 import { CourseModel } from "../models/courseModel";
 import { Module } from "../models/moduleModel";
+import { isAdmin } from "../utils/isAdmin";
+import { APIModuleType } from "@/utils/apiTypes";
+import { ERROR_TYPE } from "../utils/errorTypes";
 
 export async function createModule(courseId: string, module: Module) {
+  if (await !isAdmin()) throw ERROR_TYPE.unauthorized;
   let course = await CourseModel.findById(courseId);
-  if (!course) throw new Error("Course not found");
-  module._id = new mongoose.Types.ObjectId();
+  if (!course) throw ERROR_TYPE.notFound;
+  module._id = new mongoose.Types.ObjectId().toString();
   course?.modules.push(module);
   course?.save();
   return module._id;
@@ -13,17 +17,25 @@ export async function createModule(courseId: string, module: Module) {
 
 export async function deleteModule(courseId: string, moduleId: string) {
   let course = await CourseModel.findById(courseId);
-  if (!course) throw new Error("Course not found");
-  const moduleIndex = course?.modules.findIndex((element) => element._id.toString() === moduleId);
-  if (moduleIndex === -1) throw new Error("Module not found");
+  if (!course) throw ERROR_TYPE.notFound;
+  const moduleIndex = course?.modules.findIndex(
+    (element) => element._id.toString() === moduleId
+  );
+  if (moduleIndex === -1) throw ERROR_TYPE.notFound;
   course.modules.splice(moduleIndex, 1);
   course?.save();
 }
 
-export async function updateModulePatch(courseId: string, moduleId: string, module: APIModuleType) {
+export async function updateModulePatch(
+  courseId: string,
+  moduleId: string,
+  module: APIModuleType
+) {
   let course = await CourseModel.findById(courseId);
   if (!course) throw new Error("Course not found");
-  const moduleRef = course?.modules.find((element) => element._id.toString() === moduleId);
+  const moduleRef = course?.modules.find(
+    (element) => element._id.toString() === moduleId
+  );
   if (!moduleRef) throw new Error("Module not found");
   moduleRef.title = module.title || moduleRef.title;
   course?.save();
