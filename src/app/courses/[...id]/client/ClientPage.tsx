@@ -6,6 +6,7 @@ import { DataDetailsContext } from "./utils/dataDetailsContext";
 import Sidebar from "./Sidebar";
 import LessonContainer from "./LessonContainer";
 import courseService from "@/frontend/services/courseService";
+import MainHeader from "@/frontend/ui/MainHeader";
 
 type ClientPageProps = {
   course: CourseType;
@@ -25,26 +26,28 @@ export default function ClientPage(props: ClientPageProps) {
     const newState = structuredClone(completedLessonIds);
     if (newState.has(lessonId)) {
       newState.delete(lessonId);
-    }
-    else newState.add(lessonId);
+    } else newState.add(lessonId);
     setCompletedLessonIds(newState);
     courseService.completeLesson(props.course._id, lessonId);
-  }
+  };
 
   return (
-    <div className="w-screen h-screen flex flex-row relative">
-      <DataDetailsContext.Provider
-        value={{
-          course: props.course,
-          currentLesson: currentLesson,
-          setCurrentLesson: setCurrentLesson,
-          completedLessonIds: completedLessonIds,
-          toggleLessonComplete: toggleLessonComplete,
-        }}
-      >
-        <Sidebar />
-        <LessonContainer />
-      </DataDetailsContext.Provider>
+    <div className="w-sceren h-screen flex flex-col">
+      <MainHeader />
+      <div className="w-screen flex flex-1 flex-row relative overflow-hidden">
+        <DataDetailsContext.Provider
+          value={{
+            course: props.course,
+            currentLesson: currentLesson,
+            setCurrentLesson: setCurrentLesson,
+            completedLessonIds: completedLessonIds,
+            toggleLessonComplete: toggleLessonComplete,
+          }}
+        >
+          <Sidebar />
+          <LessonContainer />
+        </DataDetailsContext.Provider>
+      </div>
     </div>
   );
 }

@@ -95,7 +95,7 @@ export default function AdminLessonContainer(props: LessonContainerProps) {
   let blockIndex = 0;
 
   return (
-    <div className="flex-1 h-screen relative">
+    <div className="flex-1 h-full relative">
       <div className="p-4 h-full overflow-y-scroll">
         {/* Title */}
         <input
