@@ -1,10 +1,10 @@
 "use client";
 
 import AccentButton from "@/frontend/ui/AccentButton";
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { UploadFile } from "./ui/UploadFile";
-import { fileURLToPath } from "url";
 import courseService from "@/frontend/services/courseService";
+import { navigate } from "@/utils/navigation";
 
 export default function NewCourse() {
   let nameRef = useRef<HTMLInputElement>(null);
@@ -20,20 +20,22 @@ export default function NewCourse() {
     const name = nameRef.current?.value;
     const description = descriptionRef.current?.value;
     const category = categoryRef.current?.value;
-    if (!name || !description || !category)
-      return;
-    if (!file.current) 
-      return;
-    courseService.createCourse(name, description, category, file.current);
-  }
+    if (!name || !description || !category) return;
+    if (!file.current) return;
+    courseService
+      .createCourse(name, description, category, file.current)
+      .then(() => {
+        navigate("/admin/courses");
+      });
+  };
 
   return (
-    <div className="flex flex-col gap-4 w-2/4">
+    <div className="flex flex-col gap-4 w-full">
       <h1 className="text-4xl">New course</h1>
       <div className="flex flex-col gap-2">
         <small>Course name</small>
         <div className="p-2 w-full border-border border-1 rounded-lg">
-          <input ref={nameRef}/>
+          <input className="w-full" ref={nameRef} />
         </div>
       </div>
       <div className="flex flex-col gap-2">
@@ -45,11 +47,11 @@ export default function NewCourse() {
       <div className="flex flex-col gap-2">
         <small>Course category</small>
         <div className="relative p-2 w-full border-border border-1 rounded-lg">
-          <input ref={categoryRef}/>
+          <input ref={categoryRef} />
         </div>
       </div>
       <UploadFile setFile={setFile}></UploadFile>
-      <AccentButton onClick={(onSubmit)} className="w-max">
+      <AccentButton onClick={onSubmit} className="w-max">
         Submit
       </AccentButton>
     </div>
