@@ -7,6 +7,20 @@ import courseService from "@/frontend/services/courseService";
 
 export default function CoursesTab() {
   const [courses, setCourses] = useState<CourseType[]>([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  let filteredCourses: CourseType[] = [];
+  if (!searchInput) filteredCourses = courses;
+  else {
+    courses.forEach((course) => {
+      const title = course.title.toLowerCase();
+      if (title.startsWith(searchInput)) {
+        filteredCourses.push(course);
+      }
+    });
+  }
+
+  const updateFilter = (e: InputEvent) => setSearchInput(e.currentTarget.value.toLowerCase());
 
   useEffect(() => {
     courseService.getCourses().then((fetchedCourses) => {
@@ -19,9 +33,9 @@ export default function CoursesTab() {
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl text-center">Courses</h1>
         <div className="w-full">
-          <input placeholder="Search" />
+          <input onChange={updateFilter} placeholder="Search" />
         </div>
-        <CourseTable courses={courses}/>
+        <CourseTable courses={filteredCourses} />
       </div>
     </div>
   );
