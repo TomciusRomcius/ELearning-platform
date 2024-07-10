@@ -17,7 +17,8 @@ export function AdminModule(props: ModuleProps) {
   let [popupVisible, setPopupVisible] = useState(false);
   let [isRenaming, setIsRenaming] = useState(false);
 
-  const onTogglePopup = () => {
+  const onTogglePopup = (e: MouseEvent) => {
+    e.stopPropagation();
     setPopupVisible(!popupVisible);
   };
 
