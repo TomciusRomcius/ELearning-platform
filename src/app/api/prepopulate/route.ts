@@ -7,6 +7,7 @@ import { ERROR_TYPE } from "@/backend/utils/errorTypes";
 export async function GET() {
   if (await isAdmin()) {
     await CourseModel.create(courseData);
+    return NextResponse.json(null);
   }
   else {
     const error = ERROR_TYPE.unauthorized;
