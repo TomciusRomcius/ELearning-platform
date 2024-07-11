@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background flex flex-col gap-10`}>
+      <body className={`${inter.className} bg-background`}>
         {isUserAdmin ? <AdminHeader></AdminHeader> : null}
         <SessionContainer>
           <>{children}</>
