@@ -31,7 +31,7 @@ export async function updateCourse(courseId: string, course: APICourseType) {
     !course.modules
   )
     throw ERROR_TYPE.invalidData;
-  if (await !isAdmin) throw ERROR_TYPE.unauthorized;
+  if (await !isAdmin()) throw ERROR_TYPE.unauthorized;
 
   if (!courseId) throw ERROR_TYPE.invalidData;
   let dbCourse = await CourseModel.findById(courseId);
