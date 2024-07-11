@@ -17,13 +17,15 @@ export default function RootLayout({
       <body className="bg-background">
         <div className="flex flex-row w-screen h-screen">
           <SidebarLayout>
-            <>
-              <LinkOption className="text-lg text-text-grayed" highlightedClass="text-text-light" href="/admin/courses">Courses</LinkOption>
-            </>
+            <LinkOption
+              className="text-lg text-text-grayed"
+              highlightedClass="text-text-light"
+              href="/admin/courses"
+            >
+              Courses
+            </LinkOption>
           </SidebarLayout>
-          <BodyLayout>
-            {children}
-          </BodyLayout>
+          <BodyLayout>{children}</BodyLayout>
         </div>
       </body>
     </html>
