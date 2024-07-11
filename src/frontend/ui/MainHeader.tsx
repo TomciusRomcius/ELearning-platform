@@ -44,7 +44,7 @@ export default function MainHeader() {
                     Sign out
                   </button>
                 ) : (
-                  <button onClick={signIn}>Sign in</button>
+                  <button className="text-text-grayed hover:text-text-light transition-all" onClick={signIn}>Sign in</button>
                 )}
               </div>
             </Popup>
