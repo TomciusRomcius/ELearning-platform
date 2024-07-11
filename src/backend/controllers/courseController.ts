@@ -13,12 +13,11 @@ export async function createCourse(
 ): Promise<string> {
   if (await !isAdmin) throw ERROR_TYPE.unauthorized;
   if (!title || !description || !category) throw ERROR_TYPE.invalidData;
-  let course = await new CourseModel({
+  let course = await CourseModel.create({
     title,
     description,
     category: category,
   });
-  course.save();
   return course.id;
 }
 
@@ -34,13 +33,14 @@ export async function updateCourse(courseId: string, course: APICourseType) {
   if (await !isAdmin()) throw ERROR_TYPE.unauthorized;
 
   if (!courseId) throw ERROR_TYPE.invalidData;
-  let dbCourse = await CourseModel.findById(courseId);
-  if (!dbCourse) throw ERROR_TYPE.notFound;
-  // Update the updated fields
-  dbCourse.title = course.title || dbCourse.title;
-  dbCourse.description = course.description || dbCourse.description;
-  dbCourse.category = course.category || dbCourse.category;
-  dbCourse.save();
+
+  await CourseModel.findByIdAndUpdate(courseId, {
+    $set: {
+      ...(course?.title && { title: course.title }),
+      ...(course?.description && { description: course.description }),
+      ...(course?.category && { category: course.category }),
+    },
+  });
 }
 
 // Inefficient but for for low number of courses will work :)
