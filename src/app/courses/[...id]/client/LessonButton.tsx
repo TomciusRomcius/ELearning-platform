@@ -15,11 +15,7 @@ export default function LessonButton(props: LessonButtonProps) {
     setCurrentLesson(props.lesson);
   };
 
-  let className = props.lesson.completed
-    ? "text-text-light"
-    : "text-text-grayed";
-
-  let currentLessonClassName = "bg-primary-200 rounded-lg font-bold";
+  let currentLessonClassName = "bg-primary-200 rounded-lg font-bold text-text-light fill-text-light";
   let completedLessonClassName = "text-text-light fill-text-light";
   let isCurrentLesson = props.lesson._id.toString() === currentLesson._id;
   let isCompleted = completedLessonIds.has(props.lesson._id);
