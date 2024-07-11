@@ -16,16 +16,14 @@ export async function createModule(courseId: string, module: Module) {
 }
 
 export async function deleteModule(courseId: string, moduleId: string) {
-  let course = await CourseModel.findById(courseId);
-  if (!course) throw ERROR_TYPE.notFound;
-  const moduleIndex = course?.modules.findIndex(
-    (element) => element._id.toString() === moduleId
+  const result = await CourseModel.updateOne(
+    { _id: courseId },
+    { $pull: { modules: { _id: moduleId } } }
   );
-  if (moduleIndex === -1) throw ERROR_TYPE.notFound;
-  course.modules.splice(moduleIndex, 1);
-  course?.save();
-}
 
+  if (result.matchedCount === 0) throw ERROR_TYPE.notFound;
+  if (result.modifiedCount === 0) throw ERROR_TYPE.notFound;
+}
 export async function updateModulePatch(
   courseId: string,
   moduleId: string,
