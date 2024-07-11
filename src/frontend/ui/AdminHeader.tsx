@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import Link from "next/link";
+import AccentButton from "./AccentButton";
 
 export default function AdminHeader() {
   const onPrepopulateData = () => {
@@ -9,17 +10,15 @@ export default function AdminHeader() {
   }
 
   return (
-    <div className="w-full p-2 bg-primary-200">
-      <div>
+    <div className="w-full p-4 flex flex-row gap-4 bg-primary-0 border-b-1 border-border">
         <Link href="/admin">
-          <button className="px-8 py-2 bg-primary-300 border-border border-1">
+          <AccentButton className="px-8 py-2 bg-primary-100 border-border border-1">
             Admin
-          </button>
+          </AccentButton>
         </Link>
-        <button onClick={onPrepopulateData} className="px-8 py-2 bg-primary-300 border-border border-1">
+        <AccentButton onClick={onPrepopulateData} className="px-8 py-2 bg-primary-100 border-border border-1">
           Prepopulate courses
-        </button>
-      </div>
+        </AccentButton>
     </div>
   );
 }
