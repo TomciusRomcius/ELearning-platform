@@ -11,7 +11,7 @@ export async function createCourse(
   description: string,
   category: string
 ): Promise<string> {
-  if (await !isAdmin) throw ERROR_TYPE.unauthorized;
+  if (await !isAdmin()) throw ERROR_TYPE.unauthorized;
   if (!title || !description || !category) throw ERROR_TYPE.invalidData;
   let course = await CourseModel.create({
     title,
