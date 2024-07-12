@@ -19,7 +19,6 @@ const TextArea = forwardRef((props: TextareaHTMLAttributes<any>, forwardedRef) =
 
     ref.current.addEventListener("input", resize);
     return () => ref.current?.removeEventListener("input", resize);
-    console.log("Layout");
   }, [props.className]);
 
 
