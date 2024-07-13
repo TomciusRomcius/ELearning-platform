@@ -56,6 +56,7 @@ export function AdminModule(props: ModuleProps) {
         {/* Display lessons */}
         {props.module.lessons.map((lesson) => (
           <LessonButton
+            key={lesson._id}
             courseId={props.courseId}
             setCurrentLesson={props.setCurrentLesson}
             moduleId={props.module._id}
