@@ -1,18 +1,9 @@
 import { useDataDetails } from "./utils/useDataDetails";
 import Block from "./Block";
-import AccentButton from "@/frontend/ui/AccentButton";
 import LessonFunctions from "./LessonFunctions";
 
 export default function LessonContainer() {
-  const { currentLesson, toggleLessonComplete } = useDataDetails();
-
-  const onComplete = () => {
-    toggleLessonComplete(currentLesson._id);
-  };
-
-  const onNextLesson = () => {
-    // onComplete();
-  }
+  const { currentLesson } = useDataDetails();
 
   return (
     <div className="flex flex-col px-24 py-10 flex-1">
