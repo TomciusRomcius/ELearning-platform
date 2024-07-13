@@ -3,7 +3,7 @@
 import { getEnrolledCourses } from "@/backend/controllers/courseController";
 import { CourseType } from "@/utils/types";
 import CourseCard from "@/frontend/components/CourseCard";
-import MainHeader from "@/frontend/ui/MainHeader";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { navigate } from "@/utils/navigation";
 import { getSessionServer } from "@/backend/utils/getServerSession";
 import { generateBody } from "../_utils/generateBody";

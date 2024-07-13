@@ -3,7 +3,7 @@ import { useCourse } from "../hooks/useCourse";
 import LessonContainer from "./AdminLessonContainer";
 import NewModuleButton from "./AdminNewModuleButton";
 import { AdminModule } from "./AdminModule";
-import MainHeader from "@/frontend/ui/MainHeader";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 
 export default function AdminPage() {
   let { setCurrentLesson, course, lesson } = useCourse();

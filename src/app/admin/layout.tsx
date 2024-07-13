@@ -3,7 +3,7 @@
 import { SidebarLayout } from "./_layouts/SidebarLayout";
 import { BodyLayout } from "./_layouts/BodyLayout";
 import LinkOption from "@/frontend/ui/LinkOption";
-import MainHeader from "@/frontend/ui/MainHeader";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({

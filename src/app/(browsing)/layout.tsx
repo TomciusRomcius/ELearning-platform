@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
-import MainHeader from "@/frontend/ui/MainHeader";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import SessionContainer from "@/frontend/ui/SessionContainer";
 import { isAdmin } from "@/backend/utils/isAdmin";
 import AdminHeader from "@/frontend/ui/AdminHeader";

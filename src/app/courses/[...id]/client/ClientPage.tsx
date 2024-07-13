@@ -6,7 +6,7 @@ import { DataDetailsContext } from "./utils/dataDetailsContext";
 import Sidebar from "./Sidebar";
 import LessonContainer from "./LessonContainer";
 import courseService from "@/frontend/services/courseService";
-import MainHeader from "@/frontend/ui/MainHeader";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 
 type ClientPageProps = {
   course: CourseType;

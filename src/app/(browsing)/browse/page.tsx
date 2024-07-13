@@ -1,26 +1,17 @@
-"use client";
+"use server";
 
-import { useEffect, useState } from "react";
-import MainHeader from "@/frontend/ui/MainHeader";
-import { CourseType } from "@/utils/types";
-import courseService from "@/frontend/services/courseService";
+import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { generateBody } from "../_utils/generateBody";
 import BodyLayout from "../_layouts/BodyLayout";
+import courseService from "@/frontend/services/courseService";
 
-export default function Page() {
-  let [courses, setCourses] = useState<CourseType[]>([]);
+export default async function Page() {
+  const courses = await courseService.getCourses()
   let bodyElements: React.JSX.Element[] = generateBody(courses);
-
-  useEffect(() => {
-    courseService.getCourses().then((fetchedCourses) => {
-      setCourses(fetchedCourses);
-    });
-  }, []);
 
   return (
     <>
       <MainHeader />
-
       <main className="flex flex-col h-26 gap-10">
         <BodyLayout>
           <h1 className="text-6xl text-center">Browse</h1>
