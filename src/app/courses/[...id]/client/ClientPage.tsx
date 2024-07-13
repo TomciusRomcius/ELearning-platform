@@ -32,9 +32,8 @@ export default function ClientPage(props: ClientPageProps) {
   };
 
   return (
-    <div className="w-sceren h-screen flex flex-col">
-      <MainHeader />
-      <div className="w-screen flex flex-1 flex-row relative overflow-hidden">
+    <div className="w-full flex-1 flex flex-col">
+      <div className="w-screen flex-1 flex flex-row relative overflow-hidden">
         <DataDetailsContext.Provider
           value={{
             course: props.course,
