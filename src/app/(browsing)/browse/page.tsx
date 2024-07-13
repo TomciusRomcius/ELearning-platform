@@ -3,10 +3,10 @@
 import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { generateBody } from "../_utils/generateBody";
 import BodyLayout from "../_layouts/BodyLayout";
-import courseService from "@/frontend/services/courseService";
+import { getCourses } from "@/backend/controllers/courseController";
 
 export default async function Page() {
-  const courses = await courseService.getCourses()
+  const courses = await getCourses()
   let bodyElements: React.JSX.Element[] = generateBody(courses);
 
   return (
