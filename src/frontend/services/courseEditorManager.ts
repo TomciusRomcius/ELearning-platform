@@ -11,12 +11,8 @@ export default class CourseEditorManager {
   public static currentCourse: CourseType | null = null;
   public static subscribers: (() => void)[] = [];
 
-  public static async fetchCourse(courseId: string) {
-    try {
-      CourseEditorManager.currentCourse = (
-        await axios.get(`/api/courses/${courseId}`)
-      ).data;
-    } catch (err) {}
+  public static setCurrentCourse(course: CourseType) {
+    CourseEditorManager.currentCourse = structuredClone(course);
   }
 
   public static async createModule(title: string) {

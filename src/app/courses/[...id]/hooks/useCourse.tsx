@@ -5,11 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { CourseType, CurrentLessonType, LessonType } from "../../../../utils/types";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
 
-export function useCourse() {
-  let [course, setCourse] = useState<CourseType | null>(null);
+export function useCourse(loadedCourse: CourseType) {
+  let [course, setCourse] = useState<CourseType>(loadedCourse);
   let [currentLessonId, setCurrentLessonId] = useState<string>("");
   let currentModuleId = useRef<string | null>("");
-  const params = useParams();
 
   // Load the current lesson
   const getLesson = (): CurrentLessonType | null => {
@@ -40,12 +39,8 @@ export function useCourse() {
   // Note we must currently use structured clone to change the reference of the course object
   // to allow it to update. It's not ideal.
   useEffect(() => {
-    // Load the course
-    CourseEditorManager.fetchCourse(params.id as string)
-      .then(() => {
-        if (!CourseEditorManager.currentCourse) return;
-        setCourse(structuredClone(CourseEditorManager.currentCourse));
-      })
+    // Set the course
+    CourseEditorManager.setCurrentCourse(loadedCourse);
 
     // Register the update callback
     CourseEditorManager.subscribers.push(() => {
