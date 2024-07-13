@@ -1,17 +1,20 @@
 "use client";
+
 import { useCourse } from "../hooks/useCourse";
 import LessonContainer from "./AdminLessonContainer";
 import NewModuleButton from "./AdminNewModuleButton";
 import { AdminModule } from "./AdminModule";
-import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
+import { CourseType } from "@/utils/types";
 
-export default function AdminPage() {
-  let { setCurrentLesson, course, lesson } = useCourse();
-  if (!course) return <h1>Loading...</h1>;
+type AdminPageProps = {
+  course: CourseType;
+}
+
+export default function AdminPage(props: AdminPageProps) {
+  let { setCurrentLesson, course, lesson } = useCourse(props.course);
 
   return (
     <div className="w-sceren h-screen flex flex-col">
-      <MainHeader />
       <div className="flex flex-row w-full flex-1 overflow-hidden">
         <nav className="bg-foreground p-4 flex flex-col gap-4 border-r-1 border-primary-300 w-1/6 h-full overflow-y-auto">
           <h2 className="text-text-light text-xl font-medium text-center">

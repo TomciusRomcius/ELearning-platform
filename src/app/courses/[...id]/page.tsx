@@ -29,7 +29,8 @@ export default async function Page({
   let courseId = params.id[0];
 
   if (searchParams.isAdmin && session?.user?.role === UserRole.ADMIN) {
-    return <AdminPage/>
+    const course = await getCourse(courseId);
+    return <AdminPage course={course}/>
   }
   
   else if (searchParams.isAdmin) {
