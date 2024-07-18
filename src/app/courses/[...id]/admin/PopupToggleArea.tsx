@@ -7,7 +7,7 @@ type PopupToggleAreaProps = {
 };
 export default function PopupToggleArea(props: PopupToggleAreaProps) {
   const popupRef = props.popupRef;
-  console.log(props.popupRef.current);
+
   const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (props.isPopupVisible) return;
     if (!popupRef?.current) return;
@@ -23,6 +23,11 @@ export default function PopupToggleArea(props: PopupToggleAreaProps) {
     if (rect.left + rect.width > window.innerWidth) {
       dx = rect.left + rect.width - window.innerWidth
       popupRef.current.style.left = `${rect.left - dx}px`;
+    }
+
+    if (rect.top + rect.height > window.innerHeight) {
+      dy = rect.top + rect.height - window.innerHeight
+      popupRef.current.style.top = `${rect.top - dy}px`;
     }
   }, [props.isPopupVisible]);
 
