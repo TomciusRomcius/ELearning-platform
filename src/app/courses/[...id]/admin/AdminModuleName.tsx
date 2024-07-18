@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { ModuleType } from "../../../../utils/types";
 import CourseEditorManager from "@/frontend/services/courseEditorManager";
+import { useWindowEvent } from "@/frontend/hooks/useWindowEvent";
 
 type ModuleNameProps = {
   module: ModuleType;
@@ -9,6 +10,13 @@ type ModuleNameProps = {
 }
 export default function ModuleName(props: ModuleNameProps) {
   let nameRef = useRef<HTMLInputElement>(null);
+
+  const onEscape = (e: any) => {
+    if (e.key === "Escape") {
+      props.setIsRenaming(false);
+    }
+  }
+  useWindowEvent("keydown", onEscape);
 
   const onRename = () => {
     const newTitle = nameRef.current?.value;
