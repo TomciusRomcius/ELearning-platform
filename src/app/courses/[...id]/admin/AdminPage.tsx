@@ -14,7 +14,6 @@ export default function AdminPage(props: AdminPageProps) {
   let { setCurrentLesson, course, lesson } = useCourse(props.course);
 
   return (
-    <div className="w-sceren h-screen flex flex-col">
       <div className="flex flex-row w-full flex-1 overflow-hidden">
         <nav className="bg-foreground p-4 flex flex-col gap-4 border-r-1 border-primary-300 w-1/6 h-full overflow-y-auto">
           <h2 className="text-text-light text-xl font-medium text-center">
@@ -38,6 +37,5 @@ export default function AdminPage(props: AdminPageProps) {
           />
         ) : null}
       </div>
-    </div>
   );
 }
