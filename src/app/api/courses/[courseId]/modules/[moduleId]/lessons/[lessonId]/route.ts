@@ -3,10 +3,10 @@ import {
   updateLesson,
 } from "@/backend/controllers/lessonController";
 import { generateErrorResponse } from "@/backend/utils/generateErrorMessage";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
-  req: Request,
+  req: NextRequest,
   {
     params,
   }: { params: { courseId: string; moduleId: string; lessonId: string } }
@@ -22,12 +22,13 @@ export async function PUT(
   }
 }
 
-export async function DELETE({
+export async function DELETE(req: NextRequest, {
   params,
 }: {
   params: { courseId: string; moduleId: string; lessonId: string };
 }) {
   try {
+    console.log(params);
     const { courseId, moduleId, lessonId } = params;
     await deleteLesson(courseId, moduleId, lessonId);
     return new NextResponse(null, { status: 200 });
