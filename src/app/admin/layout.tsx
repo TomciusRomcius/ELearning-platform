@@ -1,12 +1,10 @@
-"use client";
-
 import { SidebarLayout } from "./_layouts/SidebarLayout";
 import { BodyLayout } from "./_layouts/BodyLayout";
 import LinkOption from "@/frontend/ui/LinkOption";
 import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { SessionProvider } from "next-auth/react";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -15,7 +13,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-background">
         <div className="h-screen flex flex-col">
-        <SessionProvider>
           <MainHeader />
           <div className="flex flex-row w-screen flex-1 overflow-hidden">
             <SidebarLayout>
@@ -29,7 +26,6 @@ export default function RootLayout({
             </SidebarLayout>
             <BodyLayout>{children}</BodyLayout>
           </div>
-        </SessionProvider>
         </div>
       </body>
     </html>
