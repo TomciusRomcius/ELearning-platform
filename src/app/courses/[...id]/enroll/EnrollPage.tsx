@@ -2,7 +2,6 @@
 
 import courseService from "@/frontend/services/courseService";
 import AccentButton from "@/frontend/ui/AccentButton";
-import MainHeader from "@/frontend/ui/MainHeader/MainHeader";
 import { navigate } from "@/utils/navigation";
 import { CourseType } from "@/utils/types";
 
