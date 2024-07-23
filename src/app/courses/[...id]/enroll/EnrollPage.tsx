@@ -20,7 +20,6 @@ export default function EnrollPage(props: EnrollPageProps) {
 
   return (
     <div className="w-screen min-h-screen flex flex-col gap-4">
-      <MainHeader></MainHeader>
       <div className="w-screen flex-1 h-full flex justify-between gap-16 px-56 items-center">
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl">{props.course.title}</h1>
