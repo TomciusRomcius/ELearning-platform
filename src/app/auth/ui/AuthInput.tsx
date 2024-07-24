@@ -6,7 +6,7 @@ const AuthInput = forwardRef((
 ) => {
   return (
     <div className={`border-border border-1 rounded-lg ${props.className}`}>
-      <input ref={forwardedRef} className="w-full p-2" />
+      <input id={props.id} ref={forwardedRef} className="w-full p-2" />
     </div>
   );
 });

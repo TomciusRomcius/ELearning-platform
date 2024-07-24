@@ -48,11 +48,11 @@ export default function SignIn() {
         or log in
       </Link>
       <small>Email</small>
-      <AuthInput ref={emailRef} placeholder="Email" />
+      <AuthInput ref={emailRef} id="email-input" placeholder="Email" />
       <small>Password</small>
-      <AuthInput ref={passwordRef} placeholder="Password" />
+      <AuthInput ref={passwordRef} id="password-input" placeholder="Password" />
       <small>Repeat password</small>
-      <AuthInput ref={repeatPasswordRef} placeholder="Repeat password" />
+      <AuthInput ref={repeatPasswordRef} id="repeat-password-input" placeholder="Repeat password" />
       <div className="flex flex-row gap-2">
         <small>Is admin?</small>
         <input ref={isAdminRef} type="checkbox"/>

@@ -42,9 +42,9 @@ export default function SignIn() {
       <h1 className="text-center text-5xl">Sign in</h1>
       <Link href="/auth/sign-up" className="text-accent">or create an account</Link>
       <small>Email</small>
-      <AuthInput ref={emailRef} placeholder="Email" />
+      <AuthInput ref={emailRef} id="email-input" placeholder="Email" />
       <small>Password</small>
-      <AuthInput ref={passwordRef} placeholder="Password" />
+      <AuthInput ref={passwordRef} id="password-input" placeholder="Password" />
       <CredentialsButton onClick={onCredentialsSignIn}>Sign in</CredentialsButton>
       <GoogleButton>Sign in with Google</GoogleButton>
       <GithubButton onClick={onGithubSignIn}>Sign in with Github</GithubButton>
