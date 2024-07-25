@@ -15,31 +15,34 @@ interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 
 const Popup = forwardRef<HTMLDivElement, PopupProps>(
   (props: PopupProps, ref) => {
-    let { isFixed, x, y, onClose, ...htmlProps } = props; // Getting props
+    let { isVisible, isFixed, x, y, onClose, ...htmlProps } = props; // Getting props
 
-    const handleWindowClick = useCallback(() => {
+    const handleWindowClick = () => {
       if (!props.isVisible) return;
       if (onClose) {
+        window.removeEventListener("click", handleWindowClick);
         onClose();
       }
-    }, [props.isVisible, onClose]);
+    };
 
-    const handleWindowScroll = useCallback(() => {
+    const handleWindowScroll = () => {
       if (!props.isVisible) return;
       if (onClose) {
+        window.removeEventListener("wheel", handleWindowScroll);
         onClose();
       }
-    }, [props.isVisible, onClose]);
+    };
 
     useLayoutEffect(() => {
       if (!ref) return;
+      if (!props.isVisible) return;
 
       window.addEventListener("click", handleWindowClick);
       window.addEventListener("wheel", handleWindowScroll);
 
       return () => {
         window.removeEventListener("click", handleWindowClick);
-        window.addEventListener("wheel", handleWindowScroll);
+        window.removeEventListener("wheel", handleWindowScroll);
       };
     }, [props.isVisible]);
 
