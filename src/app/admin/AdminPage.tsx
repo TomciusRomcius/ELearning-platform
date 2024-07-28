@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default async function AdminPage() {
   return (
-    <div className="w-screen h-screen flex">
+    <div className="w-full h-full flex">
       <CoursesTab/>
     </div>
   )

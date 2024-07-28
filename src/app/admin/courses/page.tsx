@@ -20,7 +20,8 @@ export default function CoursesTab() {
     });
   }
 
-  const updateFilter = (e: InputEvent) => setSearchInput(e.currentTarget.value.toLowerCase());
+  const updateFilter = (e: InputEvent) =>
+    setSearchInput(e.currentTarget.value.toLowerCase());
 
   useEffect(() => {
     courseService.getCourses().then((fetchedCourses) => {
@@ -29,12 +30,12 @@ export default function CoursesTab() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 items-center flex-1">
-      <div className="flex flex-col gap-4">
-        <h1 className="text-4xl text-center">Courses</h1>
-        <div className="w-full">
-          <input onChange={updateFilter} placeholder="Search" />
-        </div>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-4xl text-center">Courses</h1>
+      <div className="w-full">
+        <input onChange={updateFilter} placeholder="Search" />
+      </div>
+      <div className=" overflow-x-auto">
         <CourseTable courses={filteredCourses} />
       </div>
     </div>

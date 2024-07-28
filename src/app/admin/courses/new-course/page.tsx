@@ -35,19 +35,19 @@ export default function NewCourse() {
       <div className="flex flex-col gap-2">
         <small>Course name</small>
         <div className="p-2 w-full border-border border-1 rounded-lg">
-          <input className="w-full" ref={nameRef} />
+          <input id="name-input" className="w-full" ref={nameRef} />
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <small>Course description</small>
         <div className="p-2 w-full border-border border-1 rounded-lg">
-          <textarea ref={descriptionRef} className="w-full h-full" />
+          <textarea id="description-input" ref={descriptionRef} className="w-full h-full" />
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <small>Course category</small>
         <div className="relative p-2 w-full border-border border-1 rounded-lg">
-          <input ref={categoryRef} />
+          <input id="category-input" ref={categoryRef} />
         </div>
       </div>
       <UploadFile setFile={setFile}></UploadFile>

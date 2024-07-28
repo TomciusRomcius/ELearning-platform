@@ -26,7 +26,7 @@ export default function CourseTable(props: CourseTableProps) {
 
   }, [props.courses]);
   return (
-    <table>
+    <table className="w-full">
       <tbody>
         <tr className="border-b-1 border-border">
           <td className="px-24 py-2 font-bold">Name</td>
