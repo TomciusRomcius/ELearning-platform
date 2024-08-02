@@ -1,6 +1,4 @@
-import CourseEditorManager from "@/frontend/services/courseEditorManager";
-import { createLesson } from "@/frontend/services/createLesson";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 type ButtonInputProps = {
   action: (payload: string) => void;
@@ -14,10 +12,10 @@ export default function ButtonInput(props: ButtonInputProps) {
   const handleClick = () => {
     setActive(!active);
   };
-  const onAction = () => {
+  const onAction = useCallback(() => {
     if (!nameRef.current?.value) return;
     props.action(nameRef.current.value);
-  };
+  }, [props.action]);
 
   return (
     <div className="flex flex-col gap-4">
