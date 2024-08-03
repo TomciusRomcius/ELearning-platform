@@ -1,9 +1,9 @@
 import { ClientLessonType, LessonType, ModuleType } from "../../../../utils/types";
 import LessonButton from "./LessonButton";
-import { useDataDetails } from "./utils/useDataDetails";
+import { useDataDetails } from "./_utils/useDataDetails";
 
 type ModuleProps = {
-  module: ModuleType<ClientLessonType>;
+  module: ModuleType;
 };
 
 function calculateCompletionPercentage(lessons: LessonType[], completedLessonIds: Set<string>) {

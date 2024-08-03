@@ -2,7 +2,7 @@ import { useState, memo, useRef, useLayoutEffect } from "react";
 import { BlockType } from "@/utils/types";
 import BlockTypeSelector from "./AdminBlockTypeSelector";
 import TextArea from "@/frontend/ui/TextArea";
-import { blockClasses } from "../utils/blocks";
+import { blockClasses } from "../_utils/blocks";
 
 type AdminBlockProps = {
   setCurrentIndex: (index: number) => void;

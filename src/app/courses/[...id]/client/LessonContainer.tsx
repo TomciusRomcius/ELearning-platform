@@ -1,4 +1,4 @@
-import { useDataDetails } from "./utils/useDataDetails";
+import { useDataDetails } from "./_utils/useDataDetails";
 import Block from "./Block";
 import LessonFunctions from "./LessonFunctions";
 

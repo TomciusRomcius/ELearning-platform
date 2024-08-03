@@ -1,9 +1,9 @@
-import { ClientLessonType, LessonType } from "@/utils/types";
-import { useDataDetails } from "./utils/useDataDetails";
+import { LessonType } from "@/utils/types";
+import { useDataDetails } from "./_utils/useDataDetails";
 import Checkmark from "@/frontend/resources/svg/Checkmark";
 
 type LessonButtonProps = {
-  lesson: ClientLessonType;
+  lesson: LessonType;
   moduleId: string;
 };
 

@@ -1,6 +1,5 @@
 import AccentButton from "@/frontend/ui/AccentButton";
-import { LessonType } from "@/utils/types";
-import { useDataDetails } from "./utils/useDataDetails";
+import { useDataDetails } from "./_utils/useDataDetails";
 
 export default function LessonFunctions() {
   const { currentLesson, toggleLessonComplete } = useDataDetails();

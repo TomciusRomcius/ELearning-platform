@@ -1,6 +1,6 @@
 "use client";
 
-import { useCourse } from "../hooks/useCourse";
+import { useCourse } from "../_utils/useCourse";
 import LessonContainer from "./AdminLessonContainer";
 import NewModuleButton from "./AdminNewModuleButton";
 import { AdminModule } from "./AdminModule";

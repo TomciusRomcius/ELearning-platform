@@ -1,5 +1,5 @@
-import { BlockType } from "../../../../utils/types";
-import { blockClasses } from "../utils/blocks";
+import { BlockType } from "@/utils/types";
+import { blockClasses } from "../_utils/blocks";
 
 type BlockProps = {
   block: BlockType;
@@ -9,6 +9,5 @@ const defaultClassName = "text-text-light w-full ";
 
 export default function Block(props: BlockProps) {
   let className = defaultClassName + blockClasses.get(props.block.type);
-
-return <p className={`py-2 ${className}`}>{props.block.content}</p>;
+  return <p className={`py-2 ${className}`}>{props.block.content}</p>;
 }

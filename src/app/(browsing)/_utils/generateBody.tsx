@@ -1,6 +1,6 @@
 import { CourseType } from "@/utils/types";
 import { getCategoryToCourseMap } from "./getCategoryToCourseMap";
-import CourseCard from "../ui/CourseCard";
+import CourseCard from "../_ui/CourseCard";
 import CourseContainerLayout from "../_layouts/CourseContainerLayout";
 
 export function generateBody(courses: CourseType[]): React.JSX.Element[] {

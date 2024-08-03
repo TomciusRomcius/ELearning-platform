@@ -1,6 +1,6 @@
 "use client";
 
-import { useDataDetails } from "./utils/useDataDetails";
+import { useDataDetails } from "./_utils/useDataDetails";
 import { Module } from "./Module";
 import ResponsiveSidebarLayout from "@/frontend/layouts/ResponsiveSidebarLayout";
 
